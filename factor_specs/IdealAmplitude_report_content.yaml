@@ -1,0 +1,121 @@
+factor_id: IdealAmplitude
+
+layer_discipline: |
+  **Factor Identity:** `IdealAmplitude` (spread \(V\)) is the only investable factor_id.
+  `V_high` / `V_low` / Amp20 baseline are **cutting / mechanism legs**, not Registry siblings.
+
+construction_title: "Factor construction: amplitude cutting → Ideal Amplitude"
+construction_steps:
+  - "amp = high/low − 1"
+  - "knife: close state"
+  - "high-close λ days"
+  - "low-close λ days"
+  - "V_high / V_low"
+  - "V = V_high − V_low"
+
+executive_summary: |
+  Ideal Amplitude is a **paper-replication / cutting** factor from 《振幅因子的隐藏结构》:
+  daily amplitude is partitioned by close-price state within a 20-day window; the spread
+  \(V = V_{high} - V_{low}\) concentrates amplitude information in the high-price state.
+
+  Cutting_v1 harvest (3885d): RankICIR ≈ −7.7, H–L Sharpe ≈ 3.44, **monotonicity ≈ 0.11**
+  (soft bar fail on mono). Pack admits as `testing` — strong ICIR/Sharpe, weak decile shape.
+
+factor_thesis: |
+  Raw Amp20 mixes high-price and low-price amplitude regimes. Cutting by close level
+  isolates the amplitude contribution of elevated-price days versus depressed-price days;
+  the difference purifies a tradable amplitude anomaly.
+
+economic_intuition: |
+  High close-state days embed different inventory / attention dynamics than low close-state
+  days. If amplitude alpha concentrates when price is elevated, \(V_{high}\) should dominate
+  and the spread should beat the uncut Amp20 object.
+
+formula:
+  raw_variables: |
+    High, low, close over a 20-day window. Optionally drop one-word limit days.
+  intermediate_variables: |
+    $$\mathrm{Amp}_t = \frac{H_t}{L_t} - 1$$
+
+    Partition by close quantile state (\(\lambda=0.25\)) within the lookback.
+  transformations: |
+    $$V_{high} = \mathrm{mean}(\mathrm{Amp} \mid \text{high-close}),\quad
+      V_{low} = \mathrm{mean}(\mathrm{Amp} \mid \text{low-close})$$
+  final_signal: |
+    $$V = V_{high} - V_{low}$$
+
+    Paper direction: negative IC (sign handled in evaluation).
+
+signal_pipeline: |
+  ```
+  Amp object (high/low − 1)
+        ↓
+  knife: close price state (λ=0.25)
+        ↓
+  V_high vs V_low
+        ↓
+  V = V_high − V_low
+        ↓
+  CS z-score / neutralization diagnostics
+  ```
+
+mechanism_rows:
+  - hypothesis: "High-close leg carries amplitude alpha"
+    test: "V_high RankICIR"
+    result: "ICIR ≈ −6.4"
+    conclusion: "pass — information locus in high-close state"
+  - hypothesis: "Low-close leg weaker"
+    test: "V_low RankICIR"
+    result: "ICIR ≈ −2.7"
+    conclusion: "pass — knife separates regimes"
+  - hypothesis: "Spread purifies vs Amp20"
+    test: "V spread ICIR"
+    result: "spread ICIR ≈ −7.7"
+    conclusion: "pass cutting claim"
+  - hypothesis: "Soft quality bar (Sharpe>2, mono>0.8)"
+    test: "H-L Sharpe / monotonicity"
+    result: "Sharpe ≈ 3.44 · mono ≈ 0.11"
+    conclusion: "fail soft bar on mono — keep testing"
+
+mechanism_narrative: |
+  Cutting claim holds on IC decomposition (high leg stronger; spread ICIR strong).
+  Decile monotonicity remains the admission blocker — document honestly, do not retune.
+
+execution_narrative: |
+  Execution grid filled in Phase III A2 (last 252d confirmation-style window).
+  See `execution/execution_summary.csv`. Soft-bar mono failure unchanged — Registry `testing`.
+
+limitations: |
+  - Weak decile monotonicity (~0.11) — not candidate-ready.
+  - Same microstructure / trading-behavior family as IdealReversal — check residual later.
+  - Protocol PNG harvest may be thin (cutting_v1 CSV-rich, PNG-sparse).
+
+final_verdict: |
+  **Status: testing (paper replication).** Cutting claim holds on ICIR/Sharpe; mono soft bar
+  fails. Phase III A2 admits pack + Registry as `testing` only.
+
+code_map:
+  - item: Implementation
+    path: "factor_cutting/ideal_amplitude.py"
+  - item: Cutting harvest
+    path: "research/reports/factor_cutting_v1/ideal_amplitude/"
+  - item: Eval script
+    path: "run_milestone_3_0_ideal_amplitude.py"
+
+card_fields:
+  hypothesis: |
+    Cutting daily amplitude by close-price state isolates high-state amplitude information (V_high − V_low).
+  mechanism:
+    - microstructure
+    - volatility
+  formula: "V = mean(amp|high-close) - mean(amp|low-close); knife=close state λ=0.25"
+  data_requirement:
+    - high
+    - low
+    - close
+  known_failure_modes:
+    - weak_monotonicity
+    - same_family_as_IdealReversal
+  do_not:
+    - promote to validated without mono / Dual Benchmark
+    - confuse V_high/V_low legs with Registry factor_ids

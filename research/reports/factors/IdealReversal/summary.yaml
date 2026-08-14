@@ -1,0 +1,80 @@
+# schema: factor_pack_summary_v1
+factor_id: IdealReversal
+display_name: Ideal Reversal
+short_name: IdealReversal
+family: microstructure
+source:
+  type: paper
+  paper_title: A股反转之力的微观来源
+  paper_id: 20200917_kysec_factor_cutting
+  colloquial: 理想反转因子（W-cut by ATS）
+
+status: testing
+formula_frozen: false
+pack_version: v1
+pack_finalized: "2026-07-21"
+
+economic_intuition: |
+  20-day returns split by average trade size (ATS = amount / trade_count).
+  High-ATS days embed institutional participation → stronger reversal;
+  low-ATS days are noise. Spread M = M_high − M_low purifies the signal.
+
+formula:
+  object: "Ret20 (additive daily returns)"
+  knife: "ATS = amount / trade_count; rank_split 10/10 in 20d window"
+  frozen: "M = sum(r | high ATS) − sum(r | low ATS)"
+  signal_shift: 1
+  window: 20
+  direction: negative RankIC (short high M)
+
+data:
+  level: EOD
+  universe_research: ALL
+  period_requested: "2018-01-01_2025-12-31"
+  period_actual: "cutting_v1_harvest"
+  n_days: 1703
+  coverage_exception: true
+  coverage_note: "Harvested from factor_cutting_v1 validation window; Dual Benchmark pending"
+
+implementation:
+  modules:
+    - factor_cutting/ideal_reversal.py
+    - factor_cutting/w_cut.py
+    - factor_cutting/engine.py
+  spec: factor_specs/IdealReversal.yaml
+  run_script: run_milestone_2_2_1_ideal_reversal.py
+
+validation_headline:
+  RankIC_raw: -0.0311
+  ICIR_raw: -8.60
+  RankIC_size_industry: -0.0331
+  ICIR_size_industry: -9.46
+  HL_Sharpe_raw: 1.70
+  HL_annu_ret_raw: 0.166
+  execution_best_net_Sharpe: 1.70
+  execution_best_daily_turnover: 0.153
+  monotonicity: 0.444
+  yearly_rank_ic_negative: "7/7 (2019-2025)"
+  known_gaps:
+    - weak_monotonicity
+    - sharpe_below_soft_bar
+    - production_track_deferred
+
+artifacts:
+  definition: factor_definition.md
+  formula: formula.md
+  data: data_source.md
+  implementation: implementation.md
+  validation: validation.md
+  ic: ic_analysis/
+  quantile: quantile_analysis/
+  stability: stability/
+  execution: execution/
+  narrative_report: factor_report.md
+
+do_not:
+  - promote_to_validated_without_mono_fix
+  - confuse_with_raw_Ret20
+  - treat_M_high_M_low_as_registry_siblings
+
+library_notes: "Paper-replication / cutting Template v2 pack. Mechanism passes; soft-bar mono fails."

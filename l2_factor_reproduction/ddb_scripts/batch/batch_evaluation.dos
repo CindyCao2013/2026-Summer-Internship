@@ -1,0 +1,13 @@
+// batch_evaluation.dos
+// 可选：在 DDB 内做简单截面统计（均值/标准差），正式回测仍走 Python Factor_Dev_Lib
+
+def summarize_factor_narrow(t){
+    return select factorname,
+            count(*) as n_rows,
+            avg(value) as mean_val,
+            std(value) as std_val,
+            min(value) as min_val,
+            max(value) as max_val
+        from t
+        group by factorname
+}

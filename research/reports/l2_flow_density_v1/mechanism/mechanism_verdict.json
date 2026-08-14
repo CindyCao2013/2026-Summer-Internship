@@ -1,0 +1,30 @@
+{
+  "verdict": "mechanism_entangled_with_anti_amount",
+  "promote_to_validated_single_factor": false,
+  "freeze_formula": false,
+  "gates": {
+    "direction_not_activity": true,
+    "net_distinct_from_buy_sell_legs": true,
+    "residual_positive_vs_amount": false,
+    "residual_positive_vs_volume": true,
+    "residual_positive_vs_gross": false,
+    "residual_exists_vs_amount": true,
+    "entangled_with_anti_amount": true,
+    "buy_share_weak": true
+  },
+  "icir": {
+    "net": 4.84946598574053,
+    "buy": -8.726387655230482,
+    "sell": -8.587694383808786,
+    "gross": -8.666396642237386,
+    "amount": -8.658415409618966,
+    "buy_share": 0.881920825353566,
+    "Flow_perp_Amount": -1.6610185268009967,
+    "Flow_perp_Volume": 3.1280650636452187,
+    "Flow_perp_GrossActive": -1.641625445476525,
+    "cs_corr_amount": -0.6165748367586112,
+    "cs_corr_volume": -0.4683768786581437,
+    "cs_corr_gross": -0.6144809813723833
+  },
+  "interpretation": "Net flow is NOT undirected activity: buy/sell/gross/amount all have large NEGATIVE ICIR (amount=-8.66, gross=-8.67) while net has POSITIVE ICIR (4.85). However Flow⊥Amount residual ICIR=-1.66 (cs_corr=-0.617) — positive net alpha is entangled with anti-amount / low-activity exposure. Do NOT freeze yet; consider amount-orthogonalized net or document liquidity entanglement before validated_single_factor."
+}

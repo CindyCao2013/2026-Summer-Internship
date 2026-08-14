@@ -1,0 +1,17 @@
+{
+  "factor": "ideal_amplitude",
+  "knife": "close_price_state_lambda25",
+  "rank_ic": -0.03783097149626885,
+  "icir": -7.660069086011271,
+  "ic_pos_ratio": 0.29009009009009007,
+  "n_days": 3885,
+  "monthly_rank_ic": -0.07598347445620311,
+  "monthly_icir": -3.826309884362425,
+  "n_months": 191,
+  "hl_sharpe": 3.4380395948966775,
+  "hl_annu_ret": 0.4007350716696997,
+  "direction": -1,
+  "monotonicity": 0.1111111111111111,
+  "neutralized": true,
+  "mechanism": {}
+}

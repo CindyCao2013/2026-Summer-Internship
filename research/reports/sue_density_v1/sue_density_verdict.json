@@ -1,0 +1,1017 @@
+{
+  "period": "2023-12-05 -> 2025-12-31",
+  "sample_days": 504,
+  "hard_requirements": [
+    "earliest_known_date_notice_express_income",
+    "event_hold_and_daily_decay",
+    "size_industry_neutral_before_residual_ic",
+    "unexpected_profit_notice_surprise_20d_included"
+  ],
+  "base3": [
+    "low_vol_liquidity_quality_60d",
+    "winner_sentiment_reversal_5d",
+    "upside_fragility_20d"
+  ],
+  "factors": [
+    "unexpected_profit_notice_surprise_20d",
+    "sue_np_yoy_z",
+    "sue_eps_consensus",
+    "analyst_np_revision_20d",
+    "profit_notice_mid_surprise"
+  ],
+  "rows": [
+    {
+      "factor": "unexpected_profit_notice_surprise_20d",
+      "mode": "hold",
+      "rank_ic": 0.0032336395521224974,
+      "icir": 0.4920027956193331,
+      "gross_hl_sharpe": 1.1476250741342198,
+      "hl_annu_ret": 0.24319100811925523,
+      "direction": 1,
+      "turnover_ann_proxy": 57.48614913149077,
+      "coverage": {
+        "mean_names": 390.0952380952381,
+        "median_names": 32.0,
+        "pct_days_ge_50": 0.45436507936507936,
+        "pct_days_ge_200": 0.2400793650793651
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 253,
+          "residual_ic_mean": -0.0010466674499297454,
+          "residual_icir": -0.16882250961684533,
+          "residual_ic_t": -0.16983242396659654
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 253,
+          "residual_ic_mean": 0.00047163456430581694,
+          "residual_icir": 0.07730065725628768,
+          "residual_ic_t": 0.0777630780743735
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 257,
+          "residual_ic_mean": 0.0017497848264872368,
+          "residual_icir": 0.26809246255465274,
+          "residual_ic_t": 0.271819845478617
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 253,
+          "residual_ic_mean": 0.0009042581131082578,
+          "residual_icir": 0.13816816238887833,
+          "residual_ic_t": 0.13899469914746562
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.03726002059305208,
+          "icir": 3.9260064430810915,
+          "ic_positive_ratio": 0.6070038910505836,
+          "hl_sharpe": 3.020433231105621,
+          "hl_annu_ret": 0.8014339226912265,
+          "monotonicity_score": 0.5555555555555556,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.037692106244682694,
+          "icir": 3.9911368740715103,
+          "ic_positive_ratio": 0.603112840466926,
+          "hl_sharpe": 3.035215424244467,
+          "hl_annu_ret": 0.80811702601596,
+          "monotonicity_score": 0.5555555555555556,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.037445732513100544,
+          "icir": 4.039368960368408,
+          "ic_positive_ratio": 0.5992217898832685,
+          "hl_sharpe": 2.8516425085723687,
+          "hl_annu_ret": 0.7380151949411947,
+          "monotonicity_score": 0.6666666666666666,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "drop"
+    },
+    {
+      "factor": "sue_np_yoy_z",
+      "mode": "hold",
+      "rank_ic": 0.002692927275074238,
+      "icir": 0.5362390415226829,
+      "gross_hl_sharpe": 0.10720465751981734,
+      "hl_annu_ret": 0.014309274658584737,
+      "direction": 1,
+      "turnover_ann_proxy": 48.12625230181651,
+      "coverage": {
+        "mean_names": 1821.1309523809523,
+        "median_names": 1307.0,
+        "pct_days_ge_50": 0.753968253968254,
+        "pct_days_ge_200": 0.7023809523809523
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 388,
+          "residual_ic_mean": 0.0012021713278653433,
+          "residual_icir": 0.2541007252616729,
+          "residual_ic_t": 0.3165568845465925
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 388,
+          "residual_ic_mean": 0.0024500300887968576,
+          "residual_icir": 0.51245371782434,
+          "residual_ic_t": 0.6384112135915266
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 391,
+          "residual_ic_mean": 0.0021022541828175367,
+          "residual_icir": 0.4197839655568974,
+          "residual_ic_t": 0.524981766905563
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 388,
+          "residual_ic_mean": 0.0025163499826310874,
+          "residual_icir": 0.5305937284971051,
+          "residual_ic_t": 0.6610099104598609
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.03364776625294747,
+          "icir": 4.222226090864178,
+          "ic_positive_ratio": 0.6061381074168798,
+          "hl_sharpe": 3.4425626534470872,
+          "hl_annu_ret": 0.7268257062006461,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.032908480573303596,
+          "icir": 4.209005203879814,
+          "ic_positive_ratio": 0.6086956521739131,
+          "hl_sharpe": 3.3645747382586935,
+          "hl_annu_ret": 0.7067023848362255,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.031334226426572624,
+          "icir": 4.13200838951047,
+          "ic_positive_ratio": 0.6112531969309463,
+          "hl_sharpe": 3.473706249424657,
+          "hl_annu_ret": 0.7258503218369176,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "raw_signal_only"
+    },
+    {
+      "factor": "sue_eps_consensus",
+      "mode": "hold",
+      "rank_ic": 0.01625604223089588,
+      "icir": 3.214031903317022,
+      "gross_hl_sharpe": 3.280815694298313,
+      "hl_annu_ret": 0.39870912488683524,
+      "direction": 1,
+      "turnover_ann_proxy": 55.235529438970545,
+      "coverage": {
+        "mean_names": 296.42063492063494,
+        "median_names": 0.0,
+        "pct_days_ge_50": 0.3630952380952381,
+        "pct_days_ge_200": 0.3392857142857143
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 186,
+          "residual_ic_mean": 0.008925567856629795,
+          "residual_icir": 1.736496370328134,
+          "residual_ic_t": 1.4978224912375668
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 186,
+          "residual_ic_mean": 0.011254059854563665,
+          "residual_icir": 2.023460873069277,
+          "residual_ic_t": 1.7453449702573576
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 186,
+          "residual_ic_mean": 0.012311883184096737,
+          "residual_icir": 2.331983741105076,
+          "residual_ic_t": 2.0114627109571654
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 186,
+          "residual_ic_mean": 0.008931107848590476,
+          "residual_icir": 1.5489125634671352,
+          "residual_ic_t": 1.3360212633690194
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.035215553771537754,
+          "icir": 3.6603965574486867,
+          "ic_positive_ratio": 0.5913978494623656,
+          "hl_sharpe": 3.4929284673102257,
+          "hl_annu_ret": 0.8413485523261507,
+          "monotonicity_score": 0.7777777777777778,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.037041401090699096,
+          "icir": 3.861324071385949,
+          "ic_positive_ratio": 0.5913978494623656,
+          "hl_sharpe": 3.673633079943523,
+          "hl_annu_ret": 0.8881643770074038,
+          "monotonicity_score": 0.7777777777777778,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.037942179706491316,
+          "icir": 4.033236004754978,
+          "ic_positive_ratio": 0.5913978494623656,
+          "hl_sharpe": 3.5761812462206737,
+          "hl_annu_ret": 0.877443041190242,
+          "monotonicity_score": 0.7777777777777778,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "raw_signal_only"
+    },
+    {
+      "factor": "analyst_np_revision_20d",
+      "mode": "hold",
+      "rank_ic": -0.0003838134427134184,
+      "icir": -0.08999703365673045,
+      "gross_hl_sharpe": 0.204301317179379,
+      "hl_annu_ret": 0.01864843866886124,
+      "direction": -1,
+      "turnover_ann_proxy": 38.08873504239792,
+      "coverage": {
+        "mean_names": 1548.4940476190477,
+        "median_names": 1567.0,
+        "pct_days_ge_50": 1.0,
+        "pct_days_ge_200": 1.0
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 502,
+          "residual_ic_mean": -0.0011126008968568258,
+          "residual_icir": -0.2541506606302563,
+          "residual_ic_t": -0.36014144035917584
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 502,
+          "residual_ic_mean": -0.0003364002617655173,
+          "residual_icir": -0.06297379633250495,
+          "residual_ic_t": -0.08923633587979647
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 502,
+          "residual_ic_mean": -0.0005244942569027944,
+          "residual_icir": -0.12242251628180424,
+          "residual_ic_t": -0.17347750045893384
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 502,
+          "residual_ic_mean": -0.0014338722046533165,
+          "residual_icir": -0.3220421399972303,
+          "residual_ic_t": -0.45634632570829725
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.030659013241294643,
+          "icir": 3.401371064494379,
+          "ic_positive_ratio": 0.5964214711729622,
+          "hl_sharpe": 1.881711895446927,
+          "hl_annu_ret": 0.3555898948590948,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.030551521681622656,
+          "icir": 3.4151284178631105,
+          "ic_positive_ratio": 0.5944333996023857,
+          "hl_sharpe": 1.8990222163230916,
+          "hl_annu_ret": 0.35392480243626406,
+          "monotonicity_score": 0.7777777777777778,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.030238502355213123,
+          "icir": 3.4278935595425004,
+          "ic_positive_ratio": 0.5964214711729622,
+          "hl_sharpe": 1.9058710640473646,
+          "hl_annu_ret": 0.3489738866097831,
+          "monotonicity_score": 0.7777777777777778,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "drop"
+    },
+    {
+      "factor": "profit_notice_mid_surprise",
+      "mode": "hold",
+      "rank_ic": 0.00020499870207697868,
+      "icir": 0.03214919761770738,
+      "gross_hl_sharpe": 2.3397155917703296,
+      "hl_annu_ret": 0.42084429000668105,
+      "direction": 1,
+      "turnover_ann_proxy": 57.323502365918294,
+      "coverage": {
+        "mean_names": 378.4325396825397,
+        "median_names": 15.0,
+        "pct_days_ge_50": 0.4523809523809524,
+        "pct_days_ge_200": 0.23809523809523808
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 249,
+          "residual_ic_mean": 0.0015243498569835654,
+          "residual_icir": 0.23810568622931927,
+          "residual_ic_t": 0.23762899769067766
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 249,
+          "residual_ic_mean": 0.005655291965397743,
+          "residual_icir": 0.8044606674433405,
+          "residual_ic_t": 0.8028501339612091
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 251,
+          "residual_ic_mean": 0.0041668972584015295,
+          "residual_icir": 0.6236253412419608,
+          "residual_ic_t": 0.6248713471620447
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 250,
+          "residual_ic_mean": 0.004362143051040411,
+          "residual_icir": 0.6459414351166677,
+          "residual_ic_t": 0.6459414351166677
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.03403225087650719,
+          "icir": 3.6006596192276867,
+          "ic_positive_ratio": 0.5992063492063492,
+          "hl_sharpe": 2.776417328796994,
+          "hl_annu_ret": 0.7115693474845629,
+          "monotonicity_score": 0.6666666666666666,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.0335436412650886,
+          "icir": 3.615466342179519,
+          "ic_positive_ratio": 0.5873015873015873,
+          "hl_sharpe": 2.7784109041454337,
+          "hl_annu_ret": 0.7037630873853147,
+          "monotonicity_score": 0.6666666666666666,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.03287093115318056,
+          "icir": 3.633877782621996,
+          "ic_positive_ratio": 0.5912698412698413,
+          "hl_sharpe": 3.0270235929351674,
+          "hl_annu_ret": 0.7633748334101588,
+          "monotonicity_score": 0.6666666666666666,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "drop"
+    },
+    {
+      "factor": "unexpected_profit_notice_surprise_20d",
+      "mode": "decay",
+      "rank_ic": 0.0071479908390615216,
+      "icir": 1.0794645682495048,
+      "gross_hl_sharpe": 1.960389130423678,
+      "hl_annu_ret": 0.4251404102134932,
+      "direction": 1,
+      "turnover_ann_proxy": 64.26061228327652,
+      "coverage": {
+        "mean_names": 390.0952380952381,
+        "median_names": 32.0,
+        "pct_days_ge_50": 0.45436507936507936,
+        "pct_days_ge_200": 0.2400793650793651
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 253,
+          "residual_ic_mean": 0.000858034318406649,
+          "residual_icir": 0.1437935778081563,
+          "residual_ic_t": 0.14465376640480793
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 253,
+          "residual_ic_mean": 0.00021115359878473604,
+          "residual_icir": 0.03472917480517768,
+          "residual_ic_t": 0.0349369284517167
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 257,
+          "residual_ic_mean": 0.005849280549594123,
+          "residual_icir": 0.9043516298153143,
+          "residual_ic_t": 0.9169251456467996
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 253,
+          "residual_ic_mean": 0.004537734944552815,
+          "residual_icir": 0.7131097029118566,
+          "residual_ic_t": 0.7173756015977132
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.03780173629912843,
+          "icir": 3.979178634409991,
+          "ic_positive_ratio": 0.6108949416342413,
+          "hl_sharpe": 3.24067004406505,
+          "hl_annu_ret": 0.8468498518133863,
+          "monotonicity_score": 0.5555555555555556,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.03921166622624106,
+          "icir": 4.142443762789527,
+          "ic_positive_ratio": 0.5992217898832685,
+          "hl_sharpe": 3.10544141617724,
+          "hl_annu_ret": 0.8028665804671133,
+          "monotonicity_score": 0.6666666666666666,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.0384835063448522,
+          "icir": 4.107046196557452,
+          "ic_positive_ratio": 0.6108949416342413,
+          "hl_sharpe": 3.185165372069,
+          "hl_annu_ret": 0.8173338041277495,
+          "monotonicity_score": 0.6666666666666666,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "raw_signal_only"
+    },
+    {
+      "factor": "sue_np_yoy_z",
+      "mode": "decay",
+      "rank_ic": 0.0034297129878587936,
+      "icir": 0.69000392251429,
+      "gross_hl_sharpe": 0.6602694416050401,
+      "hl_annu_ret": 0.08119725295450571,
+      "direction": 1,
+      "turnover_ann_proxy": 63.69621561840563,
+      "coverage": {
+        "mean_names": 1821.1309523809523,
+        "median_names": 1307.0,
+        "pct_days_ge_50": 0.753968253968254,
+        "pct_days_ge_200": 0.7023809523809523
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 388,
+          "residual_ic_mean": -0.0003774539142956641,
+          "residual_icir": -0.08671406614411825,
+          "residual_ic_t": -0.10802776968338554
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 388,
+          "residual_ic_mean": 0.0010657504141549402,
+          "residual_icir": 0.23697625768687686,
+          "residual_ic_t": 0.2952233440798576
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 391,
+          "residual_ic_mean": 0.0013831325826459428,
+          "residual_icir": 0.2968057957030805,
+          "residual_ic_t": 0.37118528538674084
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 388,
+          "residual_ic_mean": 0.0019776655239380145,
+          "residual_icir": 0.45174673510809454,
+          "residual_ic_t": 0.5627828843174223
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.03379614740311767,
+          "icir": 4.241675666205217,
+          "ic_positive_ratio": 0.6112531969309463,
+          "hl_sharpe": 3.47190783123825,
+          "hl_annu_ret": 0.7168098234058095,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.03285897600007348,
+          "icir": 4.166774220986177,
+          "ic_positive_ratio": 0.6061381074168798,
+          "hl_sharpe": 3.61350252318095,
+          "hl_annu_ret": 0.7346058766430344,
+          "monotonicity_score": 0.7777777777777778,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.031319447139351884,
+          "icir": 4.0954058361300705,
+          "ic_positive_ratio": 0.6112531969309463,
+          "hl_sharpe": 3.5865130843997255,
+          "hl_annu_ret": 0.7116540806298537,
+          "monotonicity_score": 0.7777777777777778,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "raw_signal_only"
+    },
+    {
+      "factor": "sue_eps_consensus",
+      "mode": "decay",
+      "rank_ic": 0.01757215122503494,
+      "icir": 3.705823046439232,
+      "gross_hl_sharpe": 3.8181849437864233,
+      "hl_annu_ret": 0.4438495715456127,
+      "direction": 1,
+      "turnover_ann_proxy": 70.51224082941842,
+      "coverage": {
+        "mean_names": 296.42063492063494,
+        "median_names": 0.0,
+        "pct_days_ge_50": 0.3630952380952381,
+        "pct_days_ge_200": 0.3392857142857143
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 186,
+          "residual_ic_mean": 0.009847035618139455,
+          "residual_icir": 2.0408476113559697,
+          "residual_ic_t": 1.7603419769312894
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 186,
+          "residual_ic_mean": 0.011913849890244988,
+          "residual_icir": 2.2785051069705835,
+          "residual_ic_t": 1.965334482660223
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 186,
+          "residual_ic_mean": 0.014119649621315369,
+          "residual_icir": 2.8359763774278797,
+          "residual_ic_t": 2.446183749826808
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 186,
+          "residual_ic_mean": 0.011138509219008146,
+          "residual_icir": 2.04376625862606,
+          "residual_ic_t": 1.7628594688188794
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.035254235144464734,
+          "icir": 3.667755332850617,
+          "ic_positive_ratio": 0.5913978494623656,
+          "hl_sharpe": 3.4878402780956157,
+          "hl_annu_ret": 0.8407888725936995,
+          "monotonicity_score": 0.6666666666666666,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.03698893455044086,
+          "icir": 3.859972718598336,
+          "ic_positive_ratio": 0.5913978494623656,
+          "hl_sharpe": 3.5731337365063687,
+          "hl_annu_ret": 0.871919328449376,
+          "monotonicity_score": 0.6666666666666666,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.038171108756150686,
+          "icir": 4.057814893995635,
+          "ic_positive_ratio": 0.5967741935483871,
+          "hl_sharpe": 3.772905003339759,
+          "hl_annu_ret": 0.9164756647888711,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "raw_signal_only"
+    },
+    {
+      "factor": "analyst_np_revision_20d",
+      "mode": "decay",
+      "rank_ic": 0.0021946172040341046,
+      "icir": 0.47245482375110925,
+      "gross_hl_sharpe": 0.31974016042551145,
+      "hl_annu_ret": 0.02945377630732458,
+      "direction": 1,
+      "turnover_ann_proxy": 57.877558158537674,
+      "coverage": {
+        "mean_names": 1548.4940476190477,
+        "median_names": 1567.0,
+        "pct_days_ge_50": 1.0,
+        "pct_days_ge_200": 1.0
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 502,
+          "residual_ic_mean": 0.003579438227732481,
+          "residual_icir": 0.7894239798253262,
+          "residual_ic_t": 1.11864469855531
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.004515031484110852,
+          "residual_icir": 0.8203064902707358,
+          "residual_ic_t": 1.162406425422893
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.0038152712578636743,
+          "residual_icir": 0.816299649528864,
+          "residual_ic_t": 1.1567285751568774
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.00277922226109807,
+          "residual_icir": 0.5801172418645513,
+          "residual_ic_t": 0.8220488530078591
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.030744232880630468,
+          "icir": 3.4110206671260825,
+          "ic_positive_ratio": 0.5904572564612326,
+          "hl_sharpe": 1.888306442123902,
+          "hl_annu_ret": 0.3575278254245655,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.030616162219598442,
+          "icir": 3.4276899783034085,
+          "ic_positive_ratio": 0.5924453280318092,
+          "hl_sharpe": 1.8876110909895691,
+          "hl_annu_ret": 0.35442282008585263,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.03035369169256717,
+          "icir": 3.449304406081199,
+          "ic_positive_ratio": 0.5924453280318092,
+          "hl_sharpe": 1.9069637649181028,
+          "hl_annu_ret": 0.351427537246006,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "drop"
+    },
+    {
+      "factor": "profit_notice_mid_surprise",
+      "mode": "decay",
+      "rank_ic": 0.0014154828128282607,
+      "icir": 0.22581047266598275,
+      "gross_hl_sharpe": 2.955493577128123,
+      "hl_annu_ret": 0.5186140733860953,
+      "direction": 1,
+      "turnover_ann_proxy": 59.889193778650466,
+      "coverage": {
+        "mean_names": 378.4325396825397,
+        "median_names": 15.0,
+        "pct_days_ge_50": 0.4523809523809524,
+        "pct_days_ge_200": 0.23809523809523808
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 249,
+          "residual_ic_mean": 0.0007968964965155837,
+          "residual_icir": 0.11511822689761259,
+          "residual_ic_t": 0.11488775974573624
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 249,
+          "residual_ic_mean": 0.001866279336568433,
+          "residual_icir": 0.2521440729234847,
+          "residual_ic_t": 0.25163927947838705
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 251,
+          "residual_ic_mean": 0.004290362925083722,
+          "residual_icir": 0.6265545798319627,
+          "residual_ic_t": 0.6278064383824372
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 250,
+          "residual_ic_mean": 0.004350192637652698,
+          "residual_icir": 0.6279397314030764,
+          "residual_ic_t": 0.6279397314030764
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.03426832837091237,
+          "icir": 3.606417547789383,
+          "ic_positive_ratio": 0.5952380952380952,
+          "hl_sharpe": 2.841579561903453,
+          "hl_annu_ret": 0.7189511430615904,
+          "monotonicity_score": 0.7777777777777778,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.03394780114355936,
+          "icir": 3.6094755910446317,
+          "ic_positive_ratio": 0.5793650793650794,
+          "hl_sharpe": 2.7959124219248848,
+          "hl_annu_ret": 0.701231762119477,
+          "monotonicity_score": 0.6666666666666666,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.03279861487432842,
+          "icir": 3.567147784044335,
+          "ic_positive_ratio": 0.5992063492063492,
+          "hl_sharpe": 2.8555632968130307,
+          "hl_annu_ret": 0.7245824612635184,
+          "monotonicity_score": 0.7777777777777778,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "drop"
+    }
+  ],
+  "best_by_factor": [
+    {
+      "factor": "analyst_np_revision_20d",
+      "mode": "decay",
+      "rank_ic": 0.0021946172040341046,
+      "icir": 0.47245482375110925,
+      "gross_hl_sharpe": 0.31974016042551145,
+      "turnover_ann_proxy": 57.877558158537674,
+      "mean_names": 1548.4940476190477,
+      "residual_ic_mean": 0.003579438227732481,
+      "residual_icir": 0.7894239798253262,
+      "residual_ic_t": 1.11864469855531,
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "drop",
+      "score": 1.11864469855531
+    },
+    {
+      "factor": "profit_notice_mid_surprise",
+      "mode": "hold",
+      "rank_ic": 0.00020499870207697868,
+      "icir": 0.03214919761770738,
+      "gross_hl_sharpe": 2.3397155917703296,
+      "turnover_ann_proxy": 57.323502365918294,
+      "mean_names": 378.4325396825397,
+      "residual_ic_mean": 0.0015243498569835654,
+      "residual_icir": 0.23810568622931927,
+      "residual_ic_t": 0.23762899769067766,
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "drop",
+      "score": 0.23762899769067766
+    },
+    {
+      "factor": "sue_eps_consensus",
+      "mode": "decay",
+      "rank_ic": 0.01757215122503494,
+      "icir": 3.705823046439232,
+      "gross_hl_sharpe": 3.8181849437864233,
+      "turnover_ann_proxy": 70.51224082941842,
+      "mean_names": 296.42063492063494,
+      "residual_ic_mean": 0.009847035618139455,
+      "residual_icir": 2.0408476113559697,
+      "residual_ic_t": 1.7603419769312894,
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "raw_signal_only",
+      "score": 1.7603419769312894
+    },
+    {
+      "factor": "sue_np_yoy_z",
+      "mode": "hold",
+      "rank_ic": 0.002692927275074238,
+      "icir": 0.5362390415226829,
+      "gross_hl_sharpe": 0.10720465751981734,
+      "turnover_ann_proxy": 48.12625230181651,
+      "mean_names": 1821.1309523809523,
+      "residual_ic_mean": 0.0012021713278653433,
+      "residual_icir": 0.2541007252616729,
+      "residual_ic_t": 0.3165568845465925,
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "raw_signal_only",
+      "score": 0.3165568845465925
+    },
+    {
+      "factor": "unexpected_profit_notice_surprise_20d",
+      "mode": "hold",
+      "rank_ic": 0.0032336395521224974,
+      "icir": 0.4920027956193331,
+      "gross_hl_sharpe": 1.1476250741342198,
+      "turnover_ann_proxy": 57.48614913149077,
+      "mean_names": 390.0952380952381,
+      "residual_ic_mean": -0.0010466674499297454,
+      "residual_icir": -0.16882250961684533,
+      "residual_ic_t": -0.16983242396659654,
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "drop",
+      "score": 0.16983242396659654
+    }
+  ],
+  "note": "All IC/residual metrics use industry+ln_mktcap neutralized panels. Stack = (1-λ)·z(Base3 equal) + λ·z(SUE)."
+}

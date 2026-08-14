@@ -1,0 +1,14 @@
+// test_ddb_scripts.dos
+// 在 DDB GUI / shell 中手动跑的冒烟测试（需先 run init + 因子脚本）
+// 示例（把路径换成机器上的绝对路径）:
+//   run("/home/SiYangCao/factor_dev/factor_research0703/factor_dev/l2_factor_reproduction/ddb_scripts/init/init_env.dos")
+//   run(".../factors/minute_based/avg_order_amount.dos")
+//   r = compute_avg_outflow_ratio(2024.01.02, 2024.01.10, "000852.SH")
+//   select top 5 * from r
+
+def smoke_avg_outflow(){
+    r = compute_avg_outflow_ratio(2024.01.02, 2024.01.10, "000852.SH")
+    assert(size(r) > 0, "avg_outflow_ratio empty")
+    print("smoke_avg_outflow OK, rows=", size(r))
+    return r
+}

@@ -1,0 +1,54 @@
+# Example factor_spec.yaml — Factor Research Protocol v1
+# Cutting-style illustration (Ideal Reversal shape). Not implemented.
+
+factor_id: ideal_reversal_v1
+display_name: Ideal Reversal
+family:
+  - microstructure
+source:
+  type: paper
+  paper_id: "20200917_kysec_factor_cutting"
+  paper_title: 因子切割论--市场微观结构研究系列（10）
+
+status: discovery
+data_level: EOD
+frozen_formula: false
+
+object:
+  name: daily_return
+  window: 20
+  note: additive target (逐日涨跌幅可加总)
+
+knife:
+  name: ats
+  formula: amount / trade_count
+  note: average trade size
+
+output:
+  name: high_low_spread
+  formula: M_high - M_low
+  split: top_10_vs_bottom_10_days_by_knife
+
+data:
+  required:
+    - close
+    - amount
+    - trade_count
+
+data_coverage:
+  requested: "2018-01-01_2025-12-31"
+  actual: null
+  exception_reason: null
+
+evaluation:
+  research_track: required
+  production_track: required
+  production_horizon_days: 20
+  diagnostic_horizons_allowed: [1, 5, 10, 60]
+  follow: docs/factor_research_protocol_v1.md
+
+pack_dirs:
+  - charts/
+  - mechanism/
+  - diagnostics/
+  - execution/

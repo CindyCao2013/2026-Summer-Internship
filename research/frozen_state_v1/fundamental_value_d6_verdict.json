@@ -1,0 +1,34 @@
+{
+  "block": "Fundamental Value (D6)",
+  "status": "D6_ENHANCER_FROZEN",
+  "dimension_representative": "value_composite",
+  "dimension_gate": "FAIL_standalone",
+  "enhancer_gate": "PASS",
+  "composite_formula": "equal_cs_z(value_ep, value_bp, value_cfp)",
+  "composite_bricks": {
+    "value_ep": "1/PE TTM, industry + size neutral, sanity mask",
+    "value_bp": "1/PB, industry + size neutral, sanity mask",
+    "value_cfp": "CFO TTM / float mktcap, ann_date + industry + size neutral"
+  },
+  "harness_track": "fundamental_value_d6",
+  "harness_artifact": "research/results/fundamental_value_d6_factor_verdicts.csv",
+  "verdict_summary": {
+    "value_composite": {
+      "harness_verdict": "enhancer",
+      "strict_pass": false,
+      "ic_raw": 0.029,
+      "ic_after_ohlcv_stack": 0.017,
+      "stack_enhancement_pass": true,
+      "stack_ic_delta": 0.0506,
+      "hl_sharpe_delta": 1.2345,
+      "conclusion": "weak_incremental — enhancer layer, not new base dimension D6"
+    },
+    "value_ep": {"role": "diagnostic_brick", "stack_enhancement_pass": true},
+    "value_bp": {"role": "diagnostic_brick", "stack_enhancement_pass": true},
+    "value_cfp": {"role": "diagnostic_brick", "stack_enhancement_pass": true}
+  },
+  "production_implication": "Keep Stack v2 base D1-D5; value_composite candidate for Stack v3 enhancer layer (not D1-D6 base expansion)",
+  "not_in_stack": ["value_ep", "value_bp", "value_cfp"],
+  "next_research_track": "D8 Growth or Stack v3 enhancer calibration (value + quality + cancel_shock λ-grid)",
+  "stopped": ["raw EP/BP without ind+size neutral", "value as standalone dimension without strict pass"]
+}

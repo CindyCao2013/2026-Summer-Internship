@@ -1,0 +1,3 @@
+signal,category,rank_ic,icir,hl_sharpe,net_sharpe,monotonicity,daily_turnover
+overnight_minus_day_tstat,research_proxy,0.04539327593296699,7.017374372183443,,0.9489131440084654,0.7777777777777778,0.8086243035350106
+paper_APM,stub_needs_minute,,,,,,

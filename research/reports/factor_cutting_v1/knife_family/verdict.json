@@ -1,0 +1,137 @@
+{
+  "period": "2018-01-02 -> 2025-12-31",
+  "source": "ddb",
+  "preset": "ddb",
+  "focus_knives": [
+    "amount",
+    "volume",
+    "turnover_proxy",
+    "ats_trade_count"
+  ],
+  "key_questions": [
+    "1. volume | amount: resid_IC=-0.0220 t=-16.07 |corr|=0.92 → YES residual after controlling amount",
+    "2. ATS | amount: resid_IC=-0.0220 t=-14.85 |corr|=nan → YES incremental after controlling amount",
+    "   ATS | volume: resid_IC=-0.0225 t=-14.93 |corr|=nan"
+  ],
+  "synth_verdict": "best_single=`ats_trade_count` ICIR=-6.48; best_dual=`amount+ats_trade_count:residual_add` ICIR=-6.88; DUAL WINS",
+  "search_knives": {
+    "object": "panel",
+    "best_knife": "volume",
+    "effectiveness": 0.04114289476678756,
+    "family": "participation",
+    "ranking": [
+      {
+        "knife": "volume",
+        "family": "participation",
+        "effectiveness": 0.04114289476678756,
+        "ic_spread": -0.03657423524447604,
+        "separation": -0.04799588405025485
+      },
+      {
+        "knife": "amount",
+        "family": "participation",
+        "effectiveness": 0.04085058429282999,
+        "ic_spread": -0.03632093366663361,
+        "separation": -0.04764506023212457
+      },
+      {
+        "knife": "turnover_proxy",
+        "family": "participation",
+        "effectiveness": 0.03987840357154614,
+        "ic_spread": -0.035597965344202405,
+        "separation": -0.04629906091256174
+      },
+      {
+        "knife": "ats_trade_count",
+        "family": "trader_structure",
+        "effectiveness": 0.038305127552929114,
+        "ic_spread": -0.03379564434302013,
+        "separation": -0.045069352367792574
+      }
+    ],
+    "independent_knives": [
+      "turnover_proxy",
+      "ats_trade_count"
+    ],
+    "corr": {
+      "amount": {
+        "amount": 1.0,
+        "volume": 0.9180422165158866,
+        "turnover_proxy": null,
+        "ats_trade_count": null
+      },
+      "volume": {
+        "amount": 0.9180422165158866,
+        "volume": 1.0,
+        "turnover_proxy": null,
+        "ats_trade_count": null
+      },
+      "turnover_proxy": {
+        "amount": null,
+        "volume": null,
+        "turnover_proxy": 1.0,
+        "ats_trade_count": null
+      },
+      "ats_trade_count": {
+        "amount": null,
+        "volume": null,
+        "turnover_proxy": null,
+        "ats_trade_count": 1.0
+      }
+    },
+    "n_candidates": 4,
+    "corr_indep_threshold": 0.5,
+    "families": {
+      "amount": "participation",
+      "volume": "participation",
+      "turnover_proxy": "participation",
+      "ats_trade_count": "trader_structure"
+    }
+  },
+  "independence": [
+    {
+      "knife": "volume",
+      "family": "participation",
+      "raw_ic": -0.03657423524447604,
+      "raw_icir": -6.247075260995257,
+      "closest_peer": "amount",
+      "abs_corr_to_peer": 0.9180422165158866,
+      "resid_ic_vs_peer": -0.02195496299528225,
+      "resid_t_vs_peer": -16.069126598916107,
+      "independent": false
+    },
+    {
+      "knife": "amount",
+      "family": "participation",
+      "raw_ic": -0.03632093366663361,
+      "raw_icir": -6.335633043961068,
+      "closest_peer": "volume",
+      "abs_corr_to_peer": 0.9180422165158866,
+      "resid_ic_vs_peer": -0.02052500425383182,
+      "resid_t_vs_peer": -16.98536422262193,
+      "independent": false
+    },
+    {
+      "knife": "turnover_proxy",
+      "family": "participation",
+      "raw_ic": -0.035597965344202405,
+      "raw_icir": -6.198051667853001,
+      "closest_peer": "amount",
+      "abs_corr_to_peer": NaN,
+      "resid_ic_vs_peer": -0.019749875089257976,
+      "resid_t_vs_peer": -15.29924836543791,
+      "independent": true
+    },
+    {
+      "knife": "ats_trade_count",
+      "family": "trader_structure",
+      "raw_ic": -0.03379564434302013,
+      "raw_icir": -6.483878973616674,
+      "closest_peer": "amount",
+      "abs_corr_to_peer": NaN,
+      "resid_ic_vs_peer": -0.022003537862954278,
+      "resid_t_vs_peer": -14.845850863308545,
+      "independent": true
+    }
+  ]
+}

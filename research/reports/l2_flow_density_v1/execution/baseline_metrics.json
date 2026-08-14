@@ -1,0 +1,30 @@
+{
+  "factor": "FlowDensity20",
+  "source_column": "net_active_flow_mktcap_20d",
+  "frozen_for_execution": true,
+  "note": "Execution experiments must not alter net_active_flow_mktcap_20d formula. Research status remains validated_single_factor_candidate until mechanism + execution are both closed.",
+  "signal_shift": 1,
+  "portfolio": "10-group H-L (top/bottom 10%)",
+  "rebalance_baseline": "daily",
+  "cost": "0.0015 round-trip",
+  "confirmation_window": "discovery_days split",
+  "baseline_raw": {
+    "rank_ic": 0.0178305981963507,
+    "icir": 2.073504690019563,
+    "hl_sharpe": 1.5150216978697786,
+    "daily_turnover_hl": 0.5147826158378662,
+    "net_sharpe_15bp": -0.1777149275632794,
+    "implied_annu_fee": 0.0965217404695999
+  },
+  "baseline_size_industry": {
+    "rank_ic": 0.0235604095203221,
+    "icir": 4.84946598574053,
+    "hl_sharpe": 3.3807064279551784,
+    "daily_turnover_hl": 0.4633406923259706,
+    "net_sharpe_15bp": 1.8497363858603328,
+    "implied_annu_fee": 0.0868763798111194
+  },
+  "execution_book": {
+    "top_frac": 0.1
+  }
+}

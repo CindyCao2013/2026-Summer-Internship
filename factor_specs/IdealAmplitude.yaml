@@ -1,0 +1,26 @@
+factor_id: IdealAmplitude
+display_name: Ideal Amplitude
+family:
+  - microstructure
+  - volatility
+source:
+  type: paper
+  paper_id: "kysec_amplitude_hidden_structure"
+status: testing
+data_level: EOD
+frozen_formula: false
+data_coverage:
+  requested: "2018-01-01_2025-12-31"
+  actual: "cutting_v1_harvest_3885d + exec_last_252d"
+  exception_reason: "harvested from factor_cutting_v1; Dual Benchmark pending"
+pack:
+  path: research/reports/factors/IdealAmplitude
+  report_content: factor_specs/IdealAmplitude_report_content.yaml
+  schema_version: factor_report_v2
+
+artifacts:
+  copy:
+    - src: research/reports/ideal_amplitude_v1/execution/execution_summary.csv
+      dest: execution/execution_summary.csv
+      also_dest:
+        - execution_summary.csv

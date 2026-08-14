@@ -1,0 +1,197 @@
+schema_version: factor_registry_v1
+created: '2026-07-20'
+protocol: docs/factor_research_protocol_v1.md
+admission_rule: requires_manual_review
+layer_discipline: 'Registry admits factor_id only.
+
+  Mechanism diagnostics and portfolio implementation variants live in Research Packs,
+
+  never as sibling registry rows.
+
+  '
+banned_registry_ids_examples:
+- epsilon_d
+- epsilon_u
+- tau
+- upsilon
+- tgd_eps
+- Gu_MA20
+- Gd_MA20
+- M_high
+- M_low
+- buffer_5_15
+- daily_buffer_5_15
+- size_industry
+factors:
+- factor_id: TGD20
+  display_name: TGD20
+  family:
+  - temporal_information
+  source: paper
+  data_level: minute
+  status: validated
+  formula_frozen: true
+  production_ready: false
+  validation_stage: research_pack_complete
+  benchmark: Dual_Benchmark_v1
+  pack_path: research/reports/factors/TGD20
+  library_formula_id: TGD20
+  RankICIR: 11.2872
+  NetSharpe: 2.3236
+  Turnover: 0.2965
+  metric_note: RankICIR=size+industry harvest; NetSharpe/TO=execution best buffer_5_15
+    @15bp
+  correlation_cluster: null
+  notes: Golden Pack. Coverage exception L2 2022–2025. CSI1000 Production Track deferred.
+- factor_id: FlowDensity20
+  display_name: FlowDensity20
+  family:
+  - microstructure
+  - liquidity
+  source: paper_internal
+  data_level: L2
+  status: candidate
+  formula_frozen: false
+  production_ready: false
+  validation_stage: research_pack_complete
+  benchmark: Dual_Benchmark_v1
+  pack_path: research/reports/factors/FlowDensity20
+  library_formula_id: net_active_flow_mktcap_20d
+  RankICIR: 4.8495
+  NetSharpe: 2.8806
+  Turnover: 0.1645
+  metric_note: RankICIR=size+industry; NetSharpe/TO=execution best; interaction not
+    pure flow
+  correlation_cluster: null
+  notes: liquidity_flow_interaction. Amount-orth flips sign. Protocol charts filled
+    1D.7.
+- factor_id: D1_LiquidityQuality60d
+  display_name: D1 Liquidity Quality 60d
+  family:
+  - liquidity
+  source: library
+  data_level: EOD
+  status: candidate
+  formula_frozen: true
+  production_ready: false
+  validation_stage: research_pack_complete
+  benchmark: Dual_Benchmark_v1
+  pack_path: research/reports/factors/D1_LiquidityQuality60d
+  library_formula_id: low_vol_liquidity_quality_60d
+  RankICIR: 6.0135
+  NetSharpe: 1.3777
+  Turnover: 0.2343
+  evaluation_signal: raw_cs_zscore
+  production_signal: size_industry_neutralized
+  metric_note: RankICIR=confirmation raw harvest; NetSharpe/TO=1D.7 execution on raw_cs_zscore
+    (not size+ind)
+  correlation_cluster: null
+  notes: Slow liquidity quality. Do not confuse IC (raw harvest) with execution (raw
+    z-score). Production neut pending.
+- factor_id: D4_WinnerSentimentReversal5d
+  display_name: D4 Winner Sentiment Reversal 5d
+  family:
+  - momentum
+  - behavioral
+  source: library
+  data_level: EOD
+  status: candidate
+  formula_frozen: true
+  production_ready: false
+  validation_stage: library_inventory
+  benchmark: Dual_Benchmark_v1
+  pack_path: null
+  library_formula_id: winner_sentiment_reversal_5d
+  RankICIR: null
+  NetSharpe: null
+  Turnover: null
+  metric_note: Solo Production metrics pending; evidence via Base3 stack (ICIR~5.69
+    / Sharpe~3.76)
+  correlation_cluster: null
+  notes: Base3 leg. Needs v2 Research Pack before promotion beyond candidate inventory.
+- factor_id: D5_UpsideFragility20d
+  display_name: D5 Upside Fragility 20d
+  family:
+  - volatility
+  - microstructure
+  source: library
+  data_level: EOD
+  status: candidate
+  formula_frozen: true
+  production_ready: false
+  validation_stage: library_inventory
+  benchmark: Dual_Benchmark_v1
+  pack_path: null
+  library_formula_id: upside_fragility_20d
+  RankICIR: null
+  NetSharpe: null
+  Turnover: null
+  metric_note: Solo Production metrics pending; mono historically weak (~0.2) — flagged
+  correlation_cluster: null
+  notes: Base3 leg. Register with mono weak flag; not silent pass. Needs v2 pack.
+- factor_id: IdealReversal
+  display_name: Ideal Reversal
+  family:
+  - microstructure
+  source: paper
+  data_level: EOD
+  status: testing
+  formula_frozen: false
+  production_ready: false
+  validation_stage: research_pack_complete
+  benchmark: Dual_Benchmark_v1
+  pack_path: research/reports/factors/IdealReversal
+  library_formula_id: IdealReversal
+  RankICIR: -8.6011
+  NetSharpe: 1.700933409496036
+  Turnover: 0.15298901332016637
+  metric_note: Cutting harvest RankICIR≈-8.6 · mono≈0.44 (below soft bar); execution
+    best raw_cs_z|best_e1_buffer_5_15 NetSharpe=1.70 TO=0.153 @15bp — stay testing
+  correlation_cluster: null
+  notes: Paper replication / cutting track. Execution filled 2.2.1. Do not auto-admit;
+    soft bar not passed.
+- factor_id: IdealAmplitude
+  display_name: Ideal Amplitude
+  family:
+  - microstructure
+  - volatility
+  source: paper
+  data_level: EOD
+  status: testing
+  formula_frozen: false
+  production_ready: false
+  validation_stage: research_pack_complete
+  benchmark: Dual_Benchmark_v1
+  pack_path: research/reports/factors/IdealAmplitude
+  library_formula_id: IdealAmplitude
+  RankICIR: -7.660069086011271
+  NetSharpe: 3.399596017061248
+  Turnover: 0.4460525049181517
+  metric_note: 'Cutting harvest RankICIR≈-7.66 Sharpe≈3.44; harvest mono≈0.11 is unsigned
+    metric vs neg-IC. III-A closure (252d signed): mono≈0.89, mostly monotonic, tail-concentrated.
+    Stay testing.'
+  correlation_cluster: null
+  notes: 'Phase III A2 pack. III-A closure: do not retune; mono soft-bar needs signed
+    full-sample review before candidate. See docs/milestone_3_0_iiia_closure.md.'
+- factor_id: ActiveTradeProxy
+  display_name: Active Trade Proxy (APM overnight−day)
+  family:
+  - microstructure
+  - trading_behavior
+  source: paper_proxy
+  data_level: EOD
+  status: testing
+  formula_frozen: false
+  production_ready: false
+  validation_stage: research_pack_complete
+  benchmark: Dual_Benchmark_v1
+  pack_path: research/reports/factors/ActiveTradeProxy
+  library_formula_id: apm_overnight_day_proxy
+  RankICIR: 7.0174
+  NetSharpe: 2.468
+  Turnover: 0.132
+  metric_note: RESEARCH PROXY — not paper APM. RankICIR≈7.02; exec Net≈2.47; mono≈0.78.
+    Stay testing.
+  correlation_cluster: null
+  notes: Phase III A3. Paper ActiveTrade/APM needs minute/session. This is compute_apm_overnight_day_proxy
+    only. Do not claim paper replication.

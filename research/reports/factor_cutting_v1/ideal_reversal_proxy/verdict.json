@@ -1,0 +1,104 @@
+{
+  "period": "2010-01-04 -> 2025-12-31",
+  "preset": "paper",
+  "match_ranking": [
+    {
+      "knife": "ats_trade_count",
+      "role": "benchmark",
+      "ic_series_corr_vs_ats": 1.0,
+      "rank_ic": -0.03379564434302013,
+      "icir": -6.483878973616674,
+      "n_overlap_days": 1703
+    },
+    {
+      "knife": "amount",
+      "role": "proxy",
+      "ic_series_corr_vs_ats": 0.7574752639442454,
+      "rank_ic": -0.036808472625969896,
+      "icir": -6.3385194284566175,
+      "n_overlap_days": 1722
+    },
+    {
+      "knife": "volume",
+      "role": "proxy",
+      "ic_series_corr_vs_ats": 0.7314213210715501,
+      "rank_ic": -0.03705291204409538,
+      "icir": -6.254645598470967,
+      "n_overlap_days": 1722
+    },
+    {
+      "knife": "turnover_proxy",
+      "role": "proxy",
+      "ic_series_corr_vs_ats": 0.7055751864721302,
+      "rank_ic": -0.035916962611170354,
+      "icir": -6.188717454301058,
+      "n_overlap_days": 1722
+    },
+    {
+      "knife": "ats_volume",
+      "role": "proxy",
+      "ic_series_corr_vs_ats": 0.4606742111522899,
+      "rank_ic": -0.024376414615586154,
+      "icir": -4.7328884308025545,
+      "n_overlap_days": 1722
+    }
+  ],
+  "full_stats": {
+    "knife": "amount",
+    "mode": "stitch_ats_plus_proxy",
+    "corr_vs_ats": 0.7574752639442454,
+    "corr_accept": 0.8,
+    "passed_threshold": false,
+    "rank_ic": -0.028142273895866092,
+    "icir": -4.805637218243157,
+    "monthly_rank_ic": -0.056262873295776,
+    "monthly_icir": -2.3004708585582994,
+    "n_days": 3866,
+    "n_ats_days": 1723,
+    "n_proxy_fill_days_in_sample": 2163,
+    "label": "ideal_reversal_proxy_amount",
+    "honesty": "NOT paper ATS on full history. ATS used where trade_count coverage>=200; else `amount`."
+  },
+  "neutralization": [
+    {
+      "mode": "raw",
+      "rank_ic": -0.028142273895866092,
+      "icir": -4.805637218243157,
+      "ic_pos_ratio": 0.3489394723228143,
+      "n_days": 3866,
+      "monthly_rank_ic": -0.056262873295776,
+      "monthly_icir": -2.3004708585582994,
+      "ic_retention_vs_raw": 1.0
+    },
+    {
+      "mode": "size",
+      "rank_ic": -0.033515179656109825,
+      "icir": -6.823437175528667,
+      "ic_pos_ratio": 0.3152965660770031,
+      "n_days": 1922,
+      "monthly_rank_ic": -0.06308603341814699,
+      "monthly_icir": -2.8286616558894195,
+      "ic_retention_vs_raw": 1.1909193898163637
+    },
+    {
+      "mode": "industry",
+      "rank_ic": -0.029624495131624157,
+      "icir": -7.816728052445181,
+      "ic_pos_ratio": 0.2840440165061898,
+      "n_days": 1454,
+      "monthly_rank_ic": -0.05338850182175579,
+      "monthly_icir": -2.915420227504922,
+      "ic_retention_vs_raw": 1.0526688511824835
+    },
+    {
+      "mode": "size_industry",
+      "rank_ic": -0.02946605623608115,
+      "icir": -8.652438356177752,
+      "ic_pos_ratio": 0.2730398899587345,
+      "n_days": 1454,
+      "monthly_rank_ic": -0.05291344093872141,
+      "monthly_icir": -3.328831054525693,
+      "ic_retention_vs_raw": 1.0470389260339588
+    }
+  ]
+}

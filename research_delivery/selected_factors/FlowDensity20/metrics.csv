@@ -1,0 +1,8 @@
+metric,raw,size,size_industry,unit,role
+RankIC,0.01783,0.02714,0.02356,decimal,predictive
+ICIR,2.0735,4.4107,4.8495,annualized,predictive
+long_book_excess_sharpe_exact,-0.0464,0.7646,0.5012,annualized,headline
+long_book_excess_annu_ret_exact,-0.00455,0.06173,0.03983,decimal,headline
+long_book_excess_mdd_exact,-0.20546,-0.17461,-0.16773,decimal,risk
+HL_sharpe_gross,1.5150,2.9474,3.3807,annualized,diagnostic
+HL_net_sharpe_15bp,-0.1777,1.5951,1.8497,annualized,execution_diagnostic

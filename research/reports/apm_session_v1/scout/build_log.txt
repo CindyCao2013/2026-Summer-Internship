@@ -1,0 +1,34 @@
+=== C1.3 APM_SessionResidual CSI1000 SCOUT ===
+formula=apm_session_v1_adapted_eod_index signal=apm_cs identity=adapted_replication
+2021-01-01 → 2025-12-31 | no sign flip | cost=0.0015
+Forbidden: Pack · factor_library · Registry · Composite · Proxy rename
+Masked apm_cs shape=(1212, 1902)
+Raw RankIC=0.0239 ICIR=4.10 direction=positive_match
+Neutralization panels ...
+Neutral IC:
+                 mode  rank_ic  abs_rank_ic     icir  abs_icir  ic_pos_frac  n_days
+                  raw 0.023937     0.023937 4.100562  4.100562     0.616846    1211
+         size_neutral 0.023257     0.023257 4.184462  4.184462     0.629232    1211
+     industry_neutral 0.022967     0.022967 6.247041  6.247041     0.682907    1211
+size_industry_neutral 0.022477     0.022477 6.549096  6.549096     0.682081    1211
+Decile mono_frac=0.7777777777777778 prefer_up=True
+H-L gross=3.28 net=0.92 TO=0.746 book=long_high_short_low
+Yearly:
+ year  rank_ic     icir  abs_icir  ic_pos_frac  gross_sharpe  net_sharpe  daily_turnover  n_days  sign_matches_paper_positive  gross_works
+ 2021 0.032295 7.524517  7.524517     0.652893      5.766978    2.994982        0.746525     242                         True         True
+ 2022 0.024935 4.650062  4.650062     0.651452      3.413029    0.999542        0.731029     241                         True         True
+ 2023 0.018662 3.607810  3.607810     0.605809      1.685661   -1.338140        0.752816     241                         True         True
+ 2024 0.017322 2.370469  2.370469     0.564315      3.059603    1.112438        0.732023     241                         True         True
+ 2025 0.026145 3.988374  3.988374     0.607438      2.666727    0.474624        0.775853     242                         True         True
+Peer IC + signal corr (Flow priority) ...
+  SmartMoney peer from SmartMoney10d_CSI1000_20230101_20251231.parquet
+IC-series corr:
+                     APM_SessionResidual  TGD20     D1  FlowDensity20  SmartMoney10d
+APM_SessionResidual                1.000  0.366 -0.106         -0.246          0.003
+TGD20                              0.366  1.000  0.523          0.230         -0.288
+D1                                -0.106  0.523  1.000          0.468         -0.519
+FlowDensity20                     -0.246  0.230  0.468          1.000         -0.128
+SmartMoney10d                      0.003 -0.288 -0.519         -0.128          1.000
+Signal CS corr vs peers: {'TGD20': 0.42576087704819293, 'D1': 0.14905347404567668, 'FlowDensity20': 0.0061793635507038916, 'SmartMoney10d': -0.0618187900209786}
+Wrote /home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/apm_session_v1/scout/summary.json
+VERDICT: PASS_research_FAIL_invest gates={'info_pass': True, 'structure_pass': True, 'invest_pass': False} direction=positive_match

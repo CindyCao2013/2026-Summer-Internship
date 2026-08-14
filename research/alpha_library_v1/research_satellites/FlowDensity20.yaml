@@ -1,0 +1,59 @@
+# FlowDensity20 — research satellite (NOT production freeze)
+#
+# Source column: net_active_flow_mktcap_20d
+# Pack: research/reports/factors/FlowDensity20/
+
+factor_id: FlowDensity20
+source_column: net_active_flow_mktcap_20d
+layer: l2_microstructure
+category:
+  - microstructure
+  - liquidity_flow_interaction
+role: research_satellite
+status: validated_single_factor_candidate
+
+information_source: active_order_imbalance
+condition: liquidity_state
+economic_mechanism: >
+  Abnormal active flow under low/high activity regime
+  (Flow × Liquidity interaction — not pure flow direction).
+
+hypothesis: >
+  Net active flow / mktcap (20d) is a liquidity-conditioned flow factor.
+  Positive raw alpha comes from active imbalance interacting with anti-amount /
+  low-activity exposure. Flow⊥Amount flips ICIR negative → pure flow not validated.
+
+formula:
+  frozen: false
+
+execution:
+  incomplete: false
+  best:
+    label: "size_industry|daily|buffer_10_30"
+    net_sharpe: 2.88
+    daily_turnover: 0.165
+
+mechanism:
+  class: flow_liquidity_interaction
+  amount_orth:
+    case: case_interaction_entangled
+    FlowDensity_raw_icir: 4.85
+    Flow_perp_Amount_icir: -2.49
+    Amount_icir: -8.66
+    Amount_perp_Flow_icir: -8.49
+  promote: false
+
+production:
+  deferred: true
+
+combination:
+  candidate: conditional   # equal-rank weak; IC-weighted composite worth testing
+  orthogonality: research/reports/factor_orthogonality/TGD20_FlowDensity20/
+  note: >
+    corr(TGD, FlowRaw)=0.22; TGD⊥Flow ICIR=9.12. Pair as Temporal +
+    Liquidity-microstructure. Prefer IC-weighted Composite v1 over 0.5/0.5.
+
+next:
+  - composite_alpha_engine_v1_ic_weighted
+  - do_not: freeze_as_pure_flow
+  - do_not: equal_rank_50_50_as_default

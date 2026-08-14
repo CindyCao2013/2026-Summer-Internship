@@ -1,0 +1,29 @@
+factor_id: ActiveTradeProxy
+display_name: Active Trade Proxy (APM overnight−day)
+family:
+  - microstructure
+  - trading_behavior
+source:
+  type: paper_proxy
+  paper_id: "kysec_apm_active_trade"
+  honesty: |
+    NOT paper APM. Paper needs overnight vs afternoon residual vs index + CS residual vs Ret20
+    (session/minute). This factor is the daily research proxy only.
+status: testing
+data_level: EOD
+frozen_formula: false
+data_coverage:
+  requested: "session_or_minute"
+  actual: "daily_OHLC_proxy_last_Nd"
+  exception_reason: "paper APM deferred to minute layer; proxy admitted for cutting-family completeness"
+pack:
+  path: research/reports/factors/ActiveTradeProxy
+  report_content: factor_specs/ActiveTradeProxy_report_content.yaml
+  schema_version: factor_report_v2
+
+artifacts:
+  copy:
+    - src: research/reports/active_trade_proxy_v1/execution/execution_summary.csv
+      dest: execution/execution_summary.csv
+      also_dest:
+        - execution_summary.csv

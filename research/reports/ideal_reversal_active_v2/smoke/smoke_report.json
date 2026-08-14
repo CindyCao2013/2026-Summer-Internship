@@ -1,0 +1,30 @@
+{
+  "formula_version": "ideal_rev_active_v2_w5_top20avgsize",
+  "start": "2024-06-01",
+  "end": "2024-06-30",
+  "coverage": {
+    "n_days": 19,
+    "n_symbols": 200,
+    "coverage_cell": 0.48605263157894735,
+    "mean_daily_coverage": 0.48605263157894746
+  },
+  "distribution": {
+    "n": 1847,
+    "mean": 0.2506194665200279,
+    "std": 0.1470296311746454,
+    "p01": 0.007468723401434054,
+    "p50": 0.2483466283855496,
+    "p99": 0.5638847824379375,
+    "min": 0.004563366884777588,
+    "max": 0.6995063715750106
+  },
+  "n_long_rows": 3798,
+  "identity": "IdealReversal_ActiveV2",
+  "not_kaiyuan_wcut": true,
+  "cs_post_coverage": {
+    "n_days": 19,
+    "n_symbols": 200,
+    "coverage_cell": 1.0,
+    "mean_daily_coverage": 1.0
+  }
+}

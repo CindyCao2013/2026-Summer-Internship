@@ -1,0 +1,11 @@
+key,value
+factor_id,IdealReversal
+status,testing
+family,microstructure
+RankIC_raw,-0.0311
+RankIC_size_industry,-0.0331
+ICIR_raw,-8.6
+ICIR_size_industry,-9.46
+monotonicity,0.444
+execution_best_net_Sharpe,1.7
+execution_best_daily_turnover,0.153

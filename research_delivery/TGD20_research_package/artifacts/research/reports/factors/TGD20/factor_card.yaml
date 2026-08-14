@@ -1,0 +1,57 @@
+schema_version: factor_report_v2
+factor_id: TGD20
+display_name: TGD20
+family:
+- temporal_information
+source:
+  type: paper
+  paper_id: 20221225_kysec_intraday_timing
+  paper_title: 日内分钟收益率的时序特征：逻辑讨论与因子增强
+data_level: minute
+status: validated
+frozen_formula: true
+hypothesis: 'Abnormal downside timing residual (εd ⊥ εu, MA20) predicts next-day cross-sectional
+
+  returns. Alpha is temporal residual information, not raw Gu/Gd or τ=Gd−Gu.
+
+  '
+mechanism:
+- temporal_information
+- downside_timing
+formula: TGD20 = MA20( resid(εd ~ εu) ) after Gu/Gd residualization; signal_shift=1
+data_requirement:
+- Stock_one_minute Close
+- open/close for overnight control
+known_failure_modes:
+- high_raw_turnover
+- short_L2_coverage_vs_2018_target
+- naive_equal_weight_blend_with_Flow_underperforms
+correlation_cluster: null
+data_coverage:
+  requested: 2018-01-01_2025-12-31
+  actual: 2022-01-28_2025-12-31
+  exception_reason: minute return / Gu-Gd lineage availability (legacy pack window)
+coverage_exception: true
+admission:
+  requires_manual_review: true
+benchmark:
+  research:
+    universe: ALL
+    period_target: 2018-01-01_2025-12-31
+    horizon_days: 20
+  production:
+    universe: CSI1000
+    universe_membership: declare
+    period_target: 2018-01-01_2025-12-31
+    horizon_days: 20
+    neutralization: industry_size
+    cost_bp: 15
+    note: Pack harvests existing artifacts; Production Track re-run deferred
+do_not:
+- retune MA window (MA10/30/60)
+- change residual controls
+- replace residual with ML under this id
+- mine a new TGD variant under this id
+notes:
+- factor_report_v2 schema-driven pack
+- Legacy/harvest metrics; Dual Benchmark Production re-run not performed

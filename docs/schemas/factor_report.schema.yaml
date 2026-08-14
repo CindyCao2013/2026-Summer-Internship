@@ -1,0 +1,147 @@
+# Factor Report document + pack schema — Template v2
+# Human template: docs/factor_report_template_v2.md
+# This file is the machine-readable shape for Report Generator v2.
+
+schema_version: factor_report_v2
+
+pack:
+  root: research/reports/factors/{factor_id}/
+  required_files:
+    - factor_card.yaml
+    - metrics.json
+    - summary.md
+    - factor_report.md
+  required_dirs:
+    - charts/
+    - mechanism/
+    - execution/
+    - diagnostics/
+    - artifacts/
+
+factor_card:
+  required:
+    - factor_id
+    - display_name
+    - family
+    - status
+    - frozen_formula
+    - hypothesis
+    - mechanism
+    - formula
+    - data_requirement
+    - known_failure_modes
+    - data_coverage
+    - admission
+  optional:
+    - correlation_cluster
+    - source
+    - data_level
+    - benchmark
+    - do_not
+    - notes
+    - schema_version
+  status_enum:
+    - discovery
+    - testing
+    - candidate
+    - validated
+    - production
+    - retired
+  # quality_candidate may appear in notes; Protocol status remains the enum above
+
+metrics_json:
+  required_top_level:
+    - schema_version   # factor_report_v2
+    - factor_id
+    - status
+    - production       # headline comparable block (Protocol)
+    - research         # optional discovery block
+    - metric_union     # flat map id → {value, source, missing_reason?}
+    - risk_ladder      # raw/size/industry/size_industry rows
+  metric_ids_ref: metric_registry.yaml
+
+factor_report_md:
+  chapter_order:
+    - Executive Summary
+    - Factor Thesis
+    - Economic Intuition
+    - Formula Construction
+    - Signal Pipeline
+    - Mechanism Validation
+    - IC Analysis
+    - Portfolio Analysis
+    - Risk Adjustment
+    - Stability
+    - Execution
+    - Limitations
+    - Final Verdict
+  appendices:
+    - Complete Metric Dump
+    - Data Dictionary & Code Map
+  formula_layers:
+    - raw_variables
+    - intermediate_variables
+    - transformations
+    - final_signal
+  mechanism:
+    required_table_columns:
+      - Hypothesis
+      - Test
+      - Result
+      - Conclusion
+    empty_mechanism_max_status: candidate
+  prose:
+    ban_phrases:
+      - "Factor has high ICIR"
+      - "Looks good"
+    require_research_language: true
+  readers:
+    researcher:
+      - why_exists
+      - why_not_noise
+      - why_not_size_liquidity
+      - cost_tradable
+    pm:
+      - sharpe
+      - mdd
+      - turnover
+      - composite_eligible
+
+charts_ref: chart_registry.yaml
+metrics_ref: metric_registry.yaml
+
+generator_constraints:
+  schema_driven: true
+  forbid_per_factor_special_case_branches: true
+  forbid_formula_changes: true
+  forbid_eval_logic_changes: true
+  forbid_registry_writes: true
+  harvest_artifacts_only: true
+
+milestones:
+  "1B":
+    name: Report Schema
+    deliverables:
+      - docs/factor_report_template_v2.md
+      - docs/schemas/metric_registry.yaml
+      - docs/schemas/chart_registry.yaml
+      - docs/schemas/factor_report.schema.yaml
+  "1C":
+    name: TGD20 Golden Pack
+    deliverables:
+      - factor_report_generator_v2.py (or equivalent)
+      - research/reports/factors/TGD20/ under this schema
+    note: No batch migration
+  "1D":
+    name: Batch Migration
+    after: "1C golden review pass"
+  "1E":
+    name: Registry
+    after: "1D packs exist"
+
+acceptance_1B:
+  - schema_files_exist
+  - no_factor_calc_changes
+  - no_eval_logic_changes
+  - no_registry_changes
+  - no_pack_migration

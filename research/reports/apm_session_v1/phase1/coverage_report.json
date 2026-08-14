@@ -1,0 +1,40 @@
+{
+  "formula_version": "apm_session_v1_adapted_eod_index",
+  "window": "2024-06-01_2024-06-30",
+  "index_code": "000852.SH",
+  "coverage": {
+    "n_rows": 97318,
+    "n_dates": 19,
+    "n_symbols": 5122,
+    "pct_nan": {
+      "r_on": 0.0013666536509176104,
+      "r_pm": 0.005394685464148462,
+      "alpha_on": 0.0013666536509176104,
+      "alpha_pm": 0.005394685464148462,
+      "delta_alpha": 0.0056515752481555315
+    },
+    "mean_daily_frac_finite_r_pm": 0.9946053145358514,
+    "min_daily_frac_finite_r_pm": 0.9933619679812573
+  },
+  "cache_root": "research/cache/apm_session",
+  "gates": {
+    "residual_rows_gt_0": true,
+    "pm_rows_gt_0": true,
+    "ovn_rows_gt_0": true,
+    "index_rows_gt_0": true,
+    "no_active_cols": true,
+    "mean_daily_frac_finite_r_pm_gt_0p3": true,
+    "cache_not_shifted": true,
+    "adapted_flag": true
+  },
+  "phase1_pass": true,
+  "forbidden": [
+    "IC",
+    "Sharpe",
+    "factor_library",
+    "Registry",
+    "Active_*",
+    "Proxy_rename",
+    "cache_shift1"
+  ]
+}

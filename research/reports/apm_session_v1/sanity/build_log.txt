@@ -1,0 +1,19 @@
+=== C1.2 Phase2 APM_SessionResidual SANITY ===
+Goal: paper object constructability — NOT alpha evaluation
+formula=apm_session_v1_adapted_eod_index window=20 min_periods=10
+eval=2024-06-01..2024-06-30 preheat_from=2024-05-01
+Forbidden: RankIC · ICIR · Sharpe · decile · Pack · library · Registry · Active_*
+ensure residual panel (preheat+eval) ...
+  residual_full rows=199,875 dates=39 symbols=5125
+residual_distribution:
+     column     n  n_finite  pct_nan      mean      std       min       p01       p50      p99      max  mean_daily_cs_std  min_daily_cs_std
+   alpha_on 97375     97185 0.001951 -0.000703 0.017480 -0.972974 -0.045843  0.000386 0.031799 0.204429           0.017073          0.012364
+   alpha_pm 97375     96793 0.005977  0.003192 0.014838 -0.292696 -0.030418  0.002931 0.040360 0.446579           0.011208          0.008650
+delta_alpha 97375     96768 0.006234 -0.003905 0.022893 -0.903511 -0.063172 -0.002967 0.041038 0.351654           0.020555          0.016604
+build APM_stat ...
+  wrote research/cache/apm_session/signal/apm_stat_20240601_20240630_w20.parquet rows=97,375
+Ret20 + CS residualize ...
+  wrote research/cache/apm_session/signal/apm_cs_20240601_20240630_w20.parquet rows=97,375
+  mean ret20 coverage=0.9943 mean n_valid=5095.6
+Wrote reports under /home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/apm_session_v1/sanity
+PHASE2 PASS: {'residual_rows_gt_0': True, 'apm_stat_finite': True, 'cross_section_delta_std': True, 'coverage_apm_stat_gt_0p3': True, 'coverage_apm_cs_gt_0p3': True, 'no_active_cols': True, 'cache_shift_false': True}

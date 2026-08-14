@@ -1,0 +1,5 @@
+---
+alwaysApply: true
+---
+
+## Agent Concurrency Control  - Maximum concurrent subtasks: 10. - Always batch parallel operations into groups of ≤10. - Do not spawn additional agents/tasks beyond this limit. - For large-scale codebase analysis, testing, refactoring, or file operations:   1. First analyze dependencies.   2. Split work into independent batches.   3. Execute each batch sequentially.   4. Validate results before proceeding to the next batch.  Avoid excessive parallelism that may cause: - conflicting file modifications, - duplicated analysis, - API/tool rate limits, - inconsistent intermediate states.

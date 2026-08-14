@@ -1,0 +1,543 @@
+{
+  "period": "2023-12-05 -> 2025-12-31",
+  "note": "Equity incentive table incomplete in Wind — excluded. Size+industry neutralized.",
+  "blocked_sources": [
+    "ASHARESTOCKINCENTIVEIMPLEMENT (~444 rows only)"
+  ],
+  "rows": [
+    {
+      "factor": "major_holder_net_increase",
+      "mode": "hold",
+      "rank_ic": 0.008787087483975668,
+      "icir": 2.927101495027685,
+      "gross_hl_sharpe": 0.749016364400253,
+      "turnover_ann_proxy": 20.837138621971608,
+      "coverage": {
+        "mean_names": 964.8730158730159,
+        "median_names": 908.0,
+        "pct_days_ge_50": 1.0,
+        "pct_days_ge_200": 1.0
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 502,
+          "residual_ic_mean": 0.007830329375926396,
+          "residual_icir": 2.5636542301913736,
+          "residual_ic_t": 3.632798454091841
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.004983752809241448,
+          "residual_icir": 1.6316149276532446,
+          "residual_ic_t": 2.3120622574790093
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.008240060881276191,
+          "residual_icir": 2.7572720587007336,
+          "residual_ic_t": 3.9071625004636164
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.006157191395545665,
+          "residual_icir": 2.0967379203259044,
+          "residual_ic_t": 2.9711597554351497
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.03623499470572019,
+          "icir": 4.499114965797897,
+          "ic_positive_ratio": 0.5964214711729622,
+          "hl_sharpe": 3.8156681224689675,
+          "hl_annu_ret": 0.7229422643330049,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.03616245335455111,
+          "icir": 4.590264983716511,
+          "ic_positive_ratio": 0.6023856858846919,
+          "hl_sharpe": 3.9123507924232723,
+          "hl_annu_ret": 0.7228790336920137,
+          "monotonicity_score": 0.6666666666666666,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.03553018723229121,
+          "icir": 4.714416465068025,
+          "ic_positive_ratio": 0.610337972166998,
+          "hl_sharpe": 3.864115162386433,
+          "hl_annu_ret": 0.6717073299422041,
+          "monotonicity_score": 0.7777777777777778,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "enhancer_candidate"
+    },
+    {
+      "factor": "major_holder_increase_only",
+      "mode": "hold",
+      "rank_ic": -0.005097681804591569,
+      "icir": -1.0825991696659352,
+      "gross_hl_sharpe": 0.8478963029483816,
+      "turnover_ann_proxy": 28.949092037299337,
+      "coverage": {
+        "mean_names": 286.62301587301585,
+        "median_names": 255.0,
+        "pct_days_ge_50": 1.0,
+        "pct_days_ge_200": 0.8154761904761905
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 502,
+          "residual_ic_mean": -0.0033189032255204302,
+          "residual_icir": -0.6872678847365131,
+          "residual_ic_t": -0.9738855106959564
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 502,
+          "residual_ic_mean": -0.002708210677247238,
+          "residual_icir": -0.5410887066435124,
+          "residual_ic_t": -0.7667438899801909
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 502,
+          "residual_ic_mean": -0.005241486228646491,
+          "residual_icir": -1.109670044657828,
+          "residual_ic_t": -1.5724459154088255
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 502,
+          "residual_ic_mean": -0.004667593451985423,
+          "residual_icir": -0.9756448471641331,
+          "residual_ic_t": -1.3825269612337523
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.033661628867323184,
+          "icir": 3.4390665469805466,
+          "ic_positive_ratio": 0.5725646123260437,
+          "hl_sharpe": 2.612276363588209,
+          "hl_annu_ret": 0.5594450707570835,
+          "monotonicity_score": 0.5555555555555556,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.032124699770398314,
+          "icir": 3.3284315663322204,
+          "ic_positive_ratio": 0.5666003976143141,
+          "hl_sharpe": 2.526271480865834,
+          "hl_annu_ret": 0.5321168313621696,
+          "monotonicity_score": 0.4444444444444444,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.030251689414115747,
+          "icir": 3.225715996981312,
+          "ic_positive_ratio": 0.5646123260437376,
+          "hl_sharpe": 2.3565648525141083,
+          "hl_annu_ret": 0.46167097958094117,
+          "monotonicity_score": 0.5555555555555556,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "raw_signal_only"
+    },
+    {
+      "factor": "insider_net_buy",
+      "mode": "hold",
+      "rank_ic": 0.0030202229562079816,
+      "icir": 0.498013240823808,
+      "gross_hl_sharpe": 0.5572243764806375,
+      "turnover_ann_proxy": 30.156955269365607,
+      "coverage": {
+        "mean_names": 596.5218253968254,
+        "median_names": 548.0,
+        "pct_days_ge_50": 1.0,
+        "pct_days_ge_200": 1.0
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 502,
+          "residual_ic_mean": 0.006064746974855468,
+          "residual_icir": 0.9979609545609418,
+          "residual_ic_t": 1.414149759463614
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.01177259525597102,
+          "residual_icir": 1.71767717861124,
+          "residual_ic_t": 2.4340158378620123
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.0020760640335844563,
+          "residual_icir": 0.34630413969347806,
+          "residual_ic_t": 0.4907265295406706
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.004723707203449919,
+          "residual_icir": 0.775456730973114,
+          "residual_ic_t": 1.0988525598804915
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.03337922457724824,
+          "icir": 4.351652073558076,
+          "ic_positive_ratio": 0.6123260437375746,
+          "hl_sharpe": 3.6197979022598052,
+          "hl_annu_ret": 0.7100477799752314,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.03296826425691954,
+          "icir": 4.333501354768209,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.6397282989771753,
+          "hl_annu_ret": 0.6962975975158503,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.0325118554061446,
+          "icir": 4.336834945280784,
+          "ic_positive_ratio": 0.614314115308151,
+          "hl_sharpe": 3.5778998396972757,
+          "hl_annu_ret": 0.6733634376757764,
+          "monotonicity_score": 0.7777777777777778,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "drop"
+    },
+    {
+      "factor": "major_holder_net_increase",
+      "mode": "decay",
+      "rank_ic": 0.007817048820133106,
+      "icir": 2.2902518772660967,
+      "gross_hl_sharpe": 0.9261031966694506,
+      "turnover_ann_proxy": 45.934541255593196,
+      "coverage": {
+        "mean_names": 964.8730158730159,
+        "median_names": 908.0,
+        "pct_days_ge_50": 1.0,
+        "pct_days_ge_200": 1.0
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 502,
+          "residual_ic_mean": 0.005735624497719607,
+          "residual_icir": 1.613832725066099,
+          "residual_ic_t": 2.28686417994259
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.0011308354157826214,
+          "residual_icir": 0.29708045978756986,
+          "residual_ic_t": 0.42097464718423194
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.005606684632584891,
+          "residual_icir": 1.6287985270757508,
+          "residual_ic_t": 2.308071307551546
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.0037155686144437054,
+          "residual_icir": 1.0612956741113975,
+          "residual_ic_t": 1.5038975376794232
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.03610555356020471,
+          "icir": 4.492495031968176,
+          "ic_positive_ratio": 0.6003976143141153,
+          "hl_sharpe": 3.882620378153312,
+          "hl_annu_ret": 0.7375144920521024,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.03608558794711037,
+          "icir": 4.583935195320497,
+          "ic_positive_ratio": 0.6063618290258449,
+          "hl_sharpe": 3.7997197056493426,
+          "hl_annu_ret": 0.6969960419730876,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.0358376357192705,
+          "icir": 4.730580014529139,
+          "ic_positive_ratio": 0.610337972166998,
+          "hl_sharpe": 3.9092448948803025,
+          "hl_annu_ret": 0.6751669272397159,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "enhancer_candidate"
+    },
+    {
+      "factor": "major_holder_increase_only",
+      "mode": "decay",
+      "rank_ic": -0.004228897179196705,
+      "icir": -0.8075686199404675,
+      "gross_hl_sharpe": 0.9204887751474342,
+      "turnover_ann_proxy": 49.19957465140306,
+      "coverage": {
+        "mean_names": 286.62301587301585,
+        "median_names": 255.0,
+        "pct_days_ge_50": 1.0,
+        "pct_days_ge_200": 0.8154761904761905
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 502,
+          "residual_ic_mean": -0.005196416307782399,
+          "residual_icir": -0.9586105806805636,
+          "residual_ic_t": -1.3583887384502995
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 502,
+          "residual_ic_mean": -0.0045280962066841235,
+          "residual_icir": -0.7943472730427275,
+          "residual_ic_t": -1.1256211978735822
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 502,
+          "residual_ic_mean": -0.005798339251543752,
+          "residual_icir": -1.1049208744051053,
+          "residual_ic_t": -1.5657161551513268
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 502,
+          "residual_ic_mean": -0.004225601912745797,
+          "residual_icir": -0.7922774169568766,
+          "residual_ic_t": -1.1226881307304715
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.03363549663671453,
+          "icir": 3.4298649469614535,
+          "ic_positive_ratio": 0.5685884691848907,
+          "hl_sharpe": 2.7129740172446883,
+          "hl_annu_ret": 0.5765530186306275,
+          "monotonicity_score": 0.7777777777777778,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.03263073898009853,
+          "icir": 3.365512513892097,
+          "ic_positive_ratio": 0.5805168986083499,
+          "hl_sharpe": 2.6678044344607077,
+          "hl_annu_ret": 0.5652394842350923,
+          "monotonicity_score": 0.6666666666666666,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.030987673419909233,
+          "icir": 3.2771901761224327,
+          "ic_positive_ratio": 0.5805168986083499,
+          "hl_sharpe": 2.4286447006583396,
+          "hl_annu_ret": 0.4864253893894251,
+          "monotonicity_score": 0.5555555555555556,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "raw_signal_only"
+    },
+    {
+      "factor": "insider_net_buy",
+      "mode": "decay",
+      "rank_ic": 0.0032346292197846208,
+      "icir": 0.5296973831210169,
+      "gross_hl_sharpe": 0.8338435462289302,
+      "turnover_ann_proxy": 45.37621031270944,
+      "coverage": {
+        "mean_names": 596.5218253968254,
+        "median_names": 548.0,
+        "pct_days_ge_50": 1.0,
+        "pct_days_ge_200": 1.0
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 502,
+          "residual_ic_mean": 0.004032964216646333,
+          "residual_icir": 0.6529485848414153,
+          "residual_ic_t": 0.9252537185704174
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.009217789409118307,
+          "residual_icir": 1.3344270150480557,
+          "residual_ic_t": 1.8909353454436375
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.0021733252954179907,
+          "residual_icir": 0.3538246735946249,
+          "residual_ic_t": 0.5013834206331921
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.0064849177047976445,
+          "residual_icir": 1.030318862922308,
+          "residual_ic_t": 1.460002182964595
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.033606686001165086,
+          "icir": 4.387870694035887,
+          "ic_positive_ratio": 0.6202783300198808,
+          "hl_sharpe": 3.547363147067057,
+          "hl_annu_ret": 0.6943648893284856,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.033368191648861865,
+          "icir": 4.39137313840798,
+          "ic_positive_ratio": 0.614314115308151,
+          "hl_sharpe": 3.6468964464950995,
+          "hl_annu_ret": 0.7016601888304034,
+          "monotonicity_score": 0.7777777777777778,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.0331338917794941,
+          "icir": 4.423174259435596,
+          "ic_positive_ratio": 0.6123260437375746,
+          "hl_sharpe": 3.656005390776791,
+          "hl_annu_ret": 0.6916447666010742,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "raw_signal_only"
+    }
+  ]
+}

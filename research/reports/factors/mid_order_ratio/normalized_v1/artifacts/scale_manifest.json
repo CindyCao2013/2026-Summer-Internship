@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-08-05T19:09:21.870136",
+  "primitive_rows": 4627831,
+  "scale_rows": 4637583,
+  "observed_scale_rows": 4413448,
+  "symbols": 5349,
+  "calendar_days": 867,
+  "scale_start": "2023-01-03",
+  "scale_end": "2026-07-31",
+  "window": 20,
+  "lag": 1,
+  "missing_policy": "complete market calendar; exactly 20 prior dates; no fill/backtracking",
+  "source_max_date_strict": true,
+  "adv_reconstruction_max_abs_error": 6.866455078125e-05,
+  "adv_reconstruction_max_relative_error": 9.626626811394557e-14,
+  "primitive_sha256": "1fbee3e17ae46763ff5f0efe24554f0aeeffab294ab8489b0d45c119f9ac6526",
+  "scales_sha256": "044ce085a1b187642690b30b78c738be76001a09ab939057273931c2c4947892",
+  "clickhouse_connect_version": "0.8.17",
+  "clickhouse_server_version": "25.3.2.39",
+  "source_sql_sha256": "600795149045e0931438a0d44995f52dd4525bc4e281faa4f1df0ce9b930c65d"
+}

@@ -1,0 +1,61 @@
+{
+  "period": "2022-01-28 -> 2025-12-31",
+  "n_days": 951,
+  "base": "C2_D1_0.60",
+  "enhancer": "net_active_flow_mktcap_20d",
+  "cost_rt": 0.0015,
+  "constraints_note": {
+    "name_weight_cap": 0.01,
+    "size_style": "reported; size_tight track residualizes combo vs industry+ln(mktcap)",
+    "industry": "reported via industry active L1; signal-level neut on size_tight",
+    "turnover_hard": 100.0,
+    "turnover_soft_aspirational": 50.0
+  },
+  "baseline": {
+    "icir_tradable": 5.732531632016892,
+    "net_sharpe_tradable": 0.6724075983977743,
+    "annu_one_way_turnover": 66.22355328286488,
+    "size_exposure_abs_mean": 0.6010848016270867,
+    "long_mktcap_pct_mean": 0.5762873970247812
+  },
+  "recommended": {
+    "label": "C7_size_tight_λ0.3",
+    "track": "size_tight",
+    "lambda": 0.3,
+    "rank_ic_tradable": 0.05562215439147451,
+    "icir_tradable": 9.629610225720741,
+    "gross_sharpe_tradable": 4.408068832030373,
+    "net_sharpe_tradable": 2.252077578168246,
+    "net_annu_ret_tradable": 0.19670761361918998,
+    "net_max_drawdown_tradable": -0.06852374162619615,
+    "annu_one_way_turnover": 62.48371700762786,
+    "icir_delta_vs_c2": 3.8970785937038492,
+    "net_sharpe_delta_vs_c2": 1.5796699797704719,
+    "excess_annu_ret": 0.09456098520081094,
+    "excess_sharpe": 0.987029585869803,
+    "size_exposure_mean": -0.06487691319915531,
+    "size_exposure_abs_mean": 0.06566570950661747,
+    "industry_active_l1_mean": 0.1764612885939764,
+    "long_mktcap_pct_mean": 0.4504642282712091,
+    "short_mktcap_pct_mean": 0.46345043530718155,
+    "max_name_weight_midday": 0.0009852216748768474,
+    "gate_net_sharpe_gt_0": "True",
+    "gate_to_le_100": "True",
+    "gate_to_le_50": "False",
+    "gate_size_abs_mean_le_0.2": "True",
+    "research_feasible": "True"
+  },
+  "best_unconstrained_feasible": {
+    "label": "C7_size_tight_λ0.3",
+    "track": "size_tight",
+    "lambda": 0.3,
+    "icir_tradable": 9.629610225720741,
+    "net_sharpe_tradable": 2.252077578168246
+  },
+  "pass_combo_gate": true,
+  "minute_heatmap_note": "Intraday bartime×horizon heatmaps live in Intraday_Factor_Test_Process.py / intraday_lib.create_group_heatmap — for minute-bar factors, not this daily C7 combo.",
+  "next": [
+    "If pass_combo_gate: update production_stack_v3_design.md with P2 additive enhancer",
+    "If size_tight preferred: document ALL + size-residual as production construction"
+  ]
+}

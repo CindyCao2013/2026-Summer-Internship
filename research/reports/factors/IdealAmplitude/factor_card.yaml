@@ -1,0 +1,54 @@
+schema_version: factor_report_v2
+factor_id: IdealAmplitude
+display_name: Ideal Amplitude
+family:
+- microstructure
+- volatility
+source:
+  type: paper
+  paper_id: kysec_amplitude_hidden_structure
+data_level: EOD
+status: testing
+frozen_formula: false
+hypothesis: 'Cutting daily amplitude by close-price state isolates high-state amplitude
+  information (V_high − V_low).
+
+  '
+mechanism:
+- microstructure
+- volatility
+formula: V = mean(amp|high-close) - mean(amp|low-close); knife=close state λ=0.25
+data_requirement:
+- high
+- low
+- close
+known_failure_modes:
+- weak_monotonicity
+- same_family_as_IdealReversal
+correlation_cluster: null
+data_coverage:
+  requested: 2018-01-01_2025-12-31
+  actual: cutting_v1_harvest_3885d + exec_last_252d
+  exception_reason: harvested from factor_cutting_v1; Dual Benchmark pending
+coverage_exception: true
+admission:
+  requires_manual_review: true
+benchmark:
+  research:
+    universe: ALL
+    period_target: 2018-01-01_2025-12-31
+    horizon_days: 20
+  production:
+    universe: CSI1000
+    universe_membership: declare
+    period_target: 2018-01-01_2025-12-31
+    horizon_days: 20
+    neutralization: industry_size
+    cost_bp: 15
+    note: Pack harvests existing artifacts; Production Track re-run deferred
+do_not:
+- promote to validated without mono / Dual Benchmark
+- confuse V_high/V_low legs with Registry factor_ids
+notes:
+- factor_report_v2 schema-driven pack
+- Legacy/harvest metrics; Dual Benchmark Production re-run not performed

@@ -1,0 +1,45 @@
+schema_version: factor_similarity_v1
+signal_book: confirmation_size_industry_cs_z
+clusters:
+  temporal_core:
+  - TGD20
+  liquidity_quality:
+  - D1_LiquidityQuality60d
+  flow_liquidity_interaction:
+  - FlowDensity20
+  behavioral_reversal:
+  - D4_WinnerSentimentReversal5d
+  fragility_tail:
+  - D5_UpsideFragility20d
+independence:
+  TGD20:
+    vs_TGD20: self
+    alpha_role_hint: core
+  FlowDensity20:
+    vs_TGD20: mostly_redundant
+    vs_D1_LiquidityQuality60d: redundant_or_absorbed
+    ic_corr_vs_TGD20: 0.3191217562240744
+    ic_corr_vs_D1: 0.2853043425749344
+    alpha_role_hint: redundant_risk
+  D1_LiquidityQuality60d:
+    vs_TGD20: independent_source
+    vs_D1_LiquidityQuality60d: self
+    ic_corr_vs_TGD20: 0.660545109205371
+    ic_corr_vs_D1: null
+    alpha_role_hint: core_or_satellite
+  D4_WinnerSentimentReversal5d:
+    vs_TGD20: mostly_redundant
+    vs_D1_LiquidityQuality60d: redundant_or_absorbed
+    ic_corr_vs_TGD20: 0.020842079333780288
+    ic_corr_vs_D1: -0.05474941016687976
+    alpha_role_hint: redundant_risk
+  D5_UpsideFragility20d:
+    vs_TGD20: independent_source
+    vs_D1_LiquidityQuality60d: partial_overlap_enhancer
+    ic_corr_vs_TGD20: -0.342087237217332
+    ic_corr_vs_D1: -0.5371738483626406
+    alpha_role_hint: core_or_satellite
+notes:
+- Clusters are taxonomy seeds + residual roles — not ML clustering.
+- D4/D5 lack Template v2 packs; treat as library_inventory candidates.
+- No Composite weights produced in 1F.

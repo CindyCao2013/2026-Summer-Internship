@@ -1,0 +1,20 @@
+factor_id: IdealReversal
+display_name: Ideal Reversal
+family:
+  - microstructure
+source:
+  type: paper
+  paper_id: "20200917_kysec_factor_cutting"
+status: testing
+data_level: EOD
+frozen_formula: false
+data_coverage:
+  requested: "2018-01-01_2025-12-31"
+  actual: "cutting_v1_full_sample"
+  exception_reason: "harvested from factor_cutting_v1 validation window"
+pack:
+  path: research/reports/factors/IdealReversal
+  report_content: factor_specs/IdealReversal_report_content.yaml
+  schema_version: factor_report_v2
+
+artifacts: {}

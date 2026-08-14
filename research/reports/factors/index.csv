@@ -1,0 +1,7 @@
+factor_id,category,status,pack_complete,registry,path
+TGD20,temporal_information,validated,True,research/registry/factor_registry.yaml,research/reports/factors/TGD20
+FlowDensity20,microstructure|liquidity,candidate,True,research/registry/factor_registry.yaml,research/reports/factors/FlowDensity20
+D1_LiquidityQuality60d,liquidity,candidate,True,research/registry/factor_registry.yaml,research/reports/factors/D1_LiquidityQuality60d
+D4_WinnerSentimentReversal5d,momentum|behavioral,candidate,False,research/registry/factor_registry.yaml,
+D5_UpsideFragility20d,volatility|microstructure,candidate,False,research/registry/factor_registry.yaml,
+IdealReversal,microstructure,testing,True,research/registry/factor_registry.yaml,research/reports/factors/IdealReversal

@@ -1,0 +1,152 @@
+{
+  "schema_version": "factor_similarity_v1",
+  "meta": {
+    "start": "2022-01-28",
+    "end": "2025-12-31",
+    "n_days": 951,
+    "factors": [
+      "TGD20",
+      "FlowDensity20",
+      "D1_LiquidityQuality60d",
+      "D4_WinnerSentimentReversal5d",
+      "D5_UpsideFragility20d"
+    ],
+    "signal_book": "confirmation_size_industry_cs_z",
+    "discovery_days": 504
+  },
+  "ic_corr": {
+    "TGD20": {
+      "TGD20": 1.0,
+      "FlowDensity20": 0.3191,
+      "D1_LiquidityQuality60d": 0.6605,
+      "D4_WinnerSentimentReversal5d": 0.0208,
+      "D5_UpsideFragility20d": -0.3421
+    },
+    "FlowDensity20": {
+      "TGD20": 0.3191,
+      "FlowDensity20": 1.0,
+      "D1_LiquidityQuality60d": 0.2853,
+      "D4_WinnerSentimentReversal5d": 0.108,
+      "D5_UpsideFragility20d": -0.2188
+    },
+    "D1_LiquidityQuality60d": {
+      "TGD20": 0.6605,
+      "FlowDensity20": 0.2853,
+      "D1_LiquidityQuality60d": 1.0,
+      "D4_WinnerSentimentReversal5d": -0.0547,
+      "D5_UpsideFragility20d": -0.5372
+    },
+    "D4_WinnerSentimentReversal5d": {
+      "TGD20": 0.0208,
+      "FlowDensity20": 0.108,
+      "D1_LiquidityQuality60d": -0.0547,
+      "D4_WinnerSentimentReversal5d": 1.0,
+      "D5_UpsideFragility20d": -0.3125
+    },
+    "D5_UpsideFragility20d": {
+      "TGD20": -0.3421,
+      "FlowDensity20": -0.2188,
+      "D1_LiquidityQuality60d": -0.5372,
+      "D4_WinnerSentimentReversal5d": -0.3125,
+      "D5_UpsideFragility20d": 1.0
+    }
+  },
+  "return_corr": {
+    "TGD20": {
+      "TGD20": 1.0,
+      "FlowDensity20": 0.253,
+      "D1_LiquidityQuality60d": 0.6457,
+      "D4_WinnerSentimentReversal5d": 0.3104,
+      "D5_UpsideFragility20d": -0.2979
+    },
+    "FlowDensity20": {
+      "TGD20": 0.253,
+      "FlowDensity20": 1.0,
+      "D1_LiquidityQuality60d": 0.3049,
+      "D4_WinnerSentimentReversal5d": -0.0191,
+      "D5_UpsideFragility20d": -0.1802
+    },
+    "D1_LiquidityQuality60d": {
+      "TGD20": 0.6457,
+      "FlowDensity20": 0.3049,
+      "D1_LiquidityQuality60d": 1.0,
+      "D4_WinnerSentimentReversal5d": 0.4346,
+      "D5_UpsideFragility20d": -0.6191
+    },
+    "D4_WinnerSentimentReversal5d": {
+      "TGD20": 0.3104,
+      "FlowDensity20": -0.0191,
+      "D1_LiquidityQuality60d": 0.4346,
+      "D4_WinnerSentimentReversal5d": 1.0,
+      "D5_UpsideFragility20d": -0.6051
+    },
+    "D5_UpsideFragility20d": {
+      "TGD20": -0.2979,
+      "FlowDensity20": -0.1802,
+      "D1_LiquidityQuality60d": -0.6191,
+      "D4_WinnerSentimentReversal5d": -0.6051,
+      "D5_UpsideFragility20d": 1.0
+    }
+  },
+  "clusters": {
+    "schema_version": "factor_similarity_v1",
+    "signal_book": "confirmation_size_industry_cs_z",
+    "clusters": {
+      "temporal_core": [
+        "TGD20"
+      ],
+      "liquidity_quality": [
+        "D1_LiquidityQuality60d"
+      ],
+      "flow_liquidity_interaction": [
+        "FlowDensity20"
+      ],
+      "behavioral_reversal": [
+        "D4_WinnerSentimentReversal5d"
+      ],
+      "fragility_tail": [
+        "D5_UpsideFragility20d"
+      ]
+    },
+    "independence": {
+      "TGD20": {
+        "vs_TGD20": "self",
+        "alpha_role_hint": "core"
+      },
+      "FlowDensity20": {
+        "vs_TGD20": "mostly_redundant",
+        "vs_D1_LiquidityQuality60d": "redundant_or_absorbed",
+        "ic_corr_vs_TGD20": 0.3191217562240744,
+        "ic_corr_vs_D1": 0.2853043425749344,
+        "alpha_role_hint": "redundant_risk"
+      },
+      "D1_LiquidityQuality60d": {
+        "vs_TGD20": "independent_source",
+        "vs_D1_LiquidityQuality60d": "self",
+        "ic_corr_vs_TGD20": 0.660545109205371,
+        "ic_corr_vs_D1": null,
+        "alpha_role_hint": "core_or_satellite"
+      },
+      "D4_WinnerSentimentReversal5d": {
+        "vs_TGD20": "mostly_redundant",
+        "vs_D1_LiquidityQuality60d": "redundant_or_absorbed",
+        "ic_corr_vs_TGD20": 0.020842079333780288,
+        "ic_corr_vs_D1": -0.05474941016687976,
+        "alpha_role_hint": "redundant_risk"
+      },
+      "D5_UpsideFragility20d": {
+        "vs_TGD20": "independent_source",
+        "vs_D1_LiquidityQuality60d": "partial_overlap_enhancer",
+        "ic_corr_vs_TGD20": -0.342087237217332,
+        "ic_corr_vs_D1": -0.5371738483626406,
+        "alpha_role_hint": "core_or_satellite"
+      }
+    },
+    "notes": [
+      "Clusters are taxonomy seeds + residual roles — not ML clustering.",
+      "D4/D5 lack Template v2 packs; treat as library_inventory candidates.",
+      "No Composite weights produced in 1F."
+    ]
+  },
+  "composite": "deferred — Milestone Composite after human review"
+}

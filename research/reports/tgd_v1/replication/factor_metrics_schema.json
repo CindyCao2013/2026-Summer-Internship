@@ -1,0 +1,65 @@
+{
+  "schema": [
+    {
+      "metric": "daily_ic",
+      "definition": "mean Spearman corr(factor_t, r_{t+1}) across days (RankIC)",
+      "purpose": "Predictive power (primary IC in this codebase)"
+    },
+    {
+      "metric": "rank_ic",
+      "definition": "Alias of daily_ic (Spearman cross-sectional)",
+      "purpose": "Robust nonlinear prediction"
+    },
+    {
+      "metric": "icir",
+      "definition": "mean(IC) / std(IC) * sqrt(250)",
+      "purpose": "IC stability / information ratio of IC series"
+    },
+    {
+      "metric": "annu_ic",
+      "definition": "mean(IC) * sqrt(250)",
+      "purpose": "Annualized IC magnitude (signal strength)"
+    },
+    {
+      "metric": "hl_annu_ret",
+      "definition": "Annualized H-L (top−bottom decile) mean return",
+      "purpose": "Portfolio separation / economic magnitude"
+    },
+    {
+      "metric": "hl_sharpe",
+      "definition": "Sharpe of direction-adjusted H-L daily PnL",
+      "purpose": "Risk-adjusted tradable performance (gross)"
+    },
+    {
+      "metric": "hl_mdd",
+      "definition": "Max drawdown of direction-adjusted H-L",
+      "purpose": "Path risk"
+    },
+    {
+      "metric": "daily_turnover",
+      "definition": "Mean daily |Δw| of H-L book (long+short)",
+      "purpose": "Capacity / cost driver"
+    },
+    {
+      "metric": "implied_annu_fee",
+      "definition": "daily_TO × 7.5bps × 250",
+      "purpose": "Fee drag at 7.5bp assumption"
+    },
+    {
+      "metric": "net_sharpe",
+      "definition": "Sharpe after round-trip cost on turnover",
+      "purpose": "Production admission (investability)"
+    },
+    {
+      "metric": "monotonicity",
+      "definition": "Spearman(decile_id, mean_decile_return)",
+      "purpose": "Factor quality / ordering"
+    },
+    {
+      "metric": "direction",
+      "definition": "+1 if mean H-L > 0 else −1",
+      "purpose": "Sign of predicted relationship"
+    }
+  ],
+  "note": "Research vs production dual score"
+}

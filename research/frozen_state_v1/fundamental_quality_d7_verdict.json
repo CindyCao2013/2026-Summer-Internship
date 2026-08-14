@@ -1,0 +1,41 @@
+{
+  "block": "Fundamental Quality (D7)",
+  "status": "D7_REP_FROZEN",
+  "dimension_representative": "quality_composite",
+  "composite_formula": "equal_cs_z(roe_stability, gross_profitability, cfo_quality)",
+  "composite_bricks": {
+    "roe_stability": "8-report rolling std(ROE), ann_date aligned",
+    "gross_profitability": "S_FA_GROSSMARGIN_TTM / S_FA_ASSET_MRQ",
+    "cfo_quality": "NET_CASH_FLOWS_OPER_ACT_TTM / NET_PROFIT_PARENT_COMP_TTM"
+  },
+  "harness_track": "fundamental_quality_d7",
+  "harness_artifact": "research/results/fundamental_quality_d7_factor_verdicts.csv",
+  "verdict_summary": {
+    "quality_composite": {
+      "harness_verdict": "enhancer",
+      "stack_enhancement_pass": true,
+      "stack_ic_delta": 0.0184,
+      "hl_sharpe_delta": 0.1399,
+      "conclusion": "ohlcv_redundant_proxy — use as stack enhancer, not independent dim"
+    },
+    "gross_profitability": {
+      "role": "diagnostic_brick",
+      "stack_enhancement_pass": true
+    },
+    "cfo_quality": {
+      "role": "diagnostic_brick",
+      "stack_enhancement_pass": true
+    }
+  },
+  "not_in_stack": [
+    "gross_profitability",
+    "cfo_quality",
+    "roe",
+    "roe_stability"
+  ],
+  "next_research_track": "D6 Value (EP/BP) after Information Space v1 publish",
+  "stopped": [
+    "fundamental factor zoo expansion",
+    "standalone roe as D7 rep"
+  ]
+}

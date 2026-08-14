@@ -1,0 +1,26 @@
+// big_order_drive.dos
+// 大单驱动涨幅：AvgOrderAmt 高于 (1-top_frac) 分位的分钟，成交额加权 BarRet
+
+def compute_big_order_drive_ret(startDate, endDate, universe='000852.SH', top_frac=0.3){
+    stocks = get_stock_pool(startDate, endDate, universe, true)
+    t = load_minute_bars(startDate, endDate, stocks)
+    t = attach_bar_ret(t)
+    t = attach_avg_order_amt(t)
+
+    t = select *, percentile(AvgOrderAmt, 1 - top_frac) as thr
+        from t context by Symbol, Date
+    t_top = select * from t where AvgOrderAmt >= thr
+
+    result = select Symbol, Date,
+            sum(Amount * BarRet) \ sum(Amount) as value
+        from t_top
+        group by Symbol, Date
+
+    result = select Symbol as symbol,
+            to_signal_tradetime(Date) as tradetime,
+            "big_order_drive_ret" as factorname,
+            value
+        from result
+        where isValid(value)
+    return result
+}

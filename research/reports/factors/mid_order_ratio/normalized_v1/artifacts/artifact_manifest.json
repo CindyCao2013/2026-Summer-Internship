@@ -1,0 +1,603 @@
+{
+  "version": "mid_trade_amount_normalized_report_v1",
+  "generated_at": "2026-08-05T21:59:31.632303",
+  "input_root": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/normalized_v1",
+  "output_root": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1",
+  "observed_common_sample": {
+    "start": "2023-01-03",
+    "end": "2026-07-31"
+  },
+  "headline_factor_ids": [
+    "mid_trade_amount_share_abs_4w20w",
+    "mid_trade_amount_share_adv20",
+    "mid_trade_amount_share_ats20",
+    "mid_trade_amount_share_rollq"
+  ],
+  "factor_roles": {
+    "mid_trade_amount_share_abs_4w20w": "A0",
+    "mid_trade_amount_share_adv20": "A1",
+    "mid_trade_amount_share_ats20": "A2",
+    "mid_trade_amount_share_rollq": "A3"
+  },
+  "frozen_effective_direction": -1,
+  "direction_policy": "official direction frozen before return evaluation; never inferred from report metrics or sample segments",
+  "fee": {
+    "one_way_bps": 7.5,
+    "annualization": 250,
+    "formula": "mean_daily_H-L_turnover * 7.5/10000 * 250",
+    "treatment": "implied display-only; gross returns are not fee-deducted"
+  },
+  "evaluation": {
+    "signal_lag_days": 1,
+    "return": "daily close-to-close",
+    "rank_ic": "daily cross-sectional Spearman, raw factor direction",
+    "icir": "mean/std(ddof=1)*sqrt(250)",
+    "universe_membership": "point-in-time",
+    "tradability": "official not-limit * not-ST * trade-status masks",
+    "headline_deciles": "CSI1000 index-excess; effective direction",
+    "universe_summary_benchmark": "exact valid-universe equal weight"
+  },
+  "segments": {
+    "IS": {
+      "start": "2023-01-04",
+      "end": "2024-06-28"
+    },
+    "validation": {
+      "start": "2023-07-03",
+      "end": "2024-06-28"
+    },
+    "OOS": {
+      "start": "2024-07-01",
+      "end": "2026-07-31"
+    }
+  },
+  "scope_exclusions": [
+    "factor-library correlation",
+    "factor combination",
+    "incremental IC",
+    "portfolio optimization",
+    "alpha stacking",
+    "return-based parameter selection"
+  ],
+  "figure_classes": [
+    {
+      "id": "01_factor_variant_summary",
+      "description": "Factor variant summary",
+      "files": [
+        "figures/01_factor_variant_summary.png"
+      ]
+    },
+    {
+      "id": "02_universe_variant_summary",
+      "description": "PIT universe comparison",
+      "files": [
+        "figures/02_universe_variant_summary.png"
+      ]
+    },
+    {
+      "id": "03_decile_annualized",
+      "description": "Per-variant decile annualized return",
+      "files": [
+        "figures/03_decile_annualized__mid_trade_amount_share_abs_4w20w.png",
+        "figures/03_decile_annualized__mid_trade_amount_share_adv20.png",
+        "figures/03_decile_annualized__mid_trade_amount_share_ats20.png",
+        "figures/03_decile_annualized__mid_trade_amount_share_rollq.png"
+      ]
+    },
+    {
+      "id": "04_decile_cumulative",
+      "description": "Per-variant decile cumulative return",
+      "files": [
+        "figures/04_decile_cumulative__mid_trade_amount_share_abs_4w20w.png",
+        "figures/04_decile_cumulative__mid_trade_amount_share_adv20.png",
+        "figures/04_decile_cumulative__mid_trade_amount_share_ats20.png",
+        "figures/04_decile_cumulative__mid_trade_amount_share_rollq.png"
+      ]
+    },
+    {
+      "id": "05_ic_stability",
+      "description": "Daily, monthly, and 63-day RankIC",
+      "files": [
+        "figures/05_ic_stability.png"
+      ]
+    },
+    {
+      "id": "06_cap_adv_quintiles",
+      "description": "Market-cap and ADV quintiles",
+      "files": [
+        "figures/06_cap_adv_quintiles.png"
+      ]
+    },
+    {
+      "id": "07_parameter_stability",
+      "description": "Frozen-grid parameter stability",
+      "files": [
+        "figures/07_parameter_stability.png"
+      ]
+    },
+    {
+      "id": "08_turnover_tercile",
+      "description": "Lagged turnover-state terciles",
+      "files": [
+        "figures/08_turnover_tercile.png"
+      ]
+    },
+    {
+      "id": "09_ols_diagnostics",
+      "description": "Raw/industry/cap/joint OLS",
+      "files": [
+        "figures/09_ols_diagnostics.png"
+      ]
+    },
+    {
+      "id": "10_segments_and_coverage",
+      "description": "IS/validation/OOS and coverage",
+      "files": [
+        "figures/10_segments_and_coverage.png"
+      ]
+    }
+  ],
+  "source_files": [
+    {
+      "role": "factor_panels",
+      "path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/normalized_v1/factor_panels.parquet",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/normalized_v1/factor_panels.parquet",
+      "bytes": 948107389,
+      "sha256": "5a2376fa77c83fa062961825f88f689014fc4a92c8a445ab5b4743ae5b600c4c"
+    },
+    {
+      "role": "scales",
+      "path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/normalized_v1/scales.parquet",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/normalized_v1/scales.parquet",
+      "bytes": 231372195,
+      "sha256": "044ce085a1b187642690b30b78c738be76001a09ab939057273931c2c4947892"
+    },
+    {
+      "role": "frozen_config",
+      "path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/normalized_v1/frozen_config.json",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/normalized_v1/frozen_config.json",
+      "bytes": 3188,
+      "sha256": "d9dbbf2192f4110bf084f75a8d0f2b6941cb1579943a18968d6b60e47785e495"
+    },
+    {
+      "role": "authoritative_a0",
+      "path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/normalized_v1/normalized_factor_panel_a0.parquet",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/normalized_v1/normalized_factor_panel_a0.parquet",
+      "bytes": 44026157,
+      "sha256": "f201be72a2b455675337fd68b62fb6176d6ee48db82ac309f820837c13d24eb4"
+    }
+  ],
+  "declared_source_cache_and_config_references": [
+    {
+      "declared_value": "research/results/l2_reproduction/mid_order_ratio/analysis/param_sensitivity/tick_bucketed_strict_trade_2023-01-01_2024-06-30.parquet",
+      "resolved_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/analysis/param_sensitivity/tick_bucketed_strict_trade_2023-01-01_2024-06-30.parquet",
+      "exists": true,
+      "bytes": 152305357,
+      "sha256": "ccd2f23475756052c60c32f8b56b8cbb648ab99508bf866c9b2424b7ff61cb1f"
+    }
+  ],
+  "generated_files": [
+    {
+      "role": "artifact",
+      "path": "artifacts/a0_formal_metric_parity.json",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/a0_formal_metric_parity.json",
+      "bytes": 711,
+      "sha256": "b9850ebd6cf228d0c1d5e0a1be371675f1f9d9b6d986a4553b24a9d99b73a584"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/a0_parity.json",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/a0_parity.json",
+      "bytes": 1962,
+      "sha256": "284adcefcee4895b5727c3f1e8fb6691c089e296312db15e24306af679b57cdd"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/a0_parity_top100.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/a0_parity_top100.csv",
+      "bytes": 8281,
+      "sha256": "f7b84d89751f903f1e1cc725a743e7dc3d592682d3d6224e7741b386929f864e"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_adv_quintile_statistics.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_adv_quintile_statistics.csv",
+      "bytes": 6071,
+      "sha256": "f6de1ac0b47ce3bc63005cadf3b16bf1d311ad74844c3501dad03206b4170d6b"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_cap_quintile_statistics.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_cap_quintile_statistics.csv",
+      "bytes": 5924,
+      "sha256": "30044a513cddf4d76e4ab6e430de85a89d28545061a171302303012d00d30ab7"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_daily_rank_ic.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_daily_rank_ic.csv",
+      "bytes": 283144,
+      "sha256": "97a3b894f4a27f738824551028ff6e57bedc2537ebfe67ef9c618e7d5bfa75e2"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_daily_rank_ic__mid_trade_amount_share_abs_4w20w.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_daily_rank_ic__mid_trade_amount_share_abs_4w20w.csv",
+      "bytes": 73471,
+      "sha256": "ad73cb79055ef8f67bebe2a03835dfe6d60c1ce84a47e3d332609e1d4fec2848"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_daily_rank_ic__mid_trade_amount_share_adv20.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_daily_rank_ic__mid_trade_amount_share_adv20.csv",
+      "bytes": 69933,
+      "sha256": "7aa7e4b5b6987ac41b9522b06bc41f47786ab66db8bf89e91d310c4d454c9872"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_daily_rank_ic__mid_trade_amount_share_ats20.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_daily_rank_ic__mid_trade_amount_share_ats20.csv",
+      "bytes": 69945,
+      "sha256": "c744e9939515c661d910882a8b701d27277e3a5faec29ef8430e2ecdd12f4110"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_daily_rank_ic__mid_trade_amount_share_rollq.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_daily_rank_ic__mid_trade_amount_share_rollq.csv",
+      "bytes": 69945,
+      "sha256": "3d6c67d951889ff9611d292bc37ddcb78052d651c928c0faaf924e890e0f01a2"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_decile_index_excess_daily__mid_trade_amount_share_abs_4w20w.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_decile_index_excess_daily__mid_trade_amount_share_abs_4w20w.csv",
+      "bytes": 218626,
+      "sha256": "4a5b2adfa3d7db38f4f1304757414f08cf0030a6cf0d4894620ec2df3575ec7a"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_decile_index_excess_daily__mid_trade_amount_share_adv20.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_decile_index_excess_daily__mid_trade_amount_share_adv20.csv",
+      "bytes": 218224,
+      "sha256": "c0dfeb35c4c5b0bbc6e42e44e65fe1adfd956d27e36ed34e2609b8afa61888bd"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_decile_index_excess_daily__mid_trade_amount_share_ats20.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_decile_index_excess_daily__mid_trade_amount_share_ats20.csv",
+      "bytes": 218570,
+      "sha256": "07e08e893c7733da265647dea4d592a0301702e6da8e45b3c6c9f5ac7c5e2738"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_decile_index_excess_daily__mid_trade_amount_share_rollq.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_decile_index_excess_daily__mid_trade_amount_share_rollq.csv",
+      "bytes": 218435,
+      "sha256": "ee57d55aaea6d2227d9a6aa9da9afed7edd6003b99527fdef073e38d9a37527e"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_decile_summary.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_decile_summary.csv",
+      "bytes": 707,
+      "sha256": "0e6bec7e333749b6c306383f56b96ae3b5a6038c1f41b866437cfa64d8a73f50"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_decile_turnover_daily__mid_trade_amount_share_abs_4w20w.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_decile_turnover_daily__mid_trade_amount_share_abs_4w20w.csv",
+      "bytes": 170328,
+      "sha256": "0ef66f8cf468b292bda4be94c9ebd5651caaf81d56bf4cfe0b62521205c0659b"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_decile_turnover_daily__mid_trade_amount_share_adv20.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_decile_turnover_daily__mid_trade_amount_share_adv20.csv",
+      "bytes": 178169,
+      "sha256": "407bd3639475352e2eb6217a3bd36a03748e9a9c62639d04706049c88a86ac72"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_decile_turnover_daily__mid_trade_amount_share_ats20.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_decile_turnover_daily__mid_trade_amount_share_ats20.csv",
+      "bytes": 179108,
+      "sha256": "8a4bf1cf6d49de0110f09dfa57d6ab9845ff33a97f5d259ca12f9082282f134c"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_decile_turnover_daily__mid_trade_amount_share_rollq.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_decile_turnover_daily__mid_trade_amount_share_rollq.csv",
+      "bytes": 170337,
+      "sha256": "73a1ce23a0ca7f1d47e39a1b23b7e33f65b11831cf77795939678eec60062986"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_monthly_rank_ic.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_monthly_rank_ic.csv",
+      "bytes": 20075,
+      "sha256": "b2a216eed7503bf449b4b7f4687a45abb23bd666902b92d9f65a7c76cb848a45"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/csi1000_rolling_63d_rank_ic.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/csi1000_rolling_63d_rank_ic.csv",
+      "bytes": 301704,
+      "sha256": "248a5f7b6fac657d9bf17f0babe8e0df6ff7b943b9487643b0d485c4655436ff"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/factor_variant_summary.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/factor_variant_summary.csv",
+      "bytes": 3682,
+      "sha256": "0d671eda0553c745f9714c6056af442083936a3c795309eb92372e91eb1ff73d"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/missing_scale_coverage.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/missing_scale_coverage.csv",
+      "bytes": 737,
+      "sha256": "f0f614657290981bb99fe9d8bd36a6dbd99238e435447bc48425b5c938d9b3b6"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/ols_diagnostics.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/ols_diagnostics.csv",
+      "bytes": 10357,
+      "sha256": "814b39772fe786f95461b70d7de694369cdab4aedca1ba276985a0b3008b88dd"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/parameter_stability.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/parameter_stability.csv",
+      "bytes": 14744,
+      "sha256": "4b86f7b062afa869ddb440bf53ed8f59c24d761f815b7532aa0b56a505b507e5"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/sample_segment_results.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/sample_segment_results.csv",
+      "bytes": 8256,
+      "sha256": "167d0fba152568ee73667ed18d34f6c9bd2280151bc0e548c22487efbb5f445f"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/sample_segment_results_by_universe.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/sample_segment_results_by_universe.csv",
+      "bytes": 30837,
+      "sha256": "bb467cde1a9b604d2f743764903eb2426500c2e08c7e4cbcf011f60f9480d78c"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/state_turnover_tercile_daily_ic.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/state_turnover_tercile_daily_ic.csv",
+      "bytes": 657157,
+      "sha256": "1920eea578b58f52d9da1a699d03bf9e404a5a172ac88e798c6f7b94ca9afc62"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/state_turnover_tercile_summary.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/state_turnover_tercile_summary.csv",
+      "bytes": 1548,
+      "sha256": "7a802bb1019c8678b84361b1eb7465f2558d0b0e3d9a42d7269cc207bebb22bd"
+    },
+    {
+      "role": "artifact",
+      "path": "artifacts/universe_variant_summary.csv",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/universe_variant_summary.csv",
+      "bytes": 9608,
+      "sha256": "25bb992ed9942cf28fa5c24d402ae165e27a8e17cc308c2d395a078e06de07f1"
+    },
+    {
+      "role": "figure",
+      "path": "figures/01_factor_variant_summary.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/01_factor_variant_summary.png",
+      "bytes": 44912,
+      "sha256": "fff4c33e96dd69d166a4c47873ffda660e48c3f8bd2074bdfafce0e0d052c71a"
+    },
+    {
+      "role": "figure",
+      "path": "figures/02_universe_variant_summary.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/02_universe_variant_summary.png",
+      "bytes": 48397,
+      "sha256": "8db9a5cb0202c65effc549a86843cdcfeba07ad918ec53c5bef1956375e19006"
+    },
+    {
+      "role": "figure",
+      "path": "figures/03_decile_annualized__mid_trade_amount_share_abs_4w20w.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/03_decile_annualized__mid_trade_amount_share_abs_4w20w.png",
+      "bytes": 58310,
+      "sha256": "da5a9b73d9374f07c99e6ec4d2b15fc7474470ef0973a785501dfb84a7ca16a5"
+    },
+    {
+      "role": "figure",
+      "path": "figures/03_decile_annualized__mid_trade_amount_share_adv20.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/03_decile_annualized__mid_trade_amount_share_adv20.png",
+      "bytes": 57781,
+      "sha256": "1e0139cd1ae2628039d6697f34baf0b6ada56626042292760fff5b15d54a7b39"
+    },
+    {
+      "role": "figure",
+      "path": "figures/03_decile_annualized__mid_trade_amount_share_ats20.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/03_decile_annualized__mid_trade_amount_share_ats20.png",
+      "bytes": 58736,
+      "sha256": "b00900ec9c40f2073242b094b460789d9ffd62e4ded86f685891f9ccb2679906"
+    },
+    {
+      "role": "figure",
+      "path": "figures/03_decile_annualized__mid_trade_amount_share_rollq.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/03_decile_annualized__mid_trade_amount_share_rollq.png",
+      "bytes": 58837,
+      "sha256": "e7d90059039ac7af6f2176d4de21722e5c9d28911d1d51732e81b4e28cf3f591"
+    },
+    {
+      "role": "figure",
+      "path": "figures/04_decile_cumulative__mid_trade_amount_share_abs_4w20w.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/04_decile_cumulative__mid_trade_amount_share_abs_4w20w.png",
+      "bytes": 305336,
+      "sha256": "9b54816f1b2dcb7ac57cf007e811f68f2b661cae9c53504d35442d528c249d40"
+    },
+    {
+      "role": "figure",
+      "path": "figures/04_decile_cumulative__mid_trade_amount_share_adv20.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/04_decile_cumulative__mid_trade_amount_share_adv20.png",
+      "bytes": 450947,
+      "sha256": "cb8bdb94f511fa07b137e4c4f399f81a5533f34783b60ddc18e86b2555245649"
+    },
+    {
+      "role": "figure",
+      "path": "figures/04_decile_cumulative__mid_trade_amount_share_ats20.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/04_decile_cumulative__mid_trade_amount_share_ats20.png",
+      "bytes": 398556,
+      "sha256": "f57d34f9dcb65aad250123cd9e9a1aa2837ef429aa6b3b540fea4d6730612d63"
+    },
+    {
+      "role": "figure",
+      "path": "figures/04_decile_cumulative__mid_trade_amount_share_rollq.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/04_decile_cumulative__mid_trade_amount_share_rollq.png",
+      "bytes": 372711,
+      "sha256": "4e1efca056415ce8abc4ef2f86bb60f341a75cabb4fd96059b0e34a12cc9ef76"
+    },
+    {
+      "role": "figure",
+      "path": "figures/05_ic_stability.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/05_ic_stability.png",
+      "bytes": 844211,
+      "sha256": "8cde02e754a7f29258bcc306869ee19a38e1567fb317af09542238fea606f89d"
+    },
+    {
+      "role": "figure",
+      "path": "figures/06_cap_adv_quintiles.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/06_cap_adv_quintiles.png",
+      "bytes": 132691,
+      "sha256": "7907801677ea87c55818ed1b97882714322590a3627adda18d39265dd49f9385"
+    },
+    {
+      "role": "figure",
+      "path": "figures/07_parameter_stability.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/07_parameter_stability.png",
+      "bytes": 93947,
+      "sha256": "59027066020bc61a854e5cb40fffbbfd096f8f5ffb4cb2882638d86a071fb26e"
+    },
+    {
+      "role": "figure",
+      "path": "figures/08_turnover_tercile.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/08_turnover_tercile.png",
+      "bytes": 41786,
+      "sha256": "77814c1eee94715b34b881ca98a84529cd9d09ca4a0ec239f4d4102d19aef667"
+    },
+    {
+      "role": "figure",
+      "path": "figures/09_ols_diagnostics.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/09_ols_diagnostics.png",
+      "bytes": 36689,
+      "sha256": "f3cb17a03da1379d861211c3226b822e397925ac8dd34110529b8c1e72324487"
+    },
+    {
+      "role": "figure",
+      "path": "figures/10_segments_and_coverage.png",
+      "absolute_path": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/figures/10_segments_and_coverage.png",
+      "bytes": 57674,
+      "sha256": "9afe7106100db2584a9acf8df484b4cec9cf4bf2e2c59f92f49a569f260aa098"
+    }
+  ],
+  "hash_policy": "SHA256 is recorded for every source file directly read and every generated CSV/PNG. The manifest excludes its own self-referential hash.",
+  "frozen_config_snapshot": {
+    "version": "mid_trade_amount_normalized_v1",
+    "headline_factor_ids": [
+      "mid_trade_amount_share_abs_4w20w",
+      "mid_trade_amount_share_adv20",
+      "mid_trade_amount_share_ats20",
+      "mid_trade_amount_share_rollq"
+    ],
+    "calibration_period": {
+      "start": "2023-01-03",
+      "end": "2023-06-30"
+    },
+    "selection_uses_returns": false,
+    "a0": {
+      "factor_id": "mid_trade_amount_share_abs_4w20w",
+      "legacy_alias": "mid_order_ratio",
+      "lower_rmb_exclusive": 40000,
+      "upper_rmb_inclusive": 200000,
+      "effective_direction": -1
+    },
+    "a1": {
+      "factor_id": "mid_trade_amount_share_adv20",
+      "selection_basis": "distribution_only_no_returns",
+      "candidate": "a1_adv20_l2_h20_bps",
+      "lower_bps": 2.0,
+      "upper_bps": 20.0,
+      "selected_aggregate_column": "a1_adv20_bps_l2_h20_selected_amount",
+      "scale": "ADV20_lag1 mean of exactly 20 prior market trading dates",
+      "grid_L_bps": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "grid_H_bps": [
+        5.0,
+        10.0,
+        20.0
+      ],
+      "target_a0_overall_coverage": 0.31920775668306517,
+      "overall_coverage": 0.3103423954706549,
+      "selection_rule": "Among supplied 3x3 candidates passing 10%-80% amount coverage in every CSI1000 PIT market-cap quintile, minimize absolute overall amount-coverage difference versus A0; tie-break by mean quintile difference, L, H.",
+      "effective_direction": -1
+    },
+    "a2": {
+      "factor_id": "mid_trade_amount_share_ats20",
+      "lower_multiple": 0.5,
+      "upper_multiple": 2.0,
+      "scale": "ATS20_lag1 median of daily median positive Tick amount over exactly 20 prior market trading dates",
+      "grid_L": [
+        0.25,
+        0.5,
+        0.75
+      ],
+      "grid_H": [
+        1.5,
+        2.0,
+        3.0
+      ],
+      "effective_direction": -1
+    },
+    "a3": {
+      "factor_id": "mid_trade_amount_share_rollq",
+      "lower_daily_quantile_exclusive": 0.2,
+      "upper_daily_quantile_inclusive": 0.8,
+      "role": "P1 secondary",
+      "effective_direction": -1
+    },
+    "effective_direction": {
+      "A0": -1,
+      "A1": -1,
+      "A2": -1,
+      "A3": -1
+    },
+    "direction_policy": "frozen ex ante; raw RankIC reported; never inferred per window",
+    "periods": {
+      "formal_is_return": [
+        "2023-01-04",
+        "2024-06-28"
+      ],
+      "post_calibration_validation_return": [
+        "2023-07-03",
+        "2024-06-28"
+      ],
+      "oos_return": [
+        "2024-07-01",
+        "2026-07-31"
+      ]
+    },
+    "fee_bps": 7.5,
+    "sources": {
+      "authoritative_a0_cache": "research/results/l2_reproduction/mid_order_ratio/analysis/param_sensitivity/tick_bucketed_strict_trade_2023-01-01_2024-06-30.parquet",
+      "authoritative_a0_sha256": "ccd2f23475756052c60c32f8b56b8cbb648ab99508bf866c9b2424b7ff61cb1f",
+      "adv_scale": "research/reports/factors/mid_order_ratio/normalized_v1/artifacts/adv20_lag1.parquet",
+      "calibration_dynamic": "research/results/l2_reproduction/mid_order_ratio/normalized_v1/calibration_adv_grid/calibration_adv_grid_daily.parquet",
+      "calibration_sql_sha256": "71eabf0d6233b43a29ce536a9ed4090143e81e5cd956f6271b11123b583aa240"
+    },
+    "schema_version": "mid_trade_amount_normalization_v1",
+    "config_sha256": "63a914e9d65a322d7dddae0502ef7cd6af4330403be7ae5262f29a1826c4bf67"
+  }
+}

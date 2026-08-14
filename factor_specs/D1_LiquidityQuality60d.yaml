@@ -1,0 +1,42 @@
+factor_id: D1_LiquidityQuality60d
+display_name: D1 Liquidity Quality 60d
+family:
+  - liquidity
+source:
+  type: library
+  library_id: D1_low_vol_liquidity_quality_60d
+status: candidate
+data_level: EOD
+frozen_formula: true
+
+# Signal identity (Milestone 1E pre-Registry audit)
+# Research headline IC / Sharpe: confirmation harvest on library factor (raw book).
+# Execution (1D.7): raw cross-sectional z-score — NOT size+industry residual.
+evaluation_signal:
+  type: raw_cs_zscore
+  note: "1D.7 execution_layer used cs_zscore(raw); matches investability grid"
+production_signal:
+  type: neutralized
+  neutralization: size_industry
+  note: "Intended Production Track book; Dual Benchmark CSI1000 re-run still pending"
+
+data_coverage:
+  requested: "2018-01-01_2025-12-31"
+  actual: "confirmation_1455d"
+  exception_reason: "harvested from confirmation_1455d pack; full Dual Benchmark pending"
+pack:
+  path: research/reports/factors/D1_LiquidityQuality60d
+  report_content: factor_specs/D1_LiquidityQuality60d_report_content.yaml
+  schema_version: factor_report_v2
+
+artifacts:
+  pack_local_copy:
+    - src: diagnostics_universe_ladder.csv
+      dest: diagnostics/universe_ladder.csv
+    - src: diagnostics_ic_decay.csv
+      dest: diagnostics/ic_decay.csv
+  copy:
+    - src: research/reports/d1_liquidity_density_v1/execution/execution_summary.csv
+      dest: execution/execution_summary.csv
+      also_dest:
+        - execution_summary.csv

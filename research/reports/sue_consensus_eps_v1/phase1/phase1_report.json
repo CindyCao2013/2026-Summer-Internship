@@ -1,0 +1,76 @@
+{
+  "phase": "1_smoke_sanity",
+  "formula_version": "sue_consensus_eps_v1_impulse",
+  "factor_id": "SUE_ConsensusEPS",
+  "panel_mode": "impulse",
+  "window": "2024-01-01_2024-12-31",
+  "universe": "CSI1000",
+  "n_event_symbols_used": 1053,
+  "pit_audit": {
+    "formula_version": "sue_consensus_eps_v1_impulse",
+    "n_events": 8591,
+    "n_rejected_est_ge_known": 0,
+    "frac_est_before_known": 1.0,
+    "pit_hard_pass": true,
+    "hard_fail": false,
+    "n_symbols": 3484,
+    "known_dt_min": "2022-01-07",
+    "known_dt_max": "2024-12-28",
+    "source_actual_mix": {
+      "income": 6144,
+      "express": 2447
+    },
+    "sue_describe": {
+      "mean": -0.5097865693059278,
+      "std": 3.603667623197806,
+      "p01": -9.166698874930171,
+      "p50": -0.06633108711536909,
+      "p99": 0.560758568162298
+    },
+    "n_events_in_window": 3501
+  },
+  "duplicates_symbol_period": 0,
+  "coverage": {
+    "n_days": 242,
+    "n_symbols": 1053,
+    "coverage_cell": 0.003504351989200474,
+    "mean_names_per_day": 3.690082644628099,
+    "median_names_per_day": 0.0,
+    "pct_days_ge_1": 0.28512396694214875,
+    "pct_days_ge_50": 0.02066115702479339,
+    "n_event_cells": 893
+  },
+  "distribution_event_days": {
+    "n_active_days": 56,
+    "mean_cs_std": 0.9637446855258534,
+    "median_cs_std": 0.25336067857346584,
+    "mean_n": 15.714285714285714,
+    "mean_frac_zero": 0.0009991496598639456,
+    "mean_frac_abs_gt_10": 0.0033397053636733507
+  },
+  "gate3_raw_direction": {
+    "rank_ic_mean": 0.05377059652608044,
+    "icir_short": 1.442971032230563,
+    "n_ic_days": 56,
+    "expected": "positive_ic",
+    "empirical_direction": "positive_matches_expected",
+    "sign_flip": false
+  },
+  "gates": {
+    "pit_est_before_known": true,
+    "pit_signal_date_ge_known": true,
+    "no_duplicate_symbol_period": true,
+    "events_gt_0": true,
+    "rankable_cs": true,
+    "raw_rank_ic_finite": true
+  },
+  "hard_pass": true,
+  "soft_pass": true,
+  "next": "III-B1 Phase3 scout CSI1000 2020-2025 + IC decay",
+  "forbidden": [
+    "Registry",
+    "Composite",
+    "hold_decay_lock",
+    "scout_in_phase1"
+  ]
+}

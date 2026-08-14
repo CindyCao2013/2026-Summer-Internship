@@ -1,0 +1,5 @@
+signal,category,rank_ic,icir,hl_sharpe,net_sharpe,monotonicity,daily_turnover
+M_high,cutting_leg,-0.043020500637513226,-5.734008727359026,,,,
+M_low,cutting_leg,0.00204885173027935,0.32497775278825736,,,,
+M_spread,cutting_output,-0.03379564434302013,-6.483878973616674,1.6999407829371034,,0.4444444444444444,
+Ret20_baseline,object,-0.0437,-4.06,,,,

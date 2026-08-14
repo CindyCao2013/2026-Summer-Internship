@@ -1,0 +1,30 @@
+{
+  "formula_version": "sm_active_v2_ewm10_top20pct",
+  "start": "2024-06-01",
+  "end": "2024-06-30",
+  "coverage": {
+    "n_days": 19,
+    "n_symbols": 50,
+    "coverage_cell": 1.0,
+    "mean_daily_coverage": 1.0
+  },
+  "distribution": {
+    "n": 950,
+    "mean": 0.016828289488595702,
+    "std": 0.026353907888343048,
+    "p01": -0.04347452714177515,
+    "p50": 0.016679732833756178,
+    "p99": 0.07749955527923048,
+    "min": -0.056739693884052755,
+    "max": 0.14568795823948644
+  },
+  "n_long_rows": 950,
+  "identity": "SmartMoneyActiveV2",
+  "not_smartmoney10d": true,
+  "cs_post_coverage": {
+    "n_days": 19,
+    "n_symbols": 50,
+    "coverage_cell": 1.0,
+    "mean_daily_coverage": 1.0
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "headline_input": "AlphaIdioSKEW60_MAD",
+  "horizon_best": {
+    "horizon": 1,
+    "hl_sharpe": 2.529709727982198,
+    "icir": 7.225355935721936,
+    "note": "Sharpe/ICIR annualized with periods_per_year=250/H"
+  },
+  "horizon_h1": {
+    "hl_sharpe": 2.529709727982198,
+    "icir": 7.225355935721936
+  },
+  "ewma_best": {
+    "factor": "AlphaIdioSKEW60_MAD",
+    "hl_sharpe": 2.529709727982198,
+    "icir": 7.225355935721936
+  },
+  "mad_baseline_h1": {
+    "hl_sharpe": 2.529709727982198,
+    "icir": 7.225355935721936
+  },
+  "period": "2020-01-01_2025-12-31"
+}

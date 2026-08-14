@@ -1,0 +1,53 @@
+{
+  "formula_version": "sm10d_v1_beta0p25_optB",
+  "lookback": "option_B_rolling_10d",
+  "beta": 0.25,
+  "paper_window_check": "Option B confirmed (Kaiyuan \u6b65\u9aa41: past 10 trading days)",
+  "smoke_window": "2024-06-01_2024-06-30",
+  "l3_max_symbols": 400,
+  "cache_dirs": {
+    "minute_raw": "research/cache/smart_money/minute_raw",
+    "minute_feature": "research/cache/smart_money/minute_feature"
+  },
+  "coverage": {
+    "n_days": 19,
+    "n_symbols": 399,
+    "coverage_cell": 0.9982851866508377,
+    "mean_daily_coverage": 0.9982851866508377,
+    "mean_symbol_coverage": 0.9982851866508377,
+    "min_daily_coverage": 0.9949874686716792
+  },
+  "distribution": {
+    "n": 7568,
+    "mean": 0.99989566663397,
+    "std": 0.011243920840977644,
+    "min": 0.8779157598517204,
+    "p01": 0.9737169958491847,
+    "p05": 0.9889559815642367,
+    "p25": 0.9967035544577685,
+    "p50": 0.9994576510597775,
+    "p75": 1.002018685624494,
+    "p95": 1.0131820127971956,
+    "p99": 1.0301057276694803,
+    "max": 1.1650150027674402,
+    "frac_abs_dev_lt_0p01": 0.86892177589852,
+    "frac_abs_dev_lt_0p05": 0.991014799154334
+  },
+  "gates": {
+    "l1_rows_gt_0": true,
+    "l2_rows_gt_0": true,
+    "no_active_cols": true,
+    "panel_days_gt_0": true,
+    "coverage_cell_gt_0p50": true,
+    "q_finite_gt_0": true,
+    "q_near_1_mass": true
+  },
+  "smoke_pass": true,
+  "next": "252d pack only if smoke_pass",
+  "forbidden": [
+    "APM",
+    "Active_*",
+    "Registry",
+    "252d_before_smoke"
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "factor_id": "FlowDensity20",
+  "source_column": "net_active_flow_mktcap_20d",
+  "analysis": "amount_orthogonalization_v1",
+  "purpose": "attribution_not_freeze",
+  "promote_to_validated_single_factor": false,
+  "freeze_formula": false,
+  "category": "liquidity_flow_interaction",
+  "mechanism_class": "flow_liquidity_interaction",
+  "attribution_case": "case_interaction_entangled",
+  "true_information": "flow_liquidity_interaction",
+  "cs_corr_flow_amount": -0.6165748367586112,
+  "icir": {
+    "FlowDensity_raw": 4.8494659857405304,
+    "Flow_perp_Amount": -2.4889995246996035,
+    "Amount": -8.658415409618966,
+    "Amount_perp_Flow": -8.48925915852659,
+    "signed_retention_vs_raw": -0.5132522904621476,
+    "abs_retention_vs_raw": 0.5132522904621476
+  },
+  "hl_sharpe": {
+    "FlowDensity_raw": 3.3807064279551793,
+    "Flow_perp_Amount": 0.12710199962111843
+  },
+  "net_sharpe": {
+    "FlowDensity_raw": 1.9240046858252975,
+    "Flow_perp_Amount": -2.1020573778773812
+  },
+  "status": "validated_single_factor_candidate",
+  "interpretation": "Flow⊥Amount ICIR=-2.49 (signed retain=-0.51) — neither pure flow nor pure amount. Classify as Flow × Liquidity interaction.",
+  "factor_map": {
+    "TGD20": "Temporal return structure",
+    "FlowDensity_raw": "Flow × Liquidity interaction (tradable alpha)",
+    "Flow_perp_Amount": "Not a positive pure-flow alpha (ICIR -2.49 after amount orth)",
+    "Amount": "Anti-activity / liquidity channel (ICIR -8.66; survives ⊥ Flow)"
+  }
+}

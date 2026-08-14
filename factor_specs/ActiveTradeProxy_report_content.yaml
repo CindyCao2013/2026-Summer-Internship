@@ -1,0 +1,116 @@
+factor_id: ActiveTradeProxy
+
+layer_discipline: |
+  **Factor Identity:** `ActiveTradeProxy` is a **daily research proxy**, not paper APM.
+  Do not register session residuals or Ret20 controls as separate factor_ids.
+  Paper ActiveTrade / APM remains stub until minute/session layer.
+
+construction_title: "Daily proxy: overnight − daytime t-stat (NOT paper APM)"
+construction_steps:
+  - "r_ON = open/prev_close − 1"
+  - "r_DAY = close/open − 1"
+  - "δ = r_ON − r_DAY"
+  - "μ / (σ/√n) over 20d"
+  - "CS z-score"
+
+executive_summary: |
+  ActiveTrade in the Kaiyuan cutting series maps to **APM / 主动买卖**, which requires
+  overnight vs afternoon **index residuals** and CS residualization vs Ret20 on
+  **session/minute** data.
+
+  This pack ships the documented **daily smoke-test proxy**:
+  \(t = \mathrm{mean}(r_{ON}-r_{DAY}) / (\mathrm{std}/\sqrt{n})\) over 20 days.
+  It closes the cutting-family OS slot honestly as `testing` / `research_proxy`.
+  **Do not** treat metrics as paper replication success.
+
+factor_thesis: |
+  If overnight–daytime return imbalance carries active-trading information, a rolling
+  t-stat of that imbalance may predict forward returns even without index residualization.
+  This is a hypothesis probe — not the paper estimator.
+
+economic_intuition: |
+  Overnight and daytime sessions embed different participant mixes. A persistent
+  overnight-minus-daytime imbalance may proxy inventory / aggression imbalance.
+  True APM isolates this after market residualization; the proxy skips that step.
+
+formula:
+  raw_variables: |
+    Open, close (daily).
+  intermediate_variables: |
+    $$r^{ON}_t = O_t / C_{t-1} - 1,\qquad r^{DAY}_t = C_t / O_t - 1$$
+    $$\delta_t = r^{ON}_t - r^{DAY}_t$$
+  transformations: |
+    Over window \(N=20\):
+    $$t = \frac{\overline{\delta}}{s_\delta / \sqrt{n}}$$
+  final_signal: |
+    Daily panel of \(t\), then CS z-score for evaluation.
+    Paper direction claimed positive IC; confirm sign in eval.
+
+signal_pipeline: |
+  ```
+  daily OHLC
+        ↓
+  overnight − daytime return
+        ↓
+  20d t-stat (proxy)
+        ↓
+  CS z-score
+        ↓
+  [paper path deferred: session residual vs index → CS residual vs Ret20]
+  ```
+
+mechanism_rows:
+  - hypothesis: "Proxy has non-zero RankIC"
+    test: "RankICIR on last-Nd book"
+    result: "see pack metrics"
+    conclusion: "informational probe only"
+  - hypothesis: "This equals paper APM"
+    test: "session residual + Ret20 residual"
+    result: "NOT implemented"
+    conclusion: "fail as paper replication — keep research_proxy label"
+  - hypothesis: "Soft bar for candidate"
+    test: "Sharpe / mono / Dual Benchmark"
+    result: "proxy pack — auto-fail paper admission"
+    conclusion: "stay testing"
+
+mechanism_narrative: |
+  Cutting-family completeness requires an ActiveTrade / APM slot. Admitting the daily
+  proxy with loud honesty is better than fake paper metrics. Upgrade path: MinuteFeatureStore
+  → true APM → replace or supersede this factor_id.
+
+execution_narrative: |
+  Execution grid on signed CS-z proxy (Phase III A3). Metrics are for the **proxy**, not paper APM.
+
+limitations: |
+  - Not paper APM (no index residual, no afternoon session split, no Ret20 residual).
+  - May overlap overnight / reversal families — residual matrix deferred.
+  - Do not promote to candidate as ActiveTrade replication.
+
+final_verdict: |
+  **Status: testing (research_proxy).** Slot filled for III-A microstructure map.
+  Paper ActiveTrade remains open until minute/session implementation.
+
+code_map:
+  - item: Implementation
+    path: "factor_cutting/active_trade.py"
+  - item: Paper definition
+    path: "research/factor_cutting/factor_definition.yaml (apm)"
+  - item: Eval script
+    path: "run_milestone_3_0_active_trade_proxy.py"
+
+card_fields:
+  hypothesis: |
+    Daily overnight−daytime t-stat proxies active-trading imbalance (NOT paper APM).
+  mechanism:
+    - microstructure
+    - trading_behavior
+  formula: "t = mean(r_ON - r_DAY) / (std/sqrt(n)); window=20"
+  data_requirement:
+    - open
+    - close
+  known_failure_modes:
+    - not_paper_apm
+    - possible_overnight_overlap
+  do_not:
+    - claim paper ActiveTrade / APM replication
+    - promote to validated without minute APM

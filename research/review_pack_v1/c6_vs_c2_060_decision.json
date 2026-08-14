@@ -1,0 +1,31 @@
+{
+  "task": "c6_vs_c2_060_head_to_head",
+  "period": "confirmation_951d",
+  "c2": {
+    "label": "C2_D1_0.60",
+    "IC": 0.05483580377800814,
+    "ICIR": 5.732531632016892,
+    "gross_Sharpe": 1.9830068652326744,
+    "annu_TO_1way": 66.22355328286488,
+    "net_Sharpe": 0.6724075983977743,
+    "feasible": "True",
+    "n_stress_days": NaN
+  },
+  "c6": {
+    "label": "C6_D1_0.60_state_mod",
+    "IC": 0.05320150910826009,
+    "ICIR": 5.570810179435128,
+    "gross_Sharpe": 1.895706578523825,
+    "annu_TO_1way": 67.53505208692663,
+    "net_Sharpe": 0.5552876508342032,
+    "feasible": "True",
+    "n_stress_days": 191.0
+  },
+  "upgrade_to_c6": false,
+  "research_recommended": "C2_D1_0.60",
+  "reason": "Keep C2_D1_0.60: C6 ICIR=5.571 vs C2=5.733; state_modifier does not improve information efficiency at w1=0.60",
+  "production_alternatives": {
+    "C2_D1_0.70": "lower turnover compromise (research note only)",
+    "C2_D1_0.80": "lowest-turnover compromise (research note only)"
+  }
+}

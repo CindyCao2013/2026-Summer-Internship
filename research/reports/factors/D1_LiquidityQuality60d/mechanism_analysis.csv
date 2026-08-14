@@ -1,0 +1,2 @@
+signal,category,rank_ic,icir,hl_sharpe,net_sharpe,monotonicity,daily_turnover
+low_vol_liquidity_quality_60d,canonical,0.0573,6.0135,2.2614,,0.8,0.4822

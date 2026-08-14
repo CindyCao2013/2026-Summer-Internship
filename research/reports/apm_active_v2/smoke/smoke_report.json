@@ -1,0 +1,50 @@
+{
+  "formula_version": "apm_active_v2_pressure_ewm5_v1",
+  "start": "2024-06-01",
+  "end": "2024-06-30",
+  "coverage": {
+    "n_days": 19,
+    "n_symbols": 200,
+    "coverage_cell": 0.9944736842105263,
+    "mean_daily_coverage": 0.9944736842105263
+  },
+  "distribution": {
+    "n": 3779,
+    "mean": -0.06071235575514925,
+    "std": 0.07439173745516417,
+    "p01": -0.22673427455610778,
+    "p50": -0.0624473682663111,
+    "p99": 0.12739442696948902,
+    "min": -0.35109484855635964,
+    "max": 0.262146952769318
+  },
+  "n_long_rows": 3798,
+  "variants": {
+    "APM_ActiveV2": [
+      19,
+      200
+    ],
+    "APM_ActiveV2_Raw": [
+      19,
+      200
+    ],
+    "APM_ActiveV2_Weekly": [
+      19,
+      200
+    ],
+    "APM_ActiveV2_Weekly_Thu": [
+      19,
+      200
+    ]
+  },
+  "identity": "APM_ActiveV2 Active Pressure Metric",
+  "brick": "active_pressure",
+  "not_price_apm": true,
+  "not_session_cut": true,
+  "cs_post_coverage": {
+    "n_days": 19,
+    "n_symbols": 200,
+    "coverage_cell": 1.0,
+    "mean_daily_coverage": 1.0
+  }
+}

@@ -1,0 +1,124 @@
+# schema: factor_pack_summary_v1
+factor_id: APM_SessionResidual
+display_name: APM Session Residual
+short_name: APM
+family: session_behavior
+source:
+  type: paper_adapted
+  paper_title: APM因子模型 / 主动买卖
+  paper_id: kysec_apm_active_trade
+  colloquial: 主动买卖 · session residual α
+  identity_class: adapted_replication
+  adapted_reason: "index residual uses EOD daytime proxy (no index minute in Stock_one_minute)"
+
+status: testing_candidate
+formula_frozen: true
+pack_version: v1
+pack_finalized: "2026-07-21"
+
+economic_intuition: |
+  Overnight vs afternoon (PM) residual α vs index, then CS residual vs Ret20.
+  Session trader mix / timing attribution — not Active_* order-flow imbalance,
+  not ActiveTradeProxy (daily ON−DAY t-stat), not SmartMoney efficiency knife.
+
+direction:
+  paper: positive
+  implementation: positive
+  evaluation: long_high_apm
+  sign_flip: false
+
+execution_recipe:
+  ranking:
+    signal: apm_cs
+  portfolio:
+    side: long_high_apm
+  rebalance:
+    frequency: daily
+  buffer:
+    enabled: true
+    lower: 0.10
+    upper: 0.30
+    label: buffer_10_30
+  cost:
+    round_trip: 15bp
+  frozen_label: "highAPM|daily|buffer_10_30"
+
+formula:
+  stock_overnight: "Open / prev_Close - 1"
+  stock_pm: "Close_last_PM / Close_first_available_PM - 1  (Bartime ∈ [13:01,15:00])"
+  index_overnight: "IdxOpen / prev_IdxClose - 1"
+  index_day_proxy: "IdxClose / IdxOpen - 1  (adapted — full daytime, not PM)"
+  delta_alpha: "alpha_on - alpha_pm"
+  APM_stat: "rolling t-stat of delta_alpha, window=20, min_periods=10"
+  apm_cs: "CS residual of APM_stat on Ret20 (+ const) per date"
+  signal_shift: 1
+  pm_start_rule: first_available_bar_after_13_01
+  formula_version: apm_session_v1_adapted_eod_index
+  not_equal_to:
+    - ActiveTradeProxy
+    - Active_buy_* imbalance
+    - SmartMoney10d
+
+data:
+  level: minute_plus_eod_index
+  universe_research: CSI1000
+  period_requested: "2021-01-01_2025-12-31"
+  period_actual: "2021-01-01_2025-12-31"
+  n_days: 1212
+  coverage_exception: false
+  index_code: "000852.SH"
+  coverage_note: "Stock PM from dfs://QV_Trade_to_MinuteBar; index residual adapted EOD"
+
+implementation:
+  modules:
+    - core/l2_features/apm_session_panel_builder.py
+    - core/l2_features/apm_session_signal.py
+  run_scripts:
+    - run_milestone_c1_apm_session_panel.py
+    - run_milestone_c1_apm_session_sanity.py
+    - run_milestone_c1_apm_session_scout.py
+    - run_milestone_c1_apm_session_execution.py
+  distinct_from:
+    ActiveTradeProxy: "factor_cutting/active_trade.py compute_apm_overnight_day_proxy"
+
+validation_headline:
+  RankIC_raw: 0.0239
+  ICIR_raw: 4.10
+  RankIC_size_industry: 0.0225
+  ICIR_size_industry: 6.55
+  HL_Sharpe_raw_gross: 3.28
+  HL_Sharpe_raw_net_daily_plain_15bp: 0.92
+  execution_best_net_Sharpe: 1.50
+  execution_best_daily_turnover: 0.280
+  execution_best_label: "highAPM|daily|buffer_10_30"
+  monotonicity: 0.778
+  yearly_rank_ic_positive: "5/5"
+  horizon_class: medium_or_longer_persistent
+  peer_signal_corr_Flow: 0.006
+  peer_signal_corr_TGD20: 0.426
+  peer_signal_corr_SmartMoney: -0.062
+
+artifacts:
+  definition: factor_definition.md
+  formula: formula.md
+  data: data_source.md
+  implementation: implementation.md
+  validation: validation.md
+  execution_doc: execution.md
+  ic: ic_analysis/
+  quantile: quantile_analysis/
+  stability: stability/
+  execution: execution/
+  scout_summary: scout_summary.json
+
+do_not:
+  - sign_flip
+  - rename_ActiveTradeProxy_to_APM
+  - use_Active_buy_under_this_id
+  - claim_true_replication_while_index_is_EOD_daytime_proxy
+  - Registry_or_Composite_without_library_review
+  - retune_recipe_silently_without_updating_execution_recipe
+
+library_notes: |
+  C1 paper-adapted Factor Asset. Independent of Flow/SmartMoney.
+  Pack admits testing_candidate with frozen buffer recipe after Case A execution.

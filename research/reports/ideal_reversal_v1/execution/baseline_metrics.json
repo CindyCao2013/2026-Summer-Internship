@@ -1,0 +1,16 @@
+{
+  "factor": "IdealReversal",
+  "knife_source": "trade_count",
+  "frozen_formula": false,
+  "signal_mode": "raw_cs_z",
+  "signal_shift": 1,
+  "cost_round_trip": 0.0015,
+  "best_label": "raw_cs_z|best_e1_buffer_5_15",
+  "best_net_sharpe": 1.700933409496036,
+  "best_gross_sharpe": 2.090116210185716,
+  "best_daily_turnover": 0.15298901332016637,
+  "soft_bar": "fail_stay_testing",
+  "eval_window": "last_252d",
+  "n_days": 252,
+  "note": "Milestone 2.2.1 execution gap-fill \u2014 formula not retuned; no Registry promote"
+}

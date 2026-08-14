@@ -1,0 +1,41 @@
+{
+  "gate": "passed",
+  "canonical_rows": 1805656,
+  "dynamic_rows": 4413448,
+  "matched_rows": 1805656,
+  "canonical_left_only": 0,
+  "dynamic_extra_rows": 2607792,
+  "nan_pattern_equal_on_canonical_grid": true,
+  "compared_value_count": 1805656,
+  "pearson": 0.9999999999999999,
+  "spearman": 1.0,
+  "max_abs_error": 1.457167719820518e-13,
+  "mean_abs_error": 1.0961361505657322e-16,
+  "p99_abs_error": 1.2212453270876722e-15,
+  "within_1e_12_share": 1.0,
+  "required_spearman_min": 0.999999999999,
+  "required_max_abs_error": 1e-10,
+  "full_extension": {
+    "strict_primitive_rows_in_date_slice": 4413448,
+    "dynamic_without_strict_primitive": 0,
+    "nan_pattern_equal": true,
+    "compared_value_count": 4413448,
+    "pearson": 1.0,
+    "spearman": 0.9999999999999998,
+    "max_abs_error": 1.329492071988625e-13,
+    "mean_abs_error": 1.1847544264781142e-16
+  },
+  "authoritative_source_counts": {
+    "canonical_overlap": 1805656,
+    "canonical_grid_excluded_dynamic_extras": 349,
+    "strict_primitive_extension": 2607443
+  },
+  "authoritative_a0_source": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/analysis/param_sensitivity/tick_bucketed_strict_trade_2023-01-01_2024-06-30.parquet",
+  "strict_primitive_source": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/primitives/order_size_distribution_daily/order_size_distribution_daily_2019-01-01_2026-07-31.parquet",
+  "dynamic_aggregate_source": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/normalized_v1/dynamic_aggregates.parquet",
+  "source_sha256": {
+    "canonical": "ccd2f23475756052c60c32f8b56b8cbb648ab99508bf866c9b2424b7ff61cb1f",
+    "strict_primitive": "a288f860b82ef35d8c910870ab9209394d1db62eb85aadef42304aedfe0ef42e",
+    "dynamic_aggregates": "4bd3dc8c07559cab6a1e9224a191506dfd0fd7a65f9a36212cef9e697f00b731"
+  }
+}

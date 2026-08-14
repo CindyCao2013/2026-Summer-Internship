@@ -1,0 +1,56 @@
+schema_version: factor_report_v2
+factor_id: FlowDensity20
+display_name: FlowDensity20
+family:
+- microstructure
+- liquidity
+source:
+  type: paper_internal
+data_level: L2
+status: candidate
+frozen_formula: false
+hypothesis: 'Net active flow / mktcap (20d) predicts returns as a Flow × Liquidity
+  interaction,
+
+  not as pure directional smart money.
+
+  '
+mechanism:
+- microstructure
+- liquidity
+formula: MA20(net_active_flow / mktcap); diagnostics include Flow⊥Amount
+data_requirement:
+- active buy/sell flow
+- mktcap
+- amount
+known_failure_modes:
+- misclassified_as_pure_flow
+- amount_channel_entanglement
+- naive_blend_with_TGD
+correlation_cluster: null
+data_coverage:
+  requested: 2018-01-01_2025-12-31
+  actual: 2022-01-28_2025-12-31
+  exception_reason: L2/active-flow confirmation window
+coverage_exception: true
+admission:
+  requires_manual_review: true
+benchmark:
+  research:
+    universe: ALL
+    period_target: 2018-01-01_2025-12-31
+    horizon_days: 20
+  production:
+    universe: CSI1000
+    universe_membership: declare
+    period_target: 2018-01-01_2025-12-31
+    horizon_days: 20
+    neutralization: industry_size
+    cost_bp: 15
+    note: Pack harvests existing artifacts; Production Track re-run deferred
+do_not:
+- freeze as pure flow without amount-orth evidence
+- equal-weight with TGD by default
+notes:
+- factor_report_v2 schema-driven pack
+- Legacy/harvest metrics; Dual Benchmark Production re-run not performed

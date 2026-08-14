@@ -1,0 +1,52 @@
+factor_id: FlowDensity20
+display_name: FlowDensity20
+family:
+  - microstructure
+  - liquidity
+source:
+  type: paper_internal
+status: candidate
+data_level: L2
+frozen_formula: false
+data_coverage:
+  requested: "2018-01-01_2025-12-31"
+  actual: "2022-01-28_2025-12-31"
+  exception_reason: "L2/active-flow confirmation window"
+pack:
+  path: research/reports/factors/FlowDensity20
+  report_content: factor_specs/FlowDensity20_report_content.yaml
+  schema_version: factor_report_v2
+
+artifacts:
+  copy:
+    - src: research/reports/factor_orthogonality/TGD20_FlowDensity20/summary.md
+      dest: diagnostics/orthogonality_TGD20_FlowDensity20_summary.md
+    - src: research/reports/l2_flow_density_v1/mechanism/amount_orth_summary.md
+      dest: mechanism/amount_orth_summary.md
+      also_dest:
+        - diagnostics/amount_orth_summary.md
+    - src: research/reports/l2_flow_density_v1/mechanism/amount_orth_verdict.json
+      dest: mechanism/amount_orth_verdict.json
+      also_dest:
+        - diagnostics/amount_orth_verdict.json
+    - src: research/reports/l2_flow_density_v1/mechanism/mechanism_summary.md
+      dest: mechanism/mechanism_summary.md
+    - src: research/reports/l2_flow_density_v1/mechanism/mechanism_amount_neutral.csv
+      dest: mechanism/mechanism_amount_neutral.csv
+    - src: research/reports/l2_flow_density_v1/protocol_charts_1d7/FlowDensity20/figures/ic_timeseries.png
+      dest: charts/ic_curve.png
+      also_dest:
+        - ic_curve.png
+        - figures/ic_curve.png
+    - src: research/reports/l2_flow_density_v1/protocol_charts_1d7/FlowDensity20/figures/quantile_return.png
+      dest: charts/decile_return.png
+      also_dest:
+        - decile_return.png
+        - figures/decile_return.png
+    - src: research/reports/l2_flow_density_v1/protocol_charts_1d7/FlowDensity20/figures/cumulative_long_short.png
+      dest: charts/cumulative_long_short.png
+      also_dest:
+        - cumulative_long_short.png
+        - figures/cumulative_long_short.png
+    - src: research/reports/l2_flow_density_v1/protocol_charts_1d7/chart_meta.json
+      dest: artifacts/protocol_charts_1d7_meta.json

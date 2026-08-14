@@ -1,0 +1,9 @@
+{
+  "baseline": "AlphaIdioSKEW60",
+  "baseline_si_hl_sharpe": 2.48360601223742,
+  "baseline_si_icir": 7.101376909834183,
+  "best_variant": "AlphaIdioSKEW60_MAD",
+  "best_si_hl_sharpe": 2.5297097279821994,
+  "period": "2020-01-01_2025-12-31",
+  "note": "Minute RSKEW deferred; v2 focuses on vol/MAX/TGD purification + TailSKEW"
+}

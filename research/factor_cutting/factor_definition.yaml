@@ -1,0 +1,115 @@
+# Factor Cutting DSL — schema for Alpha Factory ingestion
+version: "1.0"
+series: kaiyuan_microstructure
+phase: daily_baseline_v1
+
+# ---------------------------------------------------------------------------
+# Shared primitives
+# ---------------------------------------------------------------------------
+operators:
+  split_rank:
+    description: Rank lookback days by knife; take top/bottom fractions
+  split_quantile:
+    description: Keep days in top/bottom λ of knife distribution
+  difference:
+    description: high_part - low_part (hidden standardization)
+  ratio:
+    description: high_part / low_part
+  select_high:
+    description: Keep only high-information part (purification)
+
+# ---------------------------------------------------------------------------
+factors:
+  - name: ideal_reversal
+    paper: A股反转之力的微观来源
+    alias: [W_cut_reversal, M]
+    status: implemented_daily
+    direction_paper: negative_ic  # high M → short
+    object:
+      variable: daily_return
+      additive: true
+      formula: close / close.shift(1) - 1
+    knife:
+      variable: avg_trade_amount
+      formula: amount / trade_count
+      method: split_rank
+      window: 20
+      high_count: 10
+      low_count: 10
+      fallback: amount / volume  # proxy only; label knife_source=proxy
+    output:
+      aggregate: sum
+      formula: M_high - M_low
+      legs: [M_high, M_low]
+    notes: |
+      Paper also explores high-percentile ATS knife (higher percentile → stronger cut).
+      Default v1 uses mean ATS (classic W-cut).
+
+  - name: ideal_amplitude
+    paper: 振幅因子的隐藏结构
+    alias: [V]
+    status: implemented_daily
+    direction_paper: negative_ic
+    object:
+      variable: daily_amplitude
+      additive: true
+      formula: high / low - 1
+    knife:
+      variable: close_price_state
+      method: split_quantile
+      window: 20
+      lambda: 0.25
+      filters: [suspend, one_word_limit]
+      min_effective_days: 10
+    output:
+      aggregate: mean
+      formula: V_high - V_low
+      legs: [V_high, V_low]
+
+  - name: apm
+    paper: APM因子模型 / 主动买卖用法
+    alias: [active_trade]
+    status: stub_needs_session_or_minute
+    direction_paper: positive_ic
+    object:
+      variable: overnight_vs_afternoon_residual
+      additive: true
+    knife:
+      variable: time_of_day
+      method: split_bucket
+      buckets: [overnight_am, afternoon_pm]
+    output:
+      formula: residualized_stat_minus_ret20
+    daily_proxy:
+      name: apm_overnight_day_proxy
+      status: research_proxy
+      note: open/prev_close vs close/open; NOT paper APM
+
+  - name: smart_money
+    paper: 聪明钱因子
+    alias: [Q]
+    status: stub_needs_minute
+    direction_paper: negative_ic
+    object:
+      variable: minute_vwap
+      additive: false  # ratio of VWAPs
+    knife:
+      variable: smart_score
+      formula: abs(ret_1m) / volume_1m ** 0.25
+      method: cumvol_top_pct
+      lookback_days: 10
+      top_cumvol_pct: 0.20
+    output:
+      formula: VWAP_smart / VWAP_all
+
+# ---------------------------------------------------------------------------
+# Framework meta (因子切割论)
+# ---------------------------------------------------------------------------
+cutting_theory:
+  elements: [object, knife, output]
+  object_requirement: additive_on_time_axis
+  recommended_output: difference_or_ratio
+  alpha_factory_search:
+    objects: [return, volume, volatility, amplitude, turnover]
+    knives: [liquidity, trade_size, time_bucket, volatility_state, price_state]
+    outputs: [difference, ratio, spread, residual, select_high]

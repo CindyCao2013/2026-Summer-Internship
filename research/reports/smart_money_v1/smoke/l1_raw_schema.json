@@ -1,0 +1,11 @@
+{
+  "n_rows": 46880456,
+  "columns": [
+    "symbol",
+    "date",
+    "bartime",
+    "close",
+    "volume",
+    "amount"
+  ]
+}

@@ -1,0 +1,10 @@
+factor_id: SKEW
+headline_factor: AlphaIdioSKEW60
+status: research_candidate
+period: 2020-01-01_2025-12-31
+rank_ic_size_industry: 0.018776665012101693
+icir_size_industry: 7.101376909834183
+hl_sharpe_size_industry: 2.48360601223742
+hl_ann_return_size_industry: 0.1460447918337178
+mean_corr_vs_tgd20: 0.1219726918213562
+p0_factors: ['AlphaSKEW20', 'AlphaIdioSKEW60']

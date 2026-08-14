@@ -1,0 +1,131 @@
+project:
+  name: gnn_feature_validity_audit
+  status: CLOSED_GATE1
+  decision: do_not_proceed_to_gnn_phase2
+  closeout_file: GATE1_CLOSEOUT.md
+  source_repository: https://github.com/quantskills/skill-dl-gnn-stock-graph
+  source_commit: eacaa0edfd30a307a874354f4297428fea5f538e
+  seed: 42
+
+sample:
+  start_date: 2021-01-01
+  end_date: 2024-06-30
+  market_preheat_calendar_days: 120
+  financial_history_years: 3
+
+universe:
+  name: CSI1000
+  index_code: 000852.SH
+  point_in_time: true
+  min_listing_observations: 60
+  filters:
+    exclude_st_and_delisting: true
+    exclude_suspended: true
+    exclude_close_at_limit: true
+    exclude_new_stocks: true
+
+data:
+  eod_db: dfs://WIND.ASHAREEODPRICES
+  eod_table: data
+  derivative_db: dfs://WIND.ASHAREEODDERIVATIVEINDICATOR
+  derivative_table: data
+  financial_db: dfs://WIND.ASHARETTMHIS
+  financial_table: data
+  index_return_db: dfs://WIND.AINDEXEODPRICES
+  index_return_table: data
+  index_weight_db: dfs://WIND.AINDEXCSI1000WEIGHT
+  index_weight_table: data
+  industry_db: dfs://WIND.ASHAREINDUSTRIESCLASSCITICS
+  industry_table: data
+  calendar_db: dfs://WIND.ASHARECALENDAR
+  calendar_table: data
+  previous_name_db: dfs://WIND.ASHAREPREVIOUSNAME
+  previous_name_table: data
+  financial_statement_type: 合并报表
+  financial_date_only_lag_trading_days: 1
+  unavailable_sources:
+    news_sentiment: No verified continuous PIT company mapping
+    lhb_flag: No verified company table mapping
+    block_trade_premium: No verified company table mapping
+    concept_edges: No verified historical effective-date mapping
+    shareholder_edges: No verified historical effective-date mapping
+    supply_chain_edges: No verified historical effective-date mapping
+
+timing:
+  factor_formation: post_close
+  forward_return_method: c2c
+  signal_lag_trading_rows: 2
+  require_entry_and_exit_tradable: true
+  calibration_embargo_rows: 2
+  rationale: T EOD factor is first mapped to a c2c return whose entry close occurs on T+1
+
+preprocessing:
+  replace_infinite_with_nan: true
+  missing_value_policy: no_imputation
+  apply_signal_eligible_mask_before_transform: true
+  winsorization: company_mad_tanh
+  mad_threshold: 3.0
+  standardization: cross_sectional_zscore
+  neutralization: daily_ols_industry_and_log_market_cap
+  neutralization_min_observations: 30
+  market_cap_exception: none
+  industry_excess_ret_exception: log_market_cap_only
+
+orientation:
+  calibration_fraction: 0.30
+  ambiguous_method: mean_daily_rank_ic
+  zero_rank_ic_fallback_direction: 1
+  freeze_before_evaluation: true
+
+deciles:
+  n_groups: 10
+  labels: [Q1, Q2, Q3, Q4, Q5, Q6, Q7, Q8, Q9, Q10]
+  min_stocks_per_day: 100
+  min_unique_values_per_day: 10
+  min_valid_day_ratio: 0.80
+  min_evaluation_days: 500
+  min_overall_stock_day_coverage: 0.50
+  tie_policy: preserve_equal_values
+  weighting: equal
+
+metrics:
+  annualization_days: 250
+  hl_definition: Q10-Q1
+  pass_thresholds:
+    hl_annual_return: 0.20
+    hl_sharpe: 2.00
+    decile_monotonicity: 0.70
+  pass_logic: strict_and
+
+relation:
+  enabled: true
+  max_parallel_workers: 10
+  refresh_every_n_trading_days: 20
+  historical_return_lookback: 60
+  dtw_top_k: 20
+  dtw_band_fraction: 0.10
+  pearson_absolute_threshold: 0.50
+  pagerank_alpha: 0.85
+  validated_layers: [citics_l1, historical_dtw, historical_pearson]
+  unavailable_layers: [concept, shareholder, supply_chain]
+  fail_on_empty_graph: true
+  require_time_variation: true
+  record_graph_diagnostics: true
+
+composites:
+  minimum_members: 2
+  weighting: equal
+  freeze_members_before_evaluation: true
+  member_availability_window: calibration_only
+  exclude_failed_but_testable_members: false
+  build_macro_composite: false
+
+output:
+  results_dir: results
+  factor_dir: results/factors
+  summary_file: results/summary.csv
+  report_file: results/report.md
+  manifest_file: results/manifest.json
+  graph_diagnostics_file: results/graph_diagnostics.csv
+  allowed_png_names: [cumulative_hl.png, decile_bar.png]
+  skip_completed_same_hash: true

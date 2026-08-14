@@ -1,0 +1,90 @@
+# Proposed factor identities — III-A4 (NOT in Registry)
+
+These YAML blocks are **design locks only**.  
+Do not copy into `research/registry/` until implementation + pack exist.
+
+---
+
+## SmartMoney10d (preferred first)
+
+```yaml
+factor_id: SmartMoney10d
+display_name: Smart Money 10d
+paper: 聪明钱因子模型
+identity_class: true_replication_candidate
+status_when_admitted: testing
+data_level: minute
+source: paper
+
+construction:
+  object: minute_vwap
+  knife: "S_t = abs(ret_1m) / volume_1m ** 0.25"
+  lookback_days: 10
+  top_cumvol_pct: 0.20
+  output: "VWAP_smart / VWAP_all"
+  direction_paper: negative_ic
+
+required_fields:
+  - Close
+  - Volume
+  - Amount   # preferred for VWAP; Close*Volume fallback must be documented if used
+
+forbidden:
+  - redefine knife with Active_buy_* under this factor_id
+  - daily OHLCV approximation
+  - alias ActiveTradeProxy
+
+provenance_note: |
+  Matches research/factor_cutting Stage-0 Smart Money definition.
+  Active buy/sell columns exist but are out of scope for this identity.
+```
+
+---
+
+## APM_SessionResidual (second; adapted)
+
+```yaml
+factor_id: APM_SessionResidual
+display_name: APM Session Residual
+paper: APM因子模型 / 主动买卖
+identity_class: adapted_replication
+status_when_admitted: testing
+data_level: minute_plus_eod_index
+source: paper_adapted
+
+construction:
+  overnight: "Open / prev_Close - 1"
+  afternoon_pm: "session return from minute Close 13:01–15:00"
+  residual: "stock_session - index_session (EOD index open/close proxy unless index minute found)"
+  output: "APM_stat then CS residual vs Ret20"
+  direction_paper: positive_ic
+
+required_fields:
+  - stock minute Close (PM window)
+  - stock EOD Open/Close
+  - index EOD Open/Close (or Ret)
+
+distinct_from:
+  ActiveTradeProxy: |
+    Proxy = rolling t-stat of (overnight - daytime) without index residual,
+    without PM minute session, without Ret20 residual.
+
+upgrade_to_true_when: |
+  Original PDF confirms session boundaries + index residual method,
+  and/or index minute bars become available.
+
+forbidden:
+  - rename ActiveTradeProxy to APM_SessionResidual
+  - claim true replication while index residual is EOD-only without PDF sign-off
+```
+
+---
+
+## ActiveTradeProxy (unchanged)
+
+```yaml
+factor_id: ActiveTradeProxy
+identity_class: research_proxy
+status: testing
+note: Remains proxy. Never promoted to ActiveTrade or APM by rename.
+```

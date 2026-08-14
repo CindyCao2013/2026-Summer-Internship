@@ -1,0 +1,28 @@
+{
+  "engine": "L2 Trade Flow State Engine",
+  "status": "FROZEN_ENHANCER_LAYER",
+  "retained_factors": [
+    "cn_voi_shock",
+    "cn_mpb_shock",
+    "cn_cancel_shock"
+  ],
+  "dropped_factors": [
+    "cn_flow_persistence",
+    "cn_imbalance_duration",
+    "cn_liquidity_consumption"
+  ],
+  "data_ceiling": "no LOB/SSL2 in DDB \u2014 see L2_DATA_LINEAGE.md",
+  "time_stability_artifact": "research/results/l2_v2_stability_summary.csv",
+  "universe_all_pass": {
+    "cn_voi_shock": true,
+    "cn_mpb_shock": true,
+    "cn_cancel_shock": true
+  },
+  "primary_enhancer_target": "D4 behavioral (see alpha_enhancer_targets_v1.csv)",
+  "next_research_track": "Fundamental Quality block (D7)",
+  "stopped": [
+    "L2 v3 order book",
+    "VOI/MPB window search",
+    "liquidity_consumption optimization"
+  ]
+}

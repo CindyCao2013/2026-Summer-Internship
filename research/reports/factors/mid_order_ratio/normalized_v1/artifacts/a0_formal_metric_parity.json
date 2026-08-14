@@ -1,0 +1,19 @@
+{
+  "gate": "passed",
+  "rank_ic_date_key_match": true,
+  "decile_date_key_match": true,
+  "rank_ic_days": 358,
+  "decile_days": 358,
+  "rank_ic_abs_error": 0.0,
+  "icir_abs_error": 0.0,
+  "decile_max_abs_error": 1.0061396160665481e-16,
+  "hl_annu_ret_abs_error": 0.0,
+  "thresholds": {
+    "rank_ic_abs_error": 1e-12,
+    "icir_abs_error": 1e-10,
+    "decile_max_abs_error": 1e-10,
+    "hl_annu_ret_abs_error": 1e-10
+  },
+  "official_artifacts": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/artifacts",
+  "normalized_artifacts": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts"
+}

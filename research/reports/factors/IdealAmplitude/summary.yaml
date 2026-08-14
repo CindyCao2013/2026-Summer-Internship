@@ -1,0 +1,79 @@
+# schema: factor_pack_summary_v1
+factor_id: IdealAmplitude
+display_name: Ideal Amplitude
+short_name: IdealAmplitude
+family: microstructure
+source:
+  type: paper
+  paper_title: 振幅因子的隐藏结构
+  paper_id: kysec_amplitude_hidden_structure
+  colloquial: 理想振幅因子（W-cut by close state）
+
+status: testing
+formula_frozen: false
+pack_version: v1
+pack_finalized: "2026-07-21"
+
+economic_intuition: |
+  Daily amplitude split by close-price state within a 20-day window.
+  High close-state amplitude embeds stronger negative alpha;
+  spread V = V_high − V_low purifies vs uncut Amp20.
+
+formula:
+  object: "Amp = high/low − 1"
+  knife: "close price state; quantile_split λ=0.25 in 20d window"
+  frozen: "V = mean(amp | high-close) − mean(amp | low-close)"
+  signal_shift: 1
+  window: 20
+  lambda_frac: 0.25
+  direction: negative RankIC (short high V)
+
+data:
+  level: EOD
+  universe_research: ALL
+  period_requested: "2018-01-01_2025-12-31"
+  period_actual: "cutting_v1_harvest_3885d + exec_last_252d"
+  n_days: 3885
+  coverage_exception: true
+  coverage_note: "IC/stability on 3885d harvest; execution grid on last 252d"
+
+implementation:
+  modules:
+    - factor_cutting/ideal_amplitude.py
+    - factor_cutting/engine.py
+  spec: factor_specs/IdealAmplitude.yaml
+  run_script: run_milestone_3_0_ideal_amplitude.py
+
+validation_headline:
+  RankIC_raw: -0.0378
+  ICIR_raw: -7.66
+  RankIC_size_industry: -0.0475
+  ICIR_size_industry: -9.97
+  HL_Sharpe_raw: 3.44
+  HL_annu_ret_raw: 0.401
+  execution_best_net_Sharpe: 3.40
+  execution_best_daily_turnover: 0.446
+  monotonicity: 0.111
+  yearly_rank_ic_negative: "16/16 (2010-2025)"
+  known_gaps:
+    - weak_monotonicity
+    - production_track_deferred
+
+artifacts:
+  definition: factor_definition.md
+  formula: formula.md
+  data: data_source.md
+  implementation: implementation.md
+  validation: validation.md
+  ic: ic_analysis/
+  quantile: quantile_analysis/
+  stability: stability/
+  execution: execution/
+  narrative_report: factor_report.md
+
+do_not:
+  - promote_to_validated_without_mono_fix
+  - confuse_V_high_V_low_with_registry_siblings
+  - treat_same_family_as_independent_alpha
+
+library_notes: "Strong ICIR/Sharpe but weak decile monotonicity (~0.11). Same cutting family as IdealReversal."

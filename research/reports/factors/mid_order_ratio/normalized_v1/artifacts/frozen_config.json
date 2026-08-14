@@ -1,0 +1,99 @@
+{
+  "version": "mid_trade_amount_normalized_v1",
+  "headline_factor_ids": [
+    "mid_trade_amount_share_abs_4w20w",
+    "mid_trade_amount_share_adv20",
+    "mid_trade_amount_share_ats20",
+    "mid_trade_amount_share_rollq"
+  ],
+  "calibration_period": {
+    "start": "2023-01-03",
+    "end": "2023-06-30"
+  },
+  "selection_uses_returns": false,
+  "a0": {
+    "factor_id": "mid_trade_amount_share_abs_4w20w",
+    "legacy_alias": "mid_order_ratio",
+    "lower_rmb_exclusive": 40000,
+    "upper_rmb_inclusive": 200000,
+    "effective_direction": -1
+  },
+  "a1": {
+    "factor_id": "mid_trade_amount_share_adv20",
+    "selection_basis": "distribution_only_no_returns",
+    "candidate": "a1_adv20_l2_h20_bps",
+    "lower_bps": 2.0,
+    "upper_bps": 20.0,
+    "selected_aggregate_column": "a1_adv20_bps_l2_h20_selected_amount",
+    "scale": "ADV20_lag1 mean of exactly 20 prior market trading dates",
+    "grid_L_bps": [
+      0.5,
+      1.0,
+      2.0
+    ],
+    "grid_H_bps": [
+      5.0,
+      10.0,
+      20.0
+    ],
+    "target_a0_overall_coverage": 0.31920775668306517,
+    "overall_coverage": 0.3103423954706549,
+    "selection_rule": "Among supplied 3x3 candidates passing 10%-80% amount coverage in every CSI1000 PIT market-cap quintile, minimize absolute overall amount-coverage difference versus A0; tie-break by mean quintile difference, L, H.",
+    "effective_direction": -1
+  },
+  "a2": {
+    "factor_id": "mid_trade_amount_share_ats20",
+    "lower_multiple": 0.5,
+    "upper_multiple": 2.0,
+    "scale": "ATS20_lag1 median of daily median positive Tick amount over exactly 20 prior market trading dates",
+    "grid_L": [
+      0.25,
+      0.5,
+      0.75
+    ],
+    "grid_H": [
+      1.5,
+      2.0,
+      3.0
+    ],
+    "effective_direction": -1
+  },
+  "a3": {
+    "factor_id": "mid_trade_amount_share_rollq",
+    "lower_daily_quantile_exclusive": 0.2,
+    "upper_daily_quantile_inclusive": 0.8,
+    "role": "P1 secondary",
+    "effective_direction": -1
+  },
+  "effective_direction": {
+    "A0": -1,
+    "A1": -1,
+    "A2": -1,
+    "A3": -1
+  },
+  "direction_policy": "frozen ex ante; raw RankIC reported; never inferred per window",
+  "periods": {
+    "formal_is_return": [
+      "2023-01-04",
+      "2024-06-28"
+    ],
+    "post_calibration_validation_return": [
+      "2023-07-03",
+      "2024-06-28"
+    ],
+    "oos_return": [
+      "2024-07-01",
+      "2026-07-31"
+    ]
+  },
+  "fee_bps": 7.5,
+  "sources": {
+    "authoritative_a0_cache": "research/results/l2_reproduction/mid_order_ratio/analysis/param_sensitivity/tick_bucketed_strict_trade_2023-01-01_2024-06-30.parquet",
+    "authoritative_a0_sha256": "ccd2f23475756052c60c32f8b56b8cbb648ab99508bf866c9b2424b7ff61cb1f",
+    "adv_scale": "research/reports/factors/mid_order_ratio/normalized_v1/artifacts/adv20_lag1.parquet",
+    "calibration_dynamic": "research/results/l2_reproduction/mid_order_ratio/normalized_v1/calibration_adv_grid/calibration_adv_grid_daily.parquet",
+    "calibration_sql_sha256": "71eabf0d6233b43a29ce536a9ed4090143e81e5cd956f6271b11123b583aa240"
+  },
+  "schema_version": "mid_trade_amount_normalization_v1",
+  "config_sha256": "63a914e9d65a322d7dddae0502ef7cd6af4330403be7ae5262f29a1826c4bf67"
+}

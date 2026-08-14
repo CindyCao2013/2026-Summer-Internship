@@ -1,0 +1,7 @@
+label,mode,monthly_long_oneway,monthly_HL_oneway,n_months
+ats_trade_count,raw,0.8823480465752793,0.738911776893443,84
+ats_trade_count,filter_signal,0.8853191564902045,0.7538218211505395,84
+amount_plus_ats_residual_add,raw,0.887481604351231,0.7433354535945543,84
+amount_plus_ats_residual_add,filter_signal,0.8904558340661256,0.756089735725182,84
+ideal_amplitude,raw,0.8576172060004205,0.7506201043542864,95
+ideal_amplitude,filter_signal,0.8602421580769087,0.7631302412987425,95

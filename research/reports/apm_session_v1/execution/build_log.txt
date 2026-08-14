@@ -1,0 +1,32 @@
+=== C1.4 APM_SessionResidual Execution / Horizon ===
+formula=apm_session_v1_adapted_eod_index | book=long_high | cost=0.0015
+No Pack · No Registry · No sign flip · No formula change
+Panel 1212d × 1902 names
+Horizon IC decay ...
+  H=1: RankIC=0.0239 ICIR=4.09
+  H=3: RankIC=0.0262 ICIR=4.68
+  H=5: RankIC=0.0270 ICIR=4.90
+  H=10: RankIC=0.0310 ICIR=6.07
+  H=20: RankIC=0.0403 ICIR=8.38
+Holding-horizon H-L proxies (long high) ...
+  H=1: gross~3.28 net_proxy~0.91 net_nl~0.91 TO~0.747
+  H=3: gross~3.88 net_proxy~2.51 net_nl~1.46 TO~0.249
+  H=5: gross~4.34 net_proxy~3.26 net_nl~1.40 TO~0.149
+  H=10: gross~5.82 net_proxy~4.99 net_nl~1.66 TO~0.075
+  H=20: gross~7.58 net_proxy~6.99 net_nl~1.35 TO~0.037
+Execution grid (rebalance + buffer) ...
+  daily: gross=3.28 net=0.92 TO=0.746
+  every_3d: gross=2.32 net=0.84 TO=0.454
+  every_5d: gross=1.98 net=0.80 TO=0.355
+  every_10d: gross=1.92 net=1.09 TO=0.253
+  daily|buffer_5_15: net=1.23 TO=0.395
+  every_3d|buffer_5_15: net=1.19 TO=0.304
+  every_5d|buffer_5_15: net=1.26 TO=0.263
+  every_10d|buffer_5_15: net=1.37 TO=0.211
+  daily|buffer_10_30: net=1.50 TO=0.280
+  every_3d|buffer_10_30: net=1.33 TO=0.224
+  every_5d|buffer_10_30: net=1.25 TO=0.199
+  every_10d|buffer_10_30: net=1.45 TO=0.163
+Best net: highAPM|daily|buffer_10_30 net=1.503671663281268 TO=0.2804921549134113
+Wrote /home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/apm_session_v1/execution/execution_verdict.json
+CASE=A horizon_class=medium_or_longer_persistent best_net=1.503671663281268 status→testing_candidate

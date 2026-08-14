@@ -1,0 +1,11 @@
+{
+  "factor": "FlowDensity20",
+  "source_column": "net_active_flow_mktcap_20d",
+  "signal": "size_industry",
+  "window": "confirmation_after_discovery",
+  "discovery_days": 504,
+  "n_days": 951,
+  "start": "2022-01-28",
+  "end": "2025-12-31",
+  "note": "Protocol charts only; formula/mechanism unchanged (Milestone 1D.7)"
+}

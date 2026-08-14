@@ -1,0 +1,5 @@
+factor_id,factor_role,required_scale,resolved_scale_column,expected_stock_days,factor_stock_days,missing_factor_stock_days,factor_coverage_ratio,scale_available_stock_days,missing_scale_stock_days,missing_scale_ratio,factor_coverage_given_scale
+mid_trade_amount_share_abs_4w20w,A0,none,not_applicable,4413448,4413099,349,0.9999209235047065,4413448,0,0.0,0.9999209235047065
+mid_trade_amount_share_adv20,A1,adv20_lag1,ADV20_lag1,4413448,4313073,100375,0.9772570108450355,4313073,100375,0.022742989154964553,1.0
+mid_trade_amount_share_ats20,A2,ats20_lag1,ATS20_lag1,4413448,4313073,100375,0.9772570108450355,4313073,100375,0.022742989154964553,1.0
+mid_trade_amount_share_rollq,A3,none,not_applicable,4413448,4413448,0,1.0,4413448,0,0.0,1.0

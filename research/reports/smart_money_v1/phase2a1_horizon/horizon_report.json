@@ -1,0 +1,116 @@
+{
+  "phase": "2A.1_horizon_turnover",
+  "formula_version": "sm10d_v1_beta0p25_optB",
+  "universe": "CSI1000",
+  "period": "2023-01-01_2025-12-31",
+  "cost_rt": 0.0015,
+  "book": "long_lowQ_short_highQ",
+  "ic_decay": [
+    {
+      "horizon": 1,
+      "rank_ic": -0.04526507990453602,
+      "abs_rank_ic": 0.04526507990453602,
+      "icir": -6.088166333926788,
+      "abs_icir": 6.088166333926788,
+      "ic_pos_frac": 0.31911966987620355,
+      "n_days": 727
+    },
+    {
+      "horizon": 3,
+      "rank_ic": -0.04953509650183243,
+      "abs_rank_ic": 0.04953509650183243,
+      "icir": -6.741564312935958,
+      "abs_icir": 6.741564312935958,
+      "ic_pos_frac": 0.31361760660247595,
+      "n_days": 727
+    },
+    {
+      "horizon": 5,
+      "rank_ic": -0.051174217571529915,
+      "abs_rank_ic": 0.051174217571529915,
+      "icir": -6.821777140356518,
+      "abs_icir": 6.821777140356518,
+      "ic_pos_frac": 0.3218707015130674,
+      "n_days": 727
+    },
+    {
+      "horizon": 10,
+      "rank_ic": -0.054876001610756606,
+      "abs_rank_ic": 0.054876001610756606,
+      "icir": -7.357749947198459,
+      "abs_icir": 7.357749947198459,
+      "ic_pos_frac": 0.3081155433287483,
+      "n_days": 727
+    },
+    {
+      "horizon": 20,
+      "rank_ic": -0.05754887623875092,
+      "abs_rank_ic": 0.05754887623875092,
+      "icir": -7.839489639891698,
+      "abs_icir": 7.839489639891698,
+      "ic_pos_frac": 0.30949105914718017,
+      "n_days": 727
+    }
+  ],
+  "holding_horizon": [
+    {
+      "horizon": 1,
+      "gross_sharpe_proxy": 1.6669779859627605,
+      "net_sharpe_proxy": -0.9510890674442494,
+      "daily_turnover_proxy": 1.1393954278509002,
+      "net_sharpe_nonoverlap": -0.9510890674442494,
+      "net_annu_ret_nonoverlap": -0.15548777804709066,
+      "n_rebalances": 727,
+      "rank_ic": -0.04526507990453602
+    },
+    {
+      "horizon": 5,
+      "gross_sharpe_proxy": 2.817937995293996,
+      "net_sharpe_proxy": 1.553033015998354,
+      "daily_turnover_proxy": 0.22787908557018002,
+      "net_sharpe_nonoverlap": 0.7840996216247113,
+      "net_annu_ret_nonoverlap": 0.11165540472760213,
+      "n_rebalances": 146,
+      "rank_ic": -0.051174217571529915
+    },
+    {
+      "horizon": 10,
+      "gross_sharpe_proxy": 3.6975539248709595,
+      "net_sharpe_proxy": 2.799561007511506,
+      "daily_turnover_proxy": 0.11393954278509001,
+      "net_sharpe_nonoverlap": 0.318621465059152,
+      "net_annu_ret_nonoverlap": 0.04714980584999643,
+      "n_rebalances": 73,
+      "rank_ic": -0.054876001610756606
+    },
+    {
+      "horizon": 20,
+      "gross_sharpe_proxy": 4.431773973935227,
+      "net_sharpe_proxy": 3.7498890707436257,
+      "daily_turnover_proxy": 0.056969771392545006,
+      "net_sharpe_nonoverlap": 0.21498519071338917,
+      "net_annu_ret_nonoverlap": 0.028210819544165162,
+      "n_rebalances": 37,
+      "rank_ic": -0.05754887623875092
+    }
+  ],
+  "best_execution": {
+    "label": "lowQ|every_5d|buffer_10_30",
+    "net_sharpe": 0.309507671864034,
+    "gross_sharpe": 1.3089727149846426,
+    "daily_turnover": 0.35475687895106844,
+    "stage": "E2_buffer"
+  },
+  "half_life_proxy_h": null,
+  "horizon_class": "medium_or_longer_persistent",
+  "investable_net_gt_0p5": false,
+  "recommended_status": "research_candidate",
+  "next": "keep research_candidate; do not Registry; optional park vs APM/SUE",
+  "interpretation": "Valid microstructure alpha; diagnose horizon/TO before pack. Do not modify formula; do not Composite/Registry.",
+  "forbidden": [
+    "formula_change",
+    "Registry",
+    "Composite",
+    "Active_*"
+  ]
+}

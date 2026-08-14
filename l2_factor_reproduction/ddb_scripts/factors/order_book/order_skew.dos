@@ -1,0 +1,19 @@
+// order_skew.dos
+// 开盘 30 分钟净委买变化率的偏度
+
+def compute_order_change_skew(startDate, endDate, universe='000852.SH'){
+    stocks = get_stock_pool(startDate, endDate, universe, true)
+    raw = _load_order_snapshot(startDate, endDate, stocks)
+    t = _minute_net_order_change(raw)
+    t = select Symbol, Date, skew(ChangeRate) as value
+        from t
+        where Bartime between 09:30m : 10:00m
+        group by Symbol, Date
+    result = select Symbol as symbol,
+            to_signal_tradetime(Date) as tradetime,
+            "order_change_skew" as factorname,
+            value
+        from t
+        where isValid(value)
+    return result
+}

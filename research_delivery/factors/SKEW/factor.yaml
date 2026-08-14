@@ -1,0 +1,24 @@
+schema: selected_factor_v1
+factor_id: SKEW
+display_name: Skewness Anomaly (SKEW / IdioSKEW)
+engine_identity: AlphaIdioSKEW60
+family: higher_moment
+status: research_candidate
+direction: positive_alpha
+long_group: 10
+formula_frozen: true
+formula: "Alpha = -Skew(CSI300 market-model residuals, 60d)"
+signal_shift: 1
+test_universe: ALL
+actual_period: "2020-01-01_2025-12-31"
+headline_metric:
+  name: hl_sharpe_size_industry
+  value: 2.4836
+  cost: gross
+baseline_metric:
+  name: hl_sharpe_raw
+  value: 1.8073
+notes:
+  - raw IdioSKEW has negative RankIC (theory-consistent)
+  - minute RSKEW deferred to P1
+  - TGD interaction / combination is P2

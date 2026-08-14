@@ -1,0 +1,18 @@
+{
+  "dimension": "D4",
+  "representative": "winner_sentiment_reversal_5d",
+  "candidates_tested": 8,
+  "independent_alpha": [
+    "max_daily_return_20d",
+    "d4_consecutive_gain_exhaustion_20d",
+    "cn_chase_behavior_20d"
+  ],
+  "partial_independent": [
+    "winner_crowding_exhaustion_20d"
+  ],
+  "redundant": [
+    "overreaction_shock_5d",
+    "d4_turnover_shock_reversal_5d"
+  ],
+  "recommendation": "expand_d4_family"
+}

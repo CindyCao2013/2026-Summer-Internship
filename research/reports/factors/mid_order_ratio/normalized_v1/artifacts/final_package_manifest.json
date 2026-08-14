@@ -1,0 +1,397 @@
+{
+  "version": "standalone_research_package_v1",
+  "generated_at": "2026-08-05T22:03:11.085447",
+  "report_root": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1",
+  "file_count": 77,
+  "figure_count": 16,
+  "html_count": 1,
+  "pdf_count": 1,
+  "files": [
+    {
+      "path": "01_executive_summary.md",
+      "bytes": 3306,
+      "sha256": "ebc2cca273404b7b7ff2e62781abb2977f91810136dd9f402f006865ba875229"
+    },
+    {
+      "path": "02_problem_definition.md",
+      "bytes": 1890,
+      "sha256": "0cf5055ef88d1bbad480046da21bb5f3d7498ad074fdf9d43a763754ae92b8fc"
+    },
+    {
+      "path": "03_data_and_strict_trade_construction.md",
+      "bytes": 1652,
+      "sha256": "c5bc0adb4ebe99443255c8baabb4115b83c7a78dca17f7398b6c41798742aede"
+    },
+    {
+      "path": "04_normalized_factor_definitions.md",
+      "bytes": 2594,
+      "sha256": "2c4262606d74664935230f6d150e5d462e613c7e49bda69c74b235a5c2d8cf13"
+    },
+    {
+      "path": "05_standalone_validation.md",
+      "bytes": 3849,
+      "sha256": "f33ad4c3fc3e1cc306ed52b8f9c86a1b1808d741c8756c81285d0f116f1a599f"
+    },
+    {
+      "path": "06_normalization_diagnostics.md",
+      "bytes": 5889,
+      "sha256": "77672427e254f47de2e66bf9a69c383e1f8dd2c53c490e863d9b9e5a7e9099b8"
+    },
+    {
+      "path": "07_exposure_diagnostics.md",
+      "bytes": 4045,
+      "sha256": "17ae396d0d2d0315544b3b41077e745f86d96d893cb498c3f3396e929054b174"
+    },
+    {
+      "path": "08_time_and_state_robustness.md",
+      "bytes": 11634,
+      "sha256": "60ef844a07bc1d0e02902ecf01f0a9c802fcca9430680277fa777de4fcbf06cb"
+    },
+    {
+      "path": "09_in_sample_out_of_sample.md",
+      "bytes": 1607,
+      "sha256": "ad94b4ff1cc7d8a90c55ae04e62db892c05645070a7e4e9268fa383532c56b7e"
+    },
+    {
+      "path": "10_research_decision.md",
+      "bytes": 2089,
+      "sha256": "cdc4af00d7979d9b6d350ef2802cf5788a01b190409a3078cd50915a0e7fe3cc"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2110,
+      "sha256": "f7eedcaf666fb06dd46d6dc6c21ede5926d56e7f2110cecc2cf90604aafb69ab"
+    },
+    {
+      "path": "appendix/code_evidence_map.md",
+      "bytes": 4569,
+      "sha256": "a15c87710b62db206bc6250e24f289a4bb34457cf8f9e393bb5144c18137683e"
+    },
+    {
+      "path": "appendix/dynamic_factor_sql_example.md",
+      "bytes": 10179,
+      "sha256": "b495e21871e9830155cb253f89386ff851b7eb1ac4b9038e1be3801a4f7fa6d7"
+    },
+    {
+      "path": "appendix/dynamic_sql_lineage.json",
+      "bytes": 465918,
+      "sha256": "7699a175f7ab893b24708c49b9f83aa7c196dcdb36c3bbc87ae0248641b82979"
+    },
+    {
+      "path": "appendix/reproduction_commands.md",
+      "bytes": 2717,
+      "sha256": "b35be2561f2eed58885bb7e55de4c0ac5db30cd85f10144c5b445ce61614cdf5"
+    },
+    {
+      "path": "artifacts/a0_formal_metric_parity.json",
+      "bytes": 711,
+      "sha256": "b9850ebd6cf228d0c1d5e0a1be371675f1f9d9b6d986a4553b24a9d99b73a584"
+    },
+    {
+      "path": "artifacts/a0_parity.json",
+      "bytes": 1962,
+      "sha256": "284adcefcee4895b5727c3f1e8fb6691c089e296312db15e24306af679b57cdd"
+    },
+    {
+      "path": "artifacts/a0_parity_top100.csv",
+      "bytes": 8281,
+      "sha256": "f7b84d89751f903f1e1cc725a743e7dc3d592682d3d6224e7741b386929f864e"
+    },
+    {
+      "path": "artifacts/adv20_lag1.metadata.json",
+      "bytes": 857,
+      "sha256": "cff7a8c45b9aa2e189c8e5615289cfefcb1b29bcab20afeba3d2926c7288f249"
+    },
+    {
+      "path": "artifacts/adv20_lag1.parquet",
+      "bytes": 107681102,
+      "sha256": "7f0fd6a5baf16251a8d44038f0841e08c497444406768739953e75160bfda93e"
+    },
+    {
+      "path": "artifacts/artifact_manifest.json",
+      "bytes": 29008,
+      "sha256": "a531cf576a36d2677d6685889df704fd575415629e7107f37b64c83501c70d7d"
+    },
+    {
+      "path": "artifacts/ats20_lag1.parquet",
+      "bytes": 17373397,
+      "sha256": "b8674e56e6db1fa76d661baaacf1bb1b23318d8ef534946b69a2dcf961741423"
+    },
+    {
+      "path": "artifacts/csi1000_adv_quintile_statistics.csv",
+      "bytes": 6071,
+      "sha256": "f6de1ac0b47ce3bc63005cadf3b16bf1d311ad74844c3501dad03206b4170d6b"
+    },
+    {
+      "path": "artifacts/csi1000_cap_quintile_statistics.csv",
+      "bytes": 5924,
+      "sha256": "30044a513cddf4d76e4ab6e430de85a89d28545061a171302303012d00d30ab7"
+    },
+    {
+      "path": "artifacts/csi1000_daily_rank_ic.csv",
+      "bytes": 283144,
+      "sha256": "97a3b894f4a27f738824551028ff6e57bedc2537ebfe67ef9c618e7d5bfa75e2"
+    },
+    {
+      "path": "artifacts/csi1000_daily_rank_ic__mid_trade_amount_share_abs_4w20w.csv",
+      "bytes": 73471,
+      "sha256": "ad73cb79055ef8f67bebe2a03835dfe6d60c1ce84a47e3d332609e1d4fec2848"
+    },
+    {
+      "path": "artifacts/csi1000_daily_rank_ic__mid_trade_amount_share_adv20.csv",
+      "bytes": 69933,
+      "sha256": "7aa7e4b5b6987ac41b9522b06bc41f47786ab66db8bf89e91d310c4d454c9872"
+    },
+    {
+      "path": "artifacts/csi1000_daily_rank_ic__mid_trade_amount_share_ats20.csv",
+      "bytes": 69945,
+      "sha256": "c744e9939515c661d910882a8b701d27277e3a5faec29ef8430e2ecdd12f4110"
+    },
+    {
+      "path": "artifacts/csi1000_daily_rank_ic__mid_trade_amount_share_rollq.csv",
+      "bytes": 69945,
+      "sha256": "3d6c67d951889ff9611d292bc37ddcb78052d651c928c0faaf924e890e0f01a2"
+    },
+    {
+      "path": "artifacts/csi1000_decile_index_excess_daily__mid_trade_amount_share_abs_4w20w.csv",
+      "bytes": 218626,
+      "sha256": "4a5b2adfa3d7db38f4f1304757414f08cf0030a6cf0d4894620ec2df3575ec7a"
+    },
+    {
+      "path": "artifacts/csi1000_decile_index_excess_daily__mid_trade_amount_share_adv20.csv",
+      "bytes": 218224,
+      "sha256": "c0dfeb35c4c5b0bbc6e42e44e65fe1adfd956d27e36ed34e2609b8afa61888bd"
+    },
+    {
+      "path": "artifacts/csi1000_decile_index_excess_daily__mid_trade_amount_share_ats20.csv",
+      "bytes": 218570,
+      "sha256": "07e08e893c7733da265647dea4d592a0301702e6da8e45b3c6c9f5ac7c5e2738"
+    },
+    {
+      "path": "artifacts/csi1000_decile_index_excess_daily__mid_trade_amount_share_rollq.csv",
+      "bytes": 218435,
+      "sha256": "ee57d55aaea6d2227d9a6aa9da9afed7edd6003b99527fdef073e38d9a37527e"
+    },
+    {
+      "path": "artifacts/csi1000_decile_summary.csv",
+      "bytes": 707,
+      "sha256": "0e6bec7e333749b6c306383f56b96ae3b5a6038c1f41b866437cfa64d8a73f50"
+    },
+    {
+      "path": "artifacts/csi1000_decile_turnover_daily__mid_trade_amount_share_abs_4w20w.csv",
+      "bytes": 170328,
+      "sha256": "0ef66f8cf468b292bda4be94c9ebd5651caaf81d56bf4cfe0b62521205c0659b"
+    },
+    {
+      "path": "artifacts/csi1000_decile_turnover_daily__mid_trade_amount_share_adv20.csv",
+      "bytes": 178169,
+      "sha256": "407bd3639475352e2eb6217a3bd36a03748e9a9c62639d04706049c88a86ac72"
+    },
+    {
+      "path": "artifacts/csi1000_decile_turnover_daily__mid_trade_amount_share_ats20.csv",
+      "bytes": 179108,
+      "sha256": "8a4bf1cf6d49de0110f09dfa57d6ab9845ff33a97f5d259ca12f9082282f134c"
+    },
+    {
+      "path": "artifacts/csi1000_decile_turnover_daily__mid_trade_amount_share_rollq.csv",
+      "bytes": 170337,
+      "sha256": "73a1ce23a0ca7f1d47e39a1b23b7e33f65b11831cf77795939678eec60062986"
+    },
+    {
+      "path": "artifacts/csi1000_monthly_rank_ic.csv",
+      "bytes": 20075,
+      "sha256": "b2a216eed7503bf449b4b7f4687a45abb23bd666902b92d9f65a7c76cb848a45"
+    },
+    {
+      "path": "artifacts/csi1000_rolling_63d_rank_ic.csv",
+      "bytes": 301704,
+      "sha256": "248a5f7b6fac657d9bf17f0babe8e0df6ff7b943b9487643b0d485c4655436ff"
+    },
+    {
+      "path": "artifacts/daily_trade_size_scale.parquet",
+      "bytes": 231372195,
+      "sha256": "044ce085a1b187642690b30b78c738be76001a09ab939057273931c2c4947892"
+    },
+    {
+      "path": "artifacts/data_preflight.json",
+      "bytes": 1574,
+      "sha256": "329ad1cad7d91f871e583a4a25f816cfcd98627ab8cb98a8c696c1b9de05c835"
+    },
+    {
+      "path": "artifacts/factor_variant_summary.csv",
+      "bytes": 3682,
+      "sha256": "0d671eda0553c745f9714c6056af442083936a3c795309eb92372e91eb1ff73d"
+    },
+    {
+      "path": "artifacts/frozen_config.json",
+      "bytes": 3188,
+      "sha256": "d9dbbf2192f4110bf084f75a8d0f2b6941cb1579943a18968d6b60e47785e495"
+    },
+    {
+      "path": "artifacts/frozen_config.sha256",
+      "bytes": 65,
+      "sha256": "e9c649305e104da7774b51388861635b469f0b3bad26539412e039e2e118c01b"
+    },
+    {
+      "path": "artifacts/missing_scale_coverage.csv",
+      "bytes": 737,
+      "sha256": "f0f614657290981bb99fe9d8bd36a6dbd99238e435447bc48425b5c938d9b3b6"
+    },
+    {
+      "path": "artifacts/normalization_by_size_bucket_calibration.csv",
+      "bytes": 3875,
+      "sha256": "1528cf88c171a319ae43c55ba5ea613fba7d0b6e76d9f30a23fe167b7386a67f"
+    },
+    {
+      "path": "artifacts/normalization_calibration_context.parquet",
+      "bytes": 5930480,
+      "sha256": "ca2df1ded5b777def595c466f6dacca2e6a4bdd8ebd75cd1a92cba3aa41dadbe"
+    },
+    {
+      "path": "artifacts/normalization_distribution_summary_adv.csv",
+      "bytes": 7486,
+      "sha256": "d2eedb61676f344608c7ca579ae1bb0bc7befc2c9f4241a4b4284b3352b679a1"
+    },
+    {
+      "path": "artifacts/normalized_factor_panel_a0.parquet",
+      "bytes": 18015172,
+      "sha256": "0d8ab8f1ea8175236980e0ff203ebc1b2f19a6efdb817a15dcfdfeadcc778fa1"
+    },
+    {
+      "path": "artifacts/ols_diagnostics.csv",
+      "bytes": 10357,
+      "sha256": "814b39772fe786f95461b70d7de694369cdab4aedca1ba276985a0b3008b88dd"
+    },
+    {
+      "path": "artifacts/parameter_stability.csv",
+      "bytes": 14744,
+      "sha256": "4b86f7b062afa869ddb440bf53ed8f59c24d761f815b7532aa0b56a505b507e5"
+    },
+    {
+      "path": "artifacts/parameter_stability_adv_distribution.csv",
+      "bytes": 1747,
+      "sha256": "3f6e1bfbbcf8a8a568b53dfb3bd56d7ae3d9b3dc2d849f37c8d1fe3045336933"
+    },
+    {
+      "path": "artifacts/sample_segment_results.csv",
+      "bytes": 8256,
+      "sha256": "167d0fba152568ee73667ed18d34f6c9bd2280151bc0e548c22487efbb5f445f"
+    },
+    {
+      "path": "artifacts/sample_segment_results_by_universe.csv",
+      "bytes": 30837,
+      "sha256": "bb467cde1a9b604d2f743764903eb2426500c2e08c7e4cbcf011f60f9480d78c"
+    },
+    {
+      "path": "artifacts/scale_manifest.json",
+      "bytes": 873,
+      "sha256": "d981d224c14c35f08ac5d472ae2394e20f8cbbb64702f5ddf671e39e09303534"
+    },
+    {
+      "path": "artifacts/state_turnover_tercile_daily_ic.csv",
+      "bytes": 657157,
+      "sha256": "1920eea578b58f52d9da1a699d03bf9e404a5a172ac88e798c6f7b94ca9afc62"
+    },
+    {
+      "path": "artifacts/state_turnover_tercile_summary.csv",
+      "bytes": 1548,
+      "sha256": "7a802bb1019c8678b84361b1eb7465f2558d0b0e3d9a42d7269cc207bebb22bd"
+    },
+    {
+      "path": "artifacts/universe_variant_summary.csv",
+      "bytes": 9608,
+      "sha256": "25bb992ed9942cf28fa5c24d402ae165e27a8e17cc308c2d395a078e06de07f1"
+    },
+    {
+      "path": "export/mid_trade_amount_normalized_report.html",
+      "bytes": 4169389,
+      "sha256": "8be09cbfc87f82944978720fe1a17ad6f3e2fa9e9f11b0a621f6606d72cd5aaf"
+    },
+    {
+      "path": "export/mid_trade_amount_normalized_report.pdf",
+      "bytes": 6952378,
+      "sha256": "236ed510286911a013d2d7c1d083f55994f4e92b67686fd2fbc89ff7cb782692"
+    },
+    {
+      "path": "figures/01_factor_variant_summary.png",
+      "bytes": 44912,
+      "sha256": "fff4c33e96dd69d166a4c47873ffda660e48c3f8bd2074bdfafce0e0d052c71a"
+    },
+    {
+      "path": "figures/02_universe_variant_summary.png",
+      "bytes": 48397,
+      "sha256": "8db9a5cb0202c65effc549a86843cdcfeba07ad918ec53c5bef1956375e19006"
+    },
+    {
+      "path": "figures/03_decile_annualized__mid_trade_amount_share_abs_4w20w.png",
+      "bytes": 58310,
+      "sha256": "da5a9b73d9374f07c99e6ec4d2b15fc7474470ef0973a785501dfb84a7ca16a5"
+    },
+    {
+      "path": "figures/03_decile_annualized__mid_trade_amount_share_adv20.png",
+      "bytes": 57781,
+      "sha256": "1e0139cd1ae2628039d6697f34baf0b6ada56626042292760fff5b15d54a7b39"
+    },
+    {
+      "path": "figures/03_decile_annualized__mid_trade_amount_share_ats20.png",
+      "bytes": 58736,
+      "sha256": "b00900ec9c40f2073242b094b460789d9ffd62e4ded86f685891f9ccb2679906"
+    },
+    {
+      "path": "figures/03_decile_annualized__mid_trade_amount_share_rollq.png",
+      "bytes": 58837,
+      "sha256": "e7d90059039ac7af6f2176d4de21722e5c9d28911d1d51732e81b4e28cf3f591"
+    },
+    {
+      "path": "figures/04_decile_cumulative__mid_trade_amount_share_abs_4w20w.png",
+      "bytes": 305336,
+      "sha256": "9b54816f1b2dcb7ac57cf007e811f68f2b661cae9c53504d35442d528c249d40"
+    },
+    {
+      "path": "figures/04_decile_cumulative__mid_trade_amount_share_adv20.png",
+      "bytes": 450947,
+      "sha256": "cb8bdb94f511fa07b137e4c4f399f81a5533f34783b60ddc18e86b2555245649"
+    },
+    {
+      "path": "figures/04_decile_cumulative__mid_trade_amount_share_ats20.png",
+      "bytes": 398556,
+      "sha256": "f57d34f9dcb65aad250123cd9e9a1aa2837ef429aa6b3b540fea4d6730612d63"
+    },
+    {
+      "path": "figures/04_decile_cumulative__mid_trade_amount_share_rollq.png",
+      "bytes": 372711,
+      "sha256": "4e1efca056415ce8abc4ef2f86bb60f341a75cabb4fd96059b0e34a12cc9ef76"
+    },
+    {
+      "path": "figures/05_ic_stability.png",
+      "bytes": 844211,
+      "sha256": "8cde02e754a7f29258bcc306869ee19a38e1567fb317af09542238fea606f89d"
+    },
+    {
+      "path": "figures/06_cap_adv_quintiles.png",
+      "bytes": 132691,
+      "sha256": "7907801677ea87c55818ed1b97882714322590a3627adda18d39265dd49f9385"
+    },
+    {
+      "path": "figures/07_parameter_stability.png",
+      "bytes": 93947,
+      "sha256": "59027066020bc61a854e5cb40fffbbfd096f8f5ffb4cb2882638d86a071fb26e"
+    },
+    {
+      "path": "figures/08_turnover_tercile.png",
+      "bytes": 41786,
+      "sha256": "77814c1eee94715b34b881ca98a84529cd9d09ca4a0ec239f4d4102d19aef667"
+    },
+    {
+      "path": "figures/09_ols_diagnostics.png",
+      "bytes": 36689,
+      "sha256": "f3cb17a03da1379d861211c3226b822e397925ac8dd34110529b8c1e72324487"
+    },
+    {
+      "path": "figures/10_segments_and_coverage.png",
+      "bytes": 57674,
+      "sha256": "9afe7106100db2584a9acf8df484b4cec9cf4bf2e2c59f92f49a569f260aa098"
+    }
+  ],
+  "hash_policy": "SHA256 covers every regular file under report_root except this self-referential manifest."
+}

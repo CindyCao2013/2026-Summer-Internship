@@ -1,0 +1,189 @@
+# Metric Registry — Factor Report Template v2
+# Canonical metric IDs for Metric Union. Generator maps artifact columns → these IDs.
+# Missing values must render as N/A + missing_reason (never silent drop).
+
+schema_version: factor_report_v2
+union_rule: |
+  ReportMetrics = UNION(
+    template_pdf_fields,
+    factor_summary.csv,
+    metrics.json,
+    portfolio_simulator,
+    execution_summary,
+    mechanism_csv,
+    stability_csv,
+    diagnostics,
+    chart_implied,
+    protocol_v1_required
+  )
+
+groups:
+
+  signal:
+    description: Cross-sectional predictive power
+    metrics:
+      - id: IC
+        aliases: [pearson_ic, pearsonIC]
+        definition: Mean Pearson cross-sectional IC
+        required_in_headline: true
+      - id: RankIC
+        aliases: [rank_ic, daily_ic]
+        definition: Mean Spearman cross-sectional IC
+        required_in_headline: true
+      - id: ICIR
+        aliases: [pearson_icir]
+        definition: mean(Pearson IC)/std(Pearson IC)*sqrt(250)
+        required_in_headline: true
+        note: Label explicitly; do not confuse with RankICIR
+      - id: RankICIR
+        aliases: [icir, rank_icir]
+        definition: mean(RankIC)/std(RankIC)*sqrt(250)
+        required_in_headline: true
+        note: Legacy factor_summary.icir is usually RankICIR — map here
+      - id: IC_tstat
+        aliases: [ic_t, ic_t_stat]
+        definition: t-stat of daily IC series
+        required_in_headline: true
+      - id: IC_mean
+        aliases: []
+        definition: Mean of daily IC series (same family as RankIC or Pearson — declare)
+      - id: IC_std
+        aliases: []
+        definition: Std of daily IC series
+      - id: IC_positive_ratio
+        aliases: [pos_ic_frac, ic_win_rate, positive_ic_ratio]
+        definition: Fraction of days with IC > 0
+        required_in_headline: true
+      - id: Annualized_IC
+        aliases: [annu_ic]
+        definition: mean(IC)*sqrt(250)
+      - id: Annualized_RankIC
+        aliases: [annu_rank_ic]
+        definition: mean(RankIC)*sqrt(250)
+      - id: signal_decay
+        aliases: [ic_decay, horizon_decay]
+        definition: IC by forward horizon when ladder exists
+        missing_ok: true
+
+  portfolio:
+    description: H-L / long-short book performance
+    metrics:
+      - id: annual_return
+        aliases: [hl_annu_ret, annu_ret, annualized_return]
+        definition: Annualized H-L (or book) return
+      - id: cumulative_return
+        aliases: [cum_ret]
+        definition: Cumulative H-L return over sample
+        missing_ok: true
+      - id: excess_return
+        aliases: []
+        definition: Excess vs benchmark if computed
+        missing_ok: true
+      - id: Sharpe
+        aliases: [hl_sharpe, gross_sharpe]
+        definition: Gross Sharpe of direction-adjusted H-L
+        required_in_headline: true
+      - id: Sortino
+        aliases: []
+        definition: Downside Sharpe
+        missing_ok: true
+      - id: Calmar
+        aliases: []
+        definition: Annual return / |MDD|
+        missing_ok: true
+      - id: MDD
+        aliases: [hl_mdd, max_drawdown]
+        definition: Max drawdown of H-L PnL
+        required_in_headline: true
+      - id: volatility
+        aliases: [vol, hl_vol]
+        definition: Annualized vol of H-L daily PnL
+        missing_ok: true
+      - id: HL_return
+        aliases: [hl_annu_ret, h_l_return]
+        definition: H-L annualized return (alias of annual_return when book is H-L)
+      - id: HL_Sharpe
+        aliases: [hl_sharpe]
+        definition: Alias of Sharpe for H-L book
+      - id: long_leg_return
+        aliases: [long_annu_ret]
+        missing_ok: true
+      - id: short_leg_return
+        aliases: [short_annu_ret]
+        missing_ok: true
+      - id: decile_spread
+        aliases: [top_bottom_spread]
+        definition: Mean return top decile minus bottom
+      - id: daily_turnover
+        aliases: [turnover, daily_TO]
+        required_in_headline: true
+      - id: annual_turnover
+        aliases: [annu_one_way_turnover, annu_turnover]
+        missing_ok: true
+      - id: gross_Sharpe
+        aliases: [hl_sharpe, Sharpe]
+        definition: Pre-cost Sharpe
+      - id: net_Sharpe
+        aliases: [net_sharpe]
+        definition: After round-trip cost
+        required_in_headline: true
+      - id: implied_fee
+        aliases: [implied_annu_fee]
+        definition: Fee drag from turnover × cost_bp
+        note: Declare cost_bp (legacy 7.5 vs Protocol 15)
+
+  structure:
+    description: Factor shape / quality
+    metrics:
+      - id: monotonicity
+        aliases: [monotonicity_score]
+        required_in_headline: true
+      - id: decile_spread
+        aliases: []
+      - id: direction
+        aliases: []
+        definition: "+1 if mean H-L > 0 else -1"
+      - id: stability_score
+        aliases: []
+        definition: Optional composite of yearly IC+
+        missing_ok: true
+
+  risk_adjustment:
+    description: Neutralization ladder — all modes required when computed
+    modes:
+      - raw
+      - size
+      - industry
+      - size_industry
+    metrics_per_mode:
+      - RankIC
+      - RankICIR
+      - HL_Sharpe
+      - MDD
+      - net_Sharpe
+    narrative_rule: |
+      Must state whether alpha survives or disappears after removing exposures.
+      Never present only the best neutralization cell as the sole official result.
+
+  execution:
+    description: Investability grid — preserve all execution_summary columns
+    preserve_all_columns: true
+    highlight:
+      - net_Sharpe
+      - daily_turnover
+      - implied_fee
+      - rebalance_freq
+      - buffer / entry_frac / exit_frac
+
+  mechanism:
+    description: Mechanism CSV rows — preserve all columns
+    preserve_all_columns: true
+
+missing_policy:
+  render: "N/A"
+  require_reason: true
+  reasons:
+    - not_computed
+    - not_in_artifacts
+    - series_unavailable
+    - coverage_exception

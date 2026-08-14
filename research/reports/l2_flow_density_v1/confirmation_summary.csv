@@ -1,0 +1,2 @@
+factor,period_confirmation,n_confirmation_days,discovery_days,rank_ic,icir,residual_ic_t_base3,residual_ic_t_voi,stack_icir_uplift,best_lambda,year_ic_pos_ratio,net_sharpe_tradable,gross_sharpe_tradable,annu_one_way_turnover,capacity_cny_approx,param_stable,verdict
+net_active_flow_mktcap_20d,2022-01-28 -> 2025-12-31,951,504,0.023560409520322182,4.846912963196787,6.110246201226899,9.929102641247104,1.0745676475161012,0.3,1.0,1.8497363858603328,3.9749293412060607,52.263615025552575,21195822069.899994,True,confirm_pass_enhancer

@@ -1,0 +1,10 @@
+{
+  "factor": "IdealAmplitude",
+  "eval_window": "last_252d",
+  "cost_round_trip": 0.0015,
+  "best_label": "signed_cs_z|daily|buffer_5_15",
+  "best_net_sharpe": 3.399596017061248,
+  "best_daily_turnover": 0.4460525049181517,
+  "soft_bar": "fail_mono_stay_testing",
+  "note": "Phase III A2 \u2014 formula not retuned; no portfolio"
+}

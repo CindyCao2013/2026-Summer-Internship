@@ -1,0 +1,123 @@
+// =============================================================================
+// init_env.dos — L2 因子复现公共函数
+// 由 Python 通过 run("<abs>/init/init_env.dos") 加载；勿在此写 login（会话由 Python 建立）
+// 逻辑对齐 intraday_lib.ddb_functions 精简版，保证与主库股票池口径一致
+// =============================================================================
+
+def map_bj_code(t, column_name = 'symbol'){
+    bj_old_new_code = select S_INFO_WINDCODE, S_INFO_OLDWINDCODE, S_INFO_NEWWINDCODE, CHANGE_DATE
+        FROM loadTable("dfs://WIND.CHANGEWINDCODE",'data')
+        where S_INFO_WINDCODE like "920%BJ%"
+        order by S_INFO_WINDCODE, CHANGE_DATE
+    bj_old_new_code = select S_INFO_OLDWINDCODE as old_code, S_INFO_NEWWINDCODE as new_code from bj_old_new_code
+    new_t = lj(t, bj_old_new_code, column_name, `old_code)
+    update!(new_t, `new_code, <_$column_name>, <new_code = NULL>)
+    update!(new_t, column_name, <new_code>)
+    new_t.dropColumns!(`new_code)
+    return new_t
+}
+
+def get_trading_days(startDay, endDay, exchange = 'SSE'){
+    t = loadTable('dfs://WIND.ASHARECALENDAR', 'data')
+    trading_days = exec TRADE_DAYS as Date from t
+        where TRADE_DAYS >= startDay and TRADE_DAYS <= endDay and S_INFO_EXCHMARKET = exchange
+        order by TRADE_DAYS
+    return trading_days
+}
+
+def get_stock_pool(startDay, endDay, index, pure_stock = false){
+    ind = (typestr(index) == "STRING")
+    if (ind){
+        index_list = [index]
+    }else{
+        index_list = index
+    }
+
+    if ((index_list[0] == "000300.SH")){
+        t = loadTable('dfs://WIND.AINDEXHS300WEIGHT','data')
+        stock_pool = select TRADE_DT as Date, S_CON_WINDCODE as Symbol from t
+            where TRADE_DT >= startDay and TRADE_DT <= endDay
+    }else if((index_list[0] == "000905.SH")){
+        t = loadTable('dfs://WIND.AINDEXCSI500WEIGHT','data')
+        stock_pool = select TRADE_DT as Date, S_CON_WINDCODE as Symbol from t
+            where TRADE_DT >= startDay and TRADE_DT <= endDay
+    }else if((index_list[0] == "000852.SH")){
+        t = loadTable('dfs://WIND.AINDEXCSI1000WEIGHT','data')
+        stock_pool = select TRADE_DT as Date, S_CON_WINDCODE as Symbol from t
+            where TRADE_DT >= startDay and TRADE_DT <= endDay
+    }else if((index_list[0] == "899050.BJ")){
+        trading_days = get_trading_days(startDay, endDay)
+        t = loadTable('dfs://WIND.AINDEXMEMBERS','data')
+        index_members = select S_CON_WINDCODE, S_CON_INDATE,
+            nullFill(temporalParse(S_CON_OUTDATE, "yyyyMMdd"), 2100.01.01) AS S_CON_OUTDATE, CUR_SIGN
+            from t where S_INFO_WINDCODE = index_list[0] and S_CON_WINDCODE like "920%BJ"
+            context by S_CON_WINDCODE, S_CON_INDATE csort OPDATE desc limit 1
+        trading_day_tbl = table(trading_days as tradeDate)
+        index_member_daily = select S_CON_WINDCODE as Symbol, tradeDate as Date
+            from cj(index_members, trading_day_tbl)
+            where tradeDate >= S_CON_INDATE and tradeDate <= S_CON_OUTDATE
+        stock_pool = select * from index_member_daily order by Date, Symbol
+    }else{
+        trading_days = get_trading_days(startDay, endDay)
+        t = loadTable('dfs://WIND.AINDEXMEMBERS','data')
+        index_members = select S_CON_WINDCODE, S_CON_INDATE,
+            nullFill(temporalParse(S_CON_OUTDATE, "yyyyMMdd"), 2100.01.01) AS S_CON_OUTDATE, CUR_SIGN
+            from t where S_INFO_WINDCODE in index_list
+            context by S_CON_WINDCODE, S_CON_INDATE csort OPDATE desc limit 1
+        trading_day_tbl = table(trading_days as tradeDate)
+        index_member_daily = select S_CON_WINDCODE as Symbol, tradeDate as Date
+            from cj(index_members, trading_day_tbl)
+            where tradeDate >= S_CON_INDATE and tradeDate <= S_CON_OUTDATE
+        stock_pool = select * from index_member_daily order by Date, Symbol
+    }
+
+    if (pure_stock){
+        output = exec distinct Symbol from stock_pool
+    }else{
+        output = stock_pool
+    }
+    return output
+}
+
+def get_adj_factor(startDay, endDay, stock_vector = NULL){
+    t_EOD = loadTable('dfs://WIND.ASHAREEODPRICES','data')
+    if (isVoid(stock_vector)){
+        t_adj = select TRADE_DT as Date, S_INFO_WINDCODE as Symbol, S_DQ_ADJFACTOR as Adj_Factor
+            from t_EOD where TRADE_DT >= startDay and TRADE_DT <= endDay
+    }else{
+        t_adj = select TRADE_DT as Date, S_INFO_WINDCODE as Symbol, S_DQ_ADJFACTOR as Adj_Factor
+            from t_EOD where TRADE_DT >= startDay and TRADE_DT <= endDay and S_INFO_WINDCODE in stock_vector
+    }
+    return t_adj
+}
+
+// 将 Date + 固定时刻拼成信号 tradetime（日频因子统一用 09:30）
+def to_signal_tradetime(DateCol){
+    return concatDateTime(DateCol, 09:30:00)
+}
+
+// 加载分钟线并补齐复权（null/0 -> 1）
+def load_minute_bars(startDate, endDate, stocks){
+    t_min = loadTable('dfs://QV_Trade_to_MinuteBar', 'Stock_one_minute')
+    t = select Symbol, Date, second(Bartime) as Bartime, Open, High, Low, Close,
+            Volume, Amount,
+            nullFill(Active_buy_amount, 0.0) as Active_buy_amount,
+            nullFill(Active_sell_amount, 0.0) as Active_sell_amount,
+            nullFill(Active_buy_count, 0) as Active_buy_count,
+            nullFill(Active_sell_count, 0) as Active_sell_count,
+            nullFill(iif(Adjfactor == 0, 1.0, Adjfactor), 1.0) as Adjfactor
+        from t_min
+        where Date >= startDate and Date <= endDate and Symbol in stocks
+    return t
+}
+
+// 分钟 bar 收益（复权）
+def attach_bar_ret(t){
+    return select *, ratios(Close * Adjfactor) - 1 as BarRet
+        from t context by Symbol, Date csort Bartime
+}
+
+// 平均单笔金额代理：Amount / (手数近似 + 1)；Volume 单位为股
+def attach_avg_order_amt(t){
+    return select *, Amount \ (Volume \ 100 + 1) as AvgOrderAmt from t
+}

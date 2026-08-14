@@ -1,0 +1,190 @@
+{
+  "version": "alpha_combination_v1",
+  "ranking_paradigm": "ICIR_primary_turnover_and_net_sharpe_as_feasibility_fence",
+  "frozen_at": "2026-07-10",
+  "period": "confirmation_951d",
+  "gates": {
+    "max_annu_one_way_turnover": 120.0,
+    "min_net_sharpe": 0.0,
+    "primary_sort": "icir_tradable",
+    "tie_break": [
+      "gross_sharpe_tradable",
+      "net_sharpe_tradable"
+    ]
+  },
+  "recommended": {
+    "label": "C2_D1_0.60",
+    "weights": {
+      "D1": 0.6,
+      "D4": 0.2,
+      "D5": 0.2
+    },
+    "IC": 0.0548358037780081,
+    "ICIR": 5.732531632016892,
+    "gross_Sharpe": 1.9830068652326744,
+    "annu_one_way_turnover": 66.22355328286488,
+    "net_Sharpe": 0.6724075983977743,
+    "note": "Selected by highest ICIR among schemes with TO≤120% and net Sharpe>0. Net Sharpe is a feasibility fence, not the primary ranking metric.",
+    "c6_decision": "not_upgraded",
+    "c6_note": "Keep C2_D1_0.60: C6 ICIR=5.571 vs C2=5.733; state_modifier does not improve information efficiency at w1=0.60"
+  },
+  "ranking_top_feasible": [
+    {
+      "label": "C2_D1_0.60",
+      "rank_ic_tradable": 0.0548358037780081,
+      "icir_tradable": 5.732531632016892,
+      "gross_sharpe_tradable": 1.9830068652326744,
+      "annu_one_way_turnover": 66.22355328286488,
+      "net_sharpe_tradable": 0.6724075983977743
+    },
+    {
+      "label": "C2_D1_0.70",
+      "rank_ic_tradable": 0.0568562247931375,
+      "icir_tradable": 5.729297827861059,
+      "gross_sharpe_tradable": 1.9205159095121576,
+      "annu_one_way_turnover": 56.462951635647386,
+      "net_sharpe_tradable": 0.8396565071299419
+    },
+    {
+      "label": "C2_D1_0.80",
+      "rank_ic_tradable": 0.0578821289028485,
+      "icir_tradable": 5.696903570004963,
+      "gross_sharpe_tradable": 1.8164470847699252,
+      "annu_one_way_turnover": 49.12940470972535,
+      "net_sharpe_tradable": 0.8954944227948016
+    },
+    {
+      "label": "C2_D1_0.50",
+      "rank_ic_tradable": 0.0510428550356061,
+      "icir_tradable": 5.674115602670617,
+      "gross_sharpe_tradable": 2.0962820062272565,
+      "annu_one_way_turnover": 79.70570650817697,
+      "net_sharpe_tradable": 0.427152500459418
+    },
+    {
+      "label": "C6_D1_0.80_state_mod",
+      "rank_ic_tradable": 0.0572488717551591,
+      "icir_tradable": 5.634795200630257,
+      "gross_sharpe_tradable": 1.7805811328598873,
+      "annu_one_way_turnover": 49.645007680952055,
+      "net_sharpe_tradable": 0.849771279737509
+    }
+  ],
+  "eliminated_high_icir_examples": [
+    {
+      "label": "REF_base3_plus_cancel_additive_0.2",
+      "icir_tradable": 6.047441321733659,
+      "annu_one_way_turnover": 150.59987911869413,
+      "net_sharpe_tradable": 0.4035618106009685,
+      "gate_turnover_le_120": false,
+      "gate_net_sharpe_gt_0": true
+    },
+    {
+      "label": "C2_D1_0.40",
+      "icir_tradable": 5.474086645826546,
+      "annu_one_way_turnover": 100.22989350731127,
+      "net_sharpe_tradable": -0.0395710500959858,
+      "gate_turnover_le_120": true,
+      "gate_net_sharpe_gt_0": false
+    }
+  ],
+  "figures": {
+    "D1_low_vol_liquidity": {
+      "factor": "D1_low_vol_liquidity",
+      "rank_ic": 0.05703728813513032,
+      "icir": 5.918767112929129,
+      "gross_hl_sharpe": 1.6898578788362484,
+      "monotonicity": 0.7777777777777778,
+      "figures": {
+        "cumulative": "research/alpha_library_v1/figures/D1_low_vol_liquidity/cumulative_long_short.png",
+        "quantile": "research/alpha_library_v1/figures/D1_low_vol_liquidity/quantile_return.png",
+        "ic_ts": "research/alpha_library_v1/figures/D1_low_vol_liquidity/rank_ic_timeseries.png"
+      }
+    },
+    "D4_winner_sentiment": {
+      "factor": "D4_winner_sentiment",
+      "rank_ic": 0.04456317357997255,
+      "icir": 5.1707486961249955,
+      "gross_hl_sharpe": 1.2081239233944425,
+      "monotonicity": 0.8888888888888888,
+      "figures": {
+        "cumulative": "research/alpha_library_v1/figures/D4_winner_sentiment/cumulative_long_short.png",
+        "quantile": "research/alpha_library_v1/figures/D4_winner_sentiment/quantile_return.png",
+        "ic_ts": "research/alpha_library_v1/figures/D4_winner_sentiment/rank_ic_timeseries.png"
+      }
+    },
+    "D5_upside_fragility": {
+      "factor": "D5_upside_fragility",
+      "rank_ic": -0.04905176095698802,
+      "icir": -5.9906356744414175,
+      "gross_hl_sharpe": 0.2218568775933259,
+      "monotonicity": 0.6666666666666666,
+      "figures": {
+        "cumulative": "research/alpha_library_v1/figures/D5_upside_fragility/cumulative_long_short.png",
+        "quantile": "research/alpha_library_v1/figures/D5_upside_fragility/quantile_return.png",
+        "ic_ts": "research/alpha_library_v1/figures/D5_upside_fragility/rank_ic_timeseries.png"
+      }
+    },
+    "C1_base3_equal": {
+      "factor": "C1_base3_equal",
+      "rank_ic": 0.03830106466280001,
+      "icir": 5.682812114020569,
+      "gross_hl_sharpe": 3.7591856950279334,
+      "monotonicity": 1.0,
+      "figures": {
+        "cumulative": "research/alpha_library_v1/figures/C1_base3_equal/cumulative_long_short.png",
+        "quantile": "research/alpha_library_v1/figures/C1_base3_equal/quantile_return.png",
+        "ic_ts": "research/alpha_library_v1/figures/C1_base3_equal/rank_ic_timeseries.png"
+      }
+    },
+    "C2_D1_0.60_recommended": {
+      "factor": "C2_D1_0.60_recommended",
+      "rank_ic": 0.054404624368874346,
+      "icir": 6.162943649255958,
+      "gross_hl_sharpe": 2.366321704010326,
+      "monotonicity": 0.7777777777777778,
+      "figures": {
+        "cumulative": "research/alpha_library_v1/figures/C2_D1_0.60_recommended/cumulative_long_short.png",
+        "quantile": "research/alpha_library_v1/figures/C2_D1_0.60_recommended/quantile_return.png",
+        "ic_ts": "research/alpha_library_v1/figures/C2_D1_0.60_recommended/rank_ic_timeseries.png"
+      }
+    }
+  },
+  "artifacts": {
+    "research_rank_csv": "research/results/alpha_combination_v1/combination_results_research_rank.csv",
+    "c2_icir_curve_csv": "research/results/alpha_combination_v1/c2_d1_tilt_icir_curve.csv",
+    "c2_icir_curve_png": "research/alpha_library_v1/figures/c2_d1_weight_vs_icir.png",
+    "figures_root": "research/alpha_library_v1/figures"
+  },
+  "c6_vs_c2_060": {
+    "task": "c6_vs_c2_060_head_to_head",
+    "period": "confirmation_951d",
+    "c2": {
+      "label": "C2_D1_0.60",
+      "IC": 0.05483580377800814,
+      "ICIR": 5.732531632016892,
+      "gross_Sharpe": 1.9830068652326744,
+      "annu_TO_1way": 66.22355328286488,
+      "net_Sharpe": 0.6724075983977743,
+      "feasible": "True",
+      "n_stress_days": NaN
+    },
+    "c6": {
+      "label": "C6_D1_0.60_state_mod",
+      "IC": 0.05320150910826009,
+      "ICIR": 5.570810179435128,
+      "gross_Sharpe": 1.895706578523825,
+      "annu_TO_1way": 67.53505208692663,
+      "net_Sharpe": 0.5552876508342032,
+      "feasible": "True",
+      "n_stress_days": 191.0
+    },
+    "upgrade_to_c6": false,
+    "research_recommended": "C2_D1_0.60",
+    "reason": "Keep C2_D1_0.60: C6 ICIR=5.571 vs C2=5.733; state_modifier does not improve information efficiency at w1=0.60",
+    "production_alternatives": {
+      "C2_D1_0.70": "lower turnover compromise (research note only)",
+      "C2_D1_0.80": "lowest-turnover compromise (research note only)"
+    }
+  }
+}

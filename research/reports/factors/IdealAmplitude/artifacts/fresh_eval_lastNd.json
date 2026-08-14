@@ -1,0 +1,11 @@
+{
+  "window": "last_252d",
+  "rank_ic": -0.06459656305915762,
+  "rank_icir": -10.864115246000273,
+  "gross_sharpe": 4.697286116140928,
+  "net_sharpe_plain": 2.4127618882018917,
+  "daily_turnover_plain": 0.7757996782215727,
+  "monotonicity_proxy": 0.1111111111111111,
+  "direction_book": -1,
+  "n_days": 252
+}

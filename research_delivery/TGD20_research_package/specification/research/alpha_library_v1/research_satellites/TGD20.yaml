@@ -1,0 +1,85 @@
+# TGD20 — research satellite (NOT production freeze)
+#
+# Status: validated_single_factor / formula_frozen / production_deferred
+# Pack: research/reports/factors/TGD20/
+# Long-form: research/reports/tgd_v1/
+# Do NOT merge into alpha_library_v1.0-frozen.json without capacity + stack review.
+# Do NOT retune MA / residual / controls — treat as combination candidate only.
+
+factor_id: TGD20
+layer: l2_temporal
+category:
+  - temporal_information
+role: research_satellite
+status: validated_single_factor
+
+hypothesis: >
+  Abnormal downside timing residual after controlling return magnitude and
+  early-session structure predicts next-day cross-sectional returns.
+  Not raw Gu/Gd clocks and not tau=Gd-Gu.
+
+formula:
+  frozen: true
+
+production:
+  deferred: true
+
+combination:
+  candidate: true
+
+pipeline:
+  - return_timing.py      # Gu / Gd
+  - return_distribution.py
+  - timing_residual.py    # epsilon_u / epsilon_d
+  - tgd.py                # eps_d ~ eps_u -> MA20
+  - signal_shift: 1
+
+do_not_retune:
+  - MA_window
+  - Gu_Gd_weights
+  - residual_controls
+  - ML_residual
+
+evaluation:
+  groups: 10
+  portfolio: H-L
+  confirmation: "2022-01-28_2025-12-31"
+
+research_score:
+  rank_ic_raw: 0.0430
+  icir_raw: 6.98
+  icir_size_industry: 11.29
+  hl_sharpe_raw: 2.77
+  hl_sharpe_size_industry: 4.06
+  monotonicity: 0.988
+  yearly_rank_ic_positive: "6/6"
+
+production_score:
+  daily_turnover_raw: 0.65
+  net_sharpe_size_industry_15bp: 1.72
+  execution_best:
+    label: "size_industry|daily|buffer_5_15"
+    net_sharpe: 2.32
+    daily_turnover: 0.297
+  capacity_checked: false
+
+integrity:
+  tau_MA20_icir: -0.56
+  upsilon_MA20_icir: -2.26
+  epsilon_d_icir: 5.80
+  epsilon_u_icir: 1.62
+  verdict: >
+    Alpha = controlled downside timing residual (eps_d perp eps_u + MA20),
+    not simple time difference / distance.
+
+artifacts:
+  factor_pack: research/reports/factors/TGD20/
+  report_zh: research/reports/tgd_v1/日内分钟收益率时序特征_TGD20因子研究报告.md
+  report_html: research/reports/tgd_v1/日内分钟收益率时序特征_TGD20因子研究报告.html
+  export_pack: research/reports/tgd_v1/export/
+  metrics: research/reports/factors/TGD20/metrics.json
+
+next:
+  - composite_alpha_engine_v1_ic_weighted_with_FlowDensity
+  - do_not: formula_retune
+  - note: equal_rank_50_50_underperforms_TGD_alone

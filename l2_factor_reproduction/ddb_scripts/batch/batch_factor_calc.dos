@@ -1,0 +1,10 @@
+// batch_factor_calc.dos
+// 批量入口：一次加载 init + 全部分钟类因子脚本，便于手工在 DDB GUI 调试
+// 实际生产推荐由 Python factor_builder 按因子加载，避免函数名冲突
+
+def batch_compute_minute_factors(startDate, endDate, universe='000852.SH'){
+    r1 = compute_avg_outflow_ratio(startDate, endDate, universe)
+    r2 = compute_big_order_net_inflow(startDate, endDate, universe)
+    r3 = compute_big_order_drive_ret(startDate, endDate, universe)
+    return unionAll([r1, r2, r3], false)
+}

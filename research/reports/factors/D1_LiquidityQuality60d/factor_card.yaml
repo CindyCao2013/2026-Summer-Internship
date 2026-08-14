@@ -1,0 +1,51 @@
+schema_version: factor_report_v2
+factor_id: D1_LiquidityQuality60d
+display_name: D1 Liquidity Quality 60d
+family:
+- liquidity
+source:
+  type: library
+  library_id: D1_low_vol_liquidity_quality_60d
+data_level: EOD
+status: candidate
+frozen_formula: true
+hypothesis: 'Low volatility combined with liquidity stability earns a cross-sectional
+  premium (D1 base).
+
+  '
+mechanism:
+- liquidity
+formula: low_vol_liquidity_quality_60d (frozen library constructor)
+data_requirement:
+- OHLCV
+known_failure_modes:
+- redundancy_with_amount_stability
+- weaker_in_CSI300
+- missing_execution_grid
+correlation_cluster: null
+data_coverage:
+  requested: 2018-01-01_2025-12-31
+  actual: confirmation_1455d
+  exception_reason: harvested from confirmation_1455d pack; full Dual Benchmark pending
+coverage_exception: true
+admission:
+  requires_manual_review: true
+benchmark:
+  research:
+    universe: ALL
+    period_target: 2018-01-01_2025-12-31
+    horizon_days: 20
+  production:
+    universe: CSI1000
+    universe_membership: declare
+    period_target: 2018-01-01_2025-12-31
+    horizon_days: 20
+    neutralization: industry_size
+    cost_bp: 15
+    note: Pack harvests existing artifacts; Production Track re-run deferred
+do_not:
+- retune D1 window under this id
+- register amount_stability as independent validated twin
+notes:
+- factor_report_v2 schema-driven pack
+- Legacy/harvest metrics; Dual Benchmark Production re-run not performed

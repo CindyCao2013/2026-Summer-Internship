@@ -1,0 +1,13 @@
+label,kind,knife_a,knife_b,mode,rank_ic,icir,n_days
+amount,single,amount,,,-0.03632093366663361,-6.335633043961068,1921
+volume,single,volume,,,-0.03657423524447604,-6.247075260995257,1921
+turnover_proxy,single,turnover_proxy,,,-0.035597965344202405,-6.198051667853001,1921
+ats_trade_count,single,ats_trade_count,,,-0.03379564434302013,-6.483878973616674,1703
+amount+volume:equal_z,dual,amount,volume,equal_z,-0.037078662840500695,-6.2937860844867055,1921
+amount+volume:residual_add,dual,amount,volume,residual_add,-0.036696171786310315,-6.252806025279284,1921
+amount+ats_trade_count:equal_z,dual,amount,ats_trade_count,equal_z,-0.04174433129753854,-6.8255588014954505,1703
+amount+ats_trade_count:residual_add,dual,amount,ats_trade_count,residual_add,-0.040752890886369644,-6.8833844469590035,1703
+volume+ats_trade_count:equal_z,dual,volume,ats_trade_count,equal_z,-0.041941245022969455,-6.818061245558531,1703
+volume+ats_trade_count:residual_add,dual,volume,ats_trade_count,residual_add,-0.04096815342819647,-6.879561533727865,1703
+amount+turnover_proxy:equal_z,dual,amount,turnover_proxy,equal_z,-0.036614983768732845,-6.276937616598335,1921
+amount+turnover_proxy:residual_add,dual,amount,turnover_proxy,residual_add,-0.03579744423289454,-6.209329958467779,1921

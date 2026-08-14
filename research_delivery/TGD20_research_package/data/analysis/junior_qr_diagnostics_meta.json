@@ -1,0 +1,16 @@
+{
+  "sample": {
+    "start": "2022-01-28",
+    "end": "2025-12-31"
+  },
+  "signal_shift": 1,
+  "annual_days": 250,
+  "data_provenance": {
+    "tgd20": "canonical panel generated from DolphinDB Stock_one_minute",
+    "returns_and_styles": "point-in-time DolphinDB/Wind EOD loaders",
+    "industry": "CITICS historical industry panel",
+    "apm": "DolphinDB-derived CSI1000 APM_SessionResidual (adapted) cache; stock PM bars are exact, index leg uses an EOD session proxy"
+  },
+  "research_guardrail": "MA sensitivity is a robustness diagnostic; TGD20 remains frozen at MA20",
+  "execution_guardrail": "Tradability variants are cross-sectional filtering/timing diagnostics, not a stateful blocked-order replay. next_open_o2o_lag2 uses close-T signal and open-(T+1) to open-(T+2) return."
+}

@@ -1,0 +1,1 @@
+/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/IdealReversal/formula.md

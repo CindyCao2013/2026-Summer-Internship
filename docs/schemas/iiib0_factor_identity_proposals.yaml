@@ -1,0 +1,70 @@
+# Proposed factor identities — III-B0 (NOT in Registry)
+
+Design locks only. Do not copy into `research/registry/` until III-B1 pack exists.
+
+---
+
+## SUE_ConsensusEPS (III-B1 primary — GO)
+
+```yaml
+factor_id: SUE_ConsensusEPS
+display_name: SUE Consensus EPS Surprise
+identity_class: true_replication_candidate
+status_when_admitted: testing
+data_level: event_fundamental
+source: paper_archetype_classic_sue
+library_formula_reuse: sue_eps_consensus
+
+construction:
+  known_date: "min(notice, express, income)"
+  actual: EPS at known_date
+  expected: "last EPS_AVG with est_dt < known_date"
+  surprise: "(actual - expected) / abs(expected)"
+  panel_mode: unlocked_until_ic_decay   # impulse first; hold/decay after H=1..60
+  direction_expected: positive_ic
+
+required_fields:
+  - ASHAREINCOME / EXPRESS EPS + ann dates
+  - ASHARECONSENSUSDATA EPS_AVG + EST_DT
+
+forbidden:
+  - alias analyst revision as this factor
+  - use consensus on or after known_date
+  - daily OHLCV proxy for earnings surprise
+
+prior_p0_note: |
+  P0 ICIR≈3.7 (decay) but failed Base3 residual-t≥2 + stack uplift.
+  III-B1 re-evaluates vs TGD/D1/Flow under OS path — not ignored, not auto-promoted.
+```
+
+---
+
+## SUE_NP_YoY_Z (secondary — later)
+
+```yaml
+factor_id: SUE_NP_YoY_Z
+identity_class: classic_variant
+library_formula_reuse: sue_np_yoy_z
+note: Foster-style seasonal surprise. Separate from ConsensusEPS.
+```
+
+---
+
+## AnalystRevision20d (III-B2 — not SUE)
+
+```yaml
+factor_id: AnalystRevision20d
+identity_class: fundamental_revision
+library_formula_reuse: analyst_np_revision_20d
+note: NOT SUE. Do not admit under SUE_* namespace.
+```
+
+---
+
+## ProfitNoticeSurprise* (event satellite — not III-B1)
+
+```yaml
+factor_id: ProfitNoticeSurprise_Research
+identity_class: china_adapted_event
+note: Separate from classic SUE. Optional after primary pack.
+```

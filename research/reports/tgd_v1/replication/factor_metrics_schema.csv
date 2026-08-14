@@ -1,0 +1,13 @@
+metric,definition,purpose
+daily_ic,"mean Spearman corr(factor_t, r_{t+1}) across days (RankIC)",Predictive power (primary IC in this codebase)
+rank_ic,Alias of daily_ic (Spearman cross-sectional),Robust nonlinear prediction
+icir,mean(IC) / std(IC) * sqrt(250),IC stability / information ratio of IC series
+annu_ic,mean(IC) * sqrt(250),Annualized IC magnitude (signal strength)
+hl_annu_ret,Annualized H-L (top−bottom decile) mean return,Portfolio separation / economic magnitude
+hl_sharpe,Sharpe of direction-adjusted H-L daily PnL,Risk-adjusted tradable performance (gross)
+hl_mdd,Max drawdown of direction-adjusted H-L,Path risk
+daily_turnover,Mean daily |Δw| of H-L book (long+short),Capacity / cost driver
+implied_annu_fee,daily_TO × 7.5bps × 250,Fee drag at 7.5bp assumption
+net_sharpe,Sharpe after round-trip cost on turnover,Production admission (investability)
+monotonicity,"Spearman(decile_id, mean_decile_return)",Factor quality / ordering
+direction,+1 if mean H-L > 0 else −1,Sign of predicted relationship

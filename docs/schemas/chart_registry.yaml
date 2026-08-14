@@ -1,0 +1,60 @@
+# Chart Registry — Factor Report Template v2
+# Standard visual slots for every Research Pack.
+
+schema_version: factor_report_v2
+
+charts:
+  - id: construction_diagram
+    title: Factor construction diagram
+    path: charts/construction_diagram.png
+    required: true
+    shows: |
+      raw data → feature → residual/transform → final signal
+    missing_policy: list_under_missing_artifacts
+
+  - id: ic_curve
+    title: IC curve
+    path: charts/ic_curve.png
+    required: true
+    protocol_required: true
+    aliases: [figures/ic_curve.png, ic_curve.png]
+
+  - id: decile_return
+    title: Decile return
+    path: charts/decile_return.png
+    required: true
+    protocol_required: true
+    aliases: [figures/decile_return.png, decile_return.png]
+
+  - id: cumulative_long_short
+    title: Cumulative long-short curve
+    path: charts/cumulative_long_short.png
+    required: true
+    protocol_required: true
+    aliases: [figures/cumulative_long_short.png, cumulative_long_short.png, hml_curve.png]
+
+  - id: neutralization_compare
+    title: Neutralization comparison
+    path: charts/neutralization_compare.png
+    required: true
+    shows: raw vs size vs industry vs size+industry
+
+  - id: yearly_stability
+    title: Yearly stability
+    path: charts/stability_yearly.png
+    required: true
+    aliases: [charts/stability.png]
+
+  - id: turnover_cost
+    title: Turnover / cost analysis
+    path: charts/turnover.png
+    required: true
+    protocol_required: true
+    aliases: [figures/turnover.png, turnover.png]
+    related: execution/ grid figures optional
+
+rules:
+  - Never invent a chart file that does not exist.
+  - If required chart missing → Missing Artifacts section with path expectation.
+  - Extra research figures go under mechanism/ or execution/ or charts/extra/.
+  - Generator should accept legacy pack-root PNG via aliases during 1C migration.

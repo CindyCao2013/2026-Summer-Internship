@@ -1,0 +1,44 @@
+// avg_order_amount_v2.dos
+// 口径修正：用 Active_sell_amount（主动卖出金额）刻画「流出」
+// v2: 日主动卖出金额 / 日成交额
+// v3: 更接近研报「下跌分钟平均单笔流出 / 全日平均单笔」——仍为分钟代理，非逐笔
+
+def compute_avg_outflow_ratio_v2(startDate, endDate, universe='000852.SH'){
+    stocks = get_stock_pool(startDate, endDate, universe, true)
+    t = load_minute_bars(startDate, endDate, stocks)
+    result = select Symbol, Date,
+            sum(Active_sell_amount) \ sum(Amount) as value
+        from t
+        group by Symbol, Date
+    result = select Symbol as symbol,
+            to_signal_tradetime(Date) as tradetime,
+            "avg_outflow_ratio_v2" as factorname,
+            value
+        from result
+        where isValid(value)
+    return result
+}
+
+def compute_avg_outflow_ratio_v3(startDate, endDate, universe='000852.SH'){
+    // 下跌分钟平均单笔主动卖出金额 / 全日平均单笔成交金额
+    stocks = get_stock_pool(startDate, endDate, universe, true)
+    t = load_minute_bars(startDate, endDate, stocks)
+    t = attach_bar_ret(t)
+    t = select *,
+            Active_sell_amount \ (Active_sell_count + 1) as AvgSellOrder,
+            Amount \ (Active_buy_count + Active_sell_count + 1) as AvgOrder
+        from t
+    day_avg = select Symbol, Date, avg(AvgOrder) as DayAvgOrder
+        from t group by Symbol, Date
+    down_avg = select Symbol, Date, avg(AvgSellOrder) as DownAvgSellOrder
+        from t where BarRet < 0 group by Symbol, Date
+    result = select Symbol, Date, DownAvgSellOrder \ DayAvgOrder as value
+        from lj(down_avg, day_avg, `Symbol`Date)
+    result = select Symbol as symbol,
+            to_signal_tradetime(Date) as tradetime,
+            "avg_outflow_ratio_v3" as factorname,
+            value
+        from result
+        where isValid(value)
+    return result
+}

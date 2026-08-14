@@ -1,0 +1,87 @@
+# schema: factor_pack_summary_v1
+factor_id: FlowDensity20
+display_name: FlowDensity20
+short_name: FlowDensity20
+family: microstructure
+source:
+  type: paper_internal
+  colloquial: net active flow / mktcap (20d)
+
+status: candidate
+formula_frozen: false
+pack_version: v1
+pack_finalized: "2026-07-21"
+
+economic_intuition: |
+  Net active flow density scaled by mktcap predicts returns as a Flow × Liquidity interaction,
+  not as pure directional smart money. Amount-orthogonal tests flip sign.
+
+formula:
+  frozen: "cs_zscore( MA20_sum( net_active_flow / mktcap ) )"
+  signal_shift: 1
+  ma_window: 20
+  headline_neutralization: size_industry
+  not_equal_to:
+    - pure smart-money flow
+    - amount channel alone
+
+data:
+  level: L2_active_flow
+  universe_research: ALL
+  period_requested: "2018-01-01_2025-12-31"
+  period_actual: "2022-01-28_2025-12-31"
+  n_days: 951
+  coverage_exception: true
+  coverage_note: "L2/active-flow confirmation window"
+
+implementation:
+  modules:
+    - factor_formulas_l2_flow_p2.py
+    - l2_data_loaders.py
+    - run_flow_density_mechanism_v1.py
+  spec: factor_specs/FlowDensity20.yaml
+
+validation_headline:
+  RankIC_raw: 0.0178
+  ICIR_raw: 2.0735
+  RankIC_size_industry: 0.0236
+  ICIR_size_industry: 4.8495
+  HL_Sharpe_raw: 1.5150
+  HL_Sharpe_size_industry: 3.3807
+  net_Sharpe_size_industry_15bp: 1.8497
+  execution_best_net_Sharpe: 2.8806
+  execution_best_daily_turnover: 0.1645
+  monotonicity: null
+  yearly_rank_ic_positive: "4/4"
+
+delivery_headline:
+  metric: long_book_excess_sharpe
+  definition: "EW selected Group10 return minus exact daily EW return of valid ALL-universe stocks"
+  raw: -0.0464
+  size: 0.7646
+  size_industry: 0.5012
+  preferred_variant: size_industry
+  cost: gross
+  legacy_best_net_Sharpe_HL_15bp: 2.8806
+  legacy_role: execution_diagnostic_not_market_excess
+  caution: "Raw long book has no market-relative alpha; positive result depends on neutralization."
+
+artifacts:
+  definition: factor_definition.md
+  formula: formula.md
+  data: data_source.md
+  implementation: implementation.md
+  validation: validation.md
+  ic: ic_analysis/
+  quantile: quantile_analysis/
+  stability: stability/
+  execution: execution/
+  narrative_report: factor_report.md
+  mechanism: mechanism/
+
+do_not:
+  - freeze_as_pure_flow
+  - equal_weight_with_TGD_by_default
+  - mine_variant_without_orth_review
+
+library_notes: "Liquidity-flow interaction candidate; Template v2 harvest normalized to v1 pack."

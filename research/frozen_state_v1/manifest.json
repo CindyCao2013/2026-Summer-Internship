@@ -1,0 +1,46 @@
+{
+  "frozen_at": "2026-07-08T16:40:28.674690",
+  "version": "frozen_state_v1",
+  "baseline": {
+    "base_dimensions": {
+      "D1": "low_vol_liquidity_quality_60d",
+      "D2": "volatility_60d",
+      "D3": "lower_shadow_support_20d",
+      "D4": "winner_sentiment_reversal_5d",
+      "D5": "upside_fragility_20d"
+    },
+    "enhancer_layers": {
+      "L2_primary": "cn_cancel_shock",
+      "D7_quality": "quality_composite",
+      "D6_value": "value_composite"
+    },
+    "production_stack": "v2 (D1-D5 base + cancel + quality; NOT deployed)"
+  },
+  "roadmap": {
+    "paused": [
+      "production_stack_v3_deploy",
+      "D8_growth_block",
+      "ML_MCTS",
+      "L2_v3_expansion",
+      "architecture_expansion"
+    ],
+    "active_phase": "guided_alpha_mining + alpha_research_report_v1",
+    "next_steps": [
+      "Tier-A factor reports (IC, decile, L/S curve)",
+      "Alpha density expansion within D1-D5 families",
+      "Harness filter on 30-50 new candidates",
+      "Stack v3 enhancer calibration (after alpha library denser)"
+    ],
+    "target": "15-30 robust signals across 5-8 economic dimensions"
+  },
+  "artifacts_copied": [
+    "alpha_information_space_v1.json",
+    "alpha_production_stack_v2.json",
+    "l2_trade_flow_state_verdict.json",
+    "fundamental_quality_d7_verdict.json",
+    "fundamental_value_d6_verdict.json",
+    "alpha_enhancer_targets_v1.csv"
+  ],
+  "artifacts_missing": [],
+  "note": "Architecture research frozen. Resume alpha discovery via guided mining + reports."
+}

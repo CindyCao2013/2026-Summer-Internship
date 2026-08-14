@@ -1,0 +1,11 @@
+factor,source,family,status,ICIR,RankIC,headline_variant,long_book_excess_sharpe_exact,excess_metric_status,notes,pack
+TGD20,paper,temporal,validated,11.29,0.0415,size_industry,2.1602,exact,SI ICIR; formula frozen; Pack v1 complete,research/reports/factors/TGD20
+D1_LiquidityQuality60d,internal,liquidity,candidate,6.01,0.0573,raw,,pending_exact_rerun,liquidity quality 60d; Pack v1 normalized,research/reports/factors/D1_LiquidityQuality60d
+FlowDensity20,paper/internal,flow,candidate,4.85,0.0236,size_industry,0.5012,exact,engine=net_active_flow_mktcap_20d; raw excess Sharpe=-0.046; neutralization-dependent,research/reports/factors/FlowDensity20
+APM_SessionResidual,paper_adapted,session_behavior,testing_candidate,6.55,0.0225,size_industry,,pending_exact_rerun,adapted APM; legacy H-L Net1.50,research/reports/factors/APM_SessionResidual
+IdealReversal,paper,behavior,testing,9.46,-0.031,raw,,pending_exact_rerun,cutting reversal; Pack v1 normalized; mono weak,research/reports/factors/IdealReversal
+IdealAmplitude,paper,behavior,testing,9.97,-0.038,raw,,pending_exact_rerun,vol-tail cutting; Pack v1; mono very weak (0.11),research/reports/factors/IdealAmplitude
+SmartMoney10d,paper,microstructure,research,6.1,-0.045,raw,,not_required_parked,IC strong; daily TO fail; parked — no Pack v1 yet,research/reports/smart_money_v1
+ActiveTradeProxy,proxy,microstructure,testing,7.02,0.045,raw,,not_required_proxy,≠ paper APM; keep proxy separate from APM_SessionResidual,research/reports/factors/ActiveTradeProxy
+SKEW,paper_cluster,higher_moment,research_candidate,7.10,0.0188,size_industry,,validation_v1_hl_sharpe,"Headline AlphaIdioSKEW60; HL Sharpe 2.48 SI; corr vs TGD20≈0.12; raw IdioSKEW IC negative as theory",research/reports/factors/SKEW
+SUE_ConsensusEPS,paper,fundamental,design_only,,,raw,,not_run,C2 Pack Track; III-B1 phase1 PASS; scout pending,research/cache/sue_consensus_eps

@@ -1,0 +1,17 @@
+{
+  "role": "strict_ADV20_lag1_scale",
+  "artifact": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/factors/mid_order_ratio/normalized_v1/artifacts/adv20_lag1.parquet",
+  "artifact_sha256": "7f0fd6a5baf16251a8d44038f0841e08c497444406768739953e75160bfda93e",
+  "source": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/normalized_v1/scales.parquet",
+  "source_sha256": "044ce085a1b187642690b30b78c738be76001a09ab939057273931c2c4947892",
+  "window": 20,
+  "lag": 1,
+  "calendar": "complete observed SSE/SZSE market trading dates",
+  "missing_policy": "require all 20 prior market dates; no backfill",
+  "rows": 4637583,
+  "valid_rows": 4317682,
+  "symbols": 5349,
+  "observed_start": "2023-01-03",
+  "observed_end": "2026-07-31",
+  "max_source_date_le_t_minus_1": true
+}

@@ -1,0 +1,52 @@
+{
+  "dimension": "D2",
+  "representative": "volatility_60d",
+  "research_status": "density_v1",
+  "discovery_days": 504,
+  "internal_independent": [
+    "range_contraction_20d",
+    "range_expansion_20d"
+  ],
+  "internal_redundant": [
+    "volatility_60d",
+    "volatility_20d",
+    "volatility_level_20d",
+    "high_low_60d"
+  ],
+  "cross_dim_independent_vs": [
+    "D4_rep",
+    "D5_rep",
+    "size",
+    "turnover",
+    "ret_1d"
+  ],
+  "cross_dim_absorbed_vs": [
+    "D1_rep"
+  ],
+  "stack_discovery": {
+    "stack_incremental": false,
+    "ic_uplift_majority": false,
+    "base_hl_sharpe": 3.1789981702293924,
+    "max_hl_sharpe_delta": -1.4172586746008693,
+    "recommendation": "drop_or_satellite"
+  },
+  "stack_confirmation": {
+    "stack_incremental": false,
+    "ic_uplift_majority": false,
+    "base_hl_sharpe": 2.9242487852034,
+    "max_hl_sharpe_delta": -0.5102356627479727,
+    "recommendation": "drop_or_satellite"
+  },
+  "proposed_role": "drop",
+  "rep_discovery_ic_raw": -0.044387927288613446,
+  "rep_discovery_ic_after_dim": -0.005391642646482046,
+  "synergy_quad_vs_full5_discovery": {
+    "rank_ic_delta": -0.02146604514505801,
+    "icir_delta": -1.8225596467192855,
+    "hl_sharpe_delta": -0.9455330060929574,
+    "monotonicity_delta": 0.0,
+    "universe_stability_delta": NaN,
+    "period": "full",
+    "n_days": 504
+  }
+}

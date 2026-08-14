@@ -1,0 +1,11 @@
+key,value
+factor_id,IdealAmplitude
+status,testing
+family,microstructure
+RankIC_raw,-0.0378
+RankIC_size_industry,-0.0475
+ICIR_raw,-7.66
+ICIR_size_industry,-9.97
+monotonicity,0.111
+execution_best_net_Sharpe,3.4
+execution_best_daily_turnover,0.446

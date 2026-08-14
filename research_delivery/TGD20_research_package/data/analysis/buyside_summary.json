@@ -1,0 +1,23 @@
+{
+  "sample": {
+    "start": "2022-01-28",
+    "end": "2025-12-31"
+  },
+  "headline": {
+    "raw_exact_universe_excess_sharpe": 1.2392604020031934,
+    "size_industry_exact_universe_excess_sharpe": 2.1602281331858886,
+    "industry_matched_exact_universe_excess_sharpe": 2.083439822181921,
+    "beta_stripped_sharpe": 2.5298282058983963,
+    "market_beta": 0.9431836180191694,
+    "size_industry_rank_ic": 0.04168825681194284,
+    "size_industry_icir": 11.290344770209058,
+    "size_industry_positive_ic_ratio": 0.7694736842105263
+  },
+  "method_notes": {
+    "signal_shift": 1,
+    "annual_days": 250,
+    "industry_matched": "top decile selected within each CITICS industry; industry total weights match the valid-universe equal-weight benchmark",
+    "capacity": "ADV20 participation divided by realized equal-weight long-book turnover; indicative, not an order-book simulation",
+    "residual_attribution": "Daily CS OLS residual of size+industry TGD20 on each control, then RankIC vs next-day C2C return"
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "cache_shift": false,
+  "evaluation_shift": true,
+  "future_return_used": "T+1",
+  "eval_convention": "signal(T) predicts return(T+1)",
+  "method": "signal.shift(1) joined to ret_t at evaluation only",
+  "sample_check": {
+    "signal_date": "2024-06-03",
+    "return_date_for_eval": "2024-06-04",
+    "note": "evaluation must join signal.shift(1) to ret at return_date, or signal(T) to return(T+1); cache stores unshifted signal(T)"
+  },
+  "formula_meta": {
+    "factor_id": "APM_SessionResidual",
+    "formula_version": "apm_session_v1_adapted_eod_index",
+    "identity_class": "adapted_replication",
+    "index_code": "000852.SH",
+    "index_pm_matched": false,
+    "index_residual_method": "eod_overnight_plus_eod_daytime_proxy",
+    "pm_start_rule": "first_available_bar_after_13_01",
+    "cache_shifted_for_backtest": false,
+    "active_star_columns": false,
+    "proxy_factor_id_untouched": "ActiveTradeProxy",
+    "min_pm_bars": 2
+  }
+}

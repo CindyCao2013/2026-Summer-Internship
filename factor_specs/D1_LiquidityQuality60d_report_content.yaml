@@ -1,0 +1,140 @@
+factor_id: D1_LiquidityQuality60d
+
+layer_discipline: |
+  **Factor Identity:** `D1_LiquidityQuality60d` is the only investable factor_id.
+  Universe modes (ALL / CSI1000 / …) are **evaluation diagnostics**, not separate factors.
+
+construction_title: "Factor construction: EOD liquidity quality → D1_60d"
+construction_steps:
+  - "OHLCV"
+  - "vol 60d"
+  - "liq quality"
+  - "combine"
+  - "D1_60d"
+  - "shift=1"
+
+executive_summary: |
+  D1 Liquidity Quality (60d) is a classical **EOD liquidity / low-vol quality** base factor from
+  the frozen OHLCV library. On the confirmation_1455d harvest it clears the soft quality screen
+  (H–L Sharpe ≈ 2.26, RankICIR ≈ 6.01, monotonicity ≈ 0.80) with broader strength on ALL than on
+  CSI300 — consistent with a liquidity-quality phenomenon that is weaker in mega-cap space.
+
+  This pack validates Template v2 on a **simple formula family** without L2 residual ladders.
+  Neutralization-mode ladder is largely N/A here; universe ladder is the diagnostic analogue.
+
+factor_thesis: |
+  Stocks that combine low volatility with stable liquidity characteristics earn a persistent
+  cross-sectional premium (liquidity quality / anti-churn state), used as Base3 leg D1.
+
+economic_intuition: |
+  Unstable, high-activity names embed short-horizon noise and crowding. Low-vol names with
+  steadier liquidity profiles may embed a slower-moving risk/behavioral premium that ranks
+  well in the cross-section.
+
+formula:
+  raw_variables: |
+    Daily OHLCV fields used by the D1 library implementation (returns, volume/amount, volatility
+    windows — see `factor_formulas_liquidity_d1.py` / frozen library ids).
+  intermediate_variables: |
+    Rolling volatility and liquidity-stability components over a 60-day window (library definition).
+  transformations: |
+    Cross-sectional combination into a single quality score (equal or specified blend inside the
+    frozen D1 constructor — **not retuned in this harvest**).
+  final_signal: |
+    $$\mathrm{D1}_t = \mathrm{low\_vol\_liquidity\_quality\_60d}_t,\qquad \mathrm{signal}_t=\mathrm{D1}_{t-1}$$
+
+signal_pipeline: |
+  ```
+  OHLCV
+    ↓
+  vol + liquidity stability features (60d)
+    ↓
+  D1 quality score
+    ↓
+  CS rank / portfolio (10 decile)
+  ```
+
+mechanism_rows:
+  - hypothesis: "D1 is a return-alpha base (not only a risk filter)"
+    test: "ALL confirmation RankICIR / H-L Sharpe / mono"
+    result: "RankIC ≈ 5.73% · ICIR ≈ 6.01 · Sharpe ≈ 2.26 · mono 0.80"
+    conclusion: "pass soft quality screen — production_base in frozen pool"
+  - hypothesis: "Edge is only a CSI300 large-cap effect"
+    test: "Universe ladder CSI300 vs ALL"
+    result: "CSI300 Sharpe ≈ 0.62 vs ALL ≈ 2.26"
+    conclusion: "stronger outside mega-cap — not a CSI300-only artifact"
+  - hypothesis: "L2 residual mechanism required"
+    test: "Artifact inventory"
+    result: "No Gu/Gd-style residual ladder"
+    conclusion: "N/A — classical EOD factor; mechanism section is structural"
+
+mechanism_narrative: |
+  Unlike TGD, D1 does not claim an intraday residual channel. Its “mechanism” evidence in this
+  pack is **structural**: soft-bar metrics, universe comparative strength, and frozen-library
+  role as Base3 production_base. Redundant cousins (e.g. amount_stability) should not be
+  double-counted as independent validated sources.
+
+ic_narrative: |
+  RankIC mean ≈ 5.73% with ICIR ≈ 6.01 and IC+ ratio ≈ 65% on ALL confirmation. IC decay table
+  (diagnostics) shows RankIC rising with horizon out to 20d on the harvested report — diagnostic
+  only; Production horizon remains Protocol 20D when re-run.
+
+portfolio_narrative: |
+  H–L Sharpe ≈ 2.26, ann. return ≈ 43.5%, MDD ≈ −19.7%, turnover ≈ 0.48, monotonicity 0.80.
+  Decile pattern is orderly but not perfect (80% mono).
+
+risk_narrative: |
+  Size/industry neutralization ladder was **not** in the confirmation pack artifacts → modes
+  other than raw are N/A under Metric Union. Universe ladder (CSI300/500/1000/ALL) is provided
+  in diagnostics as the available risk/coverage stress.
+
+stability_narrative: |
+  Only a confirmation block summary is harvested (not a full yearly panel). Marked as limited
+  stability evidence pending Protocol re-run.
+
+execution_narrative: |
+  Milestone 1D.7 added an execution_layer grid on the frozen D1 library signal
+  (`low_vol_liquidity_quality_60d`).
+
+  **Signal identity (do not mix versions):**
+  - Evaluation / execution signal (1D.7): **raw cross-sectional z-score**
+  - Intended production candidate signal: **size+industry neutralized** (Protocol Production Track; not yet re-run)
+
+  Baseline daily H–L (research) has high turnover; investability improves under buffers.
+  Best Net Sharpe on the 1D.7 **raw** grid: **≈ 1.38** (`raw|daily|buffer_5_15`) with daily TO ≈ 0.23
+  (gross Sharpe ≈ 1.81). This is portfolio implementation on the same factor_id — not a
+  formula retune. Net Sharpe remains below TGD/Flow execution leaders; treat as candidate
+  investability evidence, not validated production admission.
+
+limitations: |
+  - No size+industry ladder in source confirmation artifacts (universe ladder used instead).
+  - Execution Net Sharpe ≈ 1.38 — investable improvement vs raw TO drag, but not yet TGD-class.
+  - Stability yearly panel incomplete.
+  - Must not be confused with redundant amount_stability variants.
+
+final_verdict: |
+  **Status: candidate.** Classical EOD pack now has protocol charts + execution grid (1D.7).
+  Soft research metrics clear; execution Net Sharpe is positive but modest. Eligible for
+  Registry as `candidate` — not `validated`. Formula remains frozen.
+
+code_map:
+  - item: Implementation
+    path: "factor_formulas_liquidity_d1.py / frozen OHLCV library (D1_low_vol_liquidity_quality_60d)"
+  - item: Confirmation harvest
+    path: "research/reports/d1_liquidity_density_v1/confirmation_1455d/low_vol_liquidity_quality_60d/"
+
+card_fields:
+  hypothesis: |
+    Low volatility combined with liquidity stability earns a cross-sectional premium (D1 base).
+  mechanism:
+    - liquidity
+  formula: "low_vol_liquidity_quality_60d (frozen library constructor)"
+  data_requirement:
+    - OHLCV
+  known_failure_modes:
+    - redundancy_with_amount_stability
+    - weaker_in_CSI300
+    - missing_execution_grid
+  do_not:
+    - retune D1 window under this id
+    - register amount_stability as independent validated twin

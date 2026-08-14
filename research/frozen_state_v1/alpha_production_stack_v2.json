@@ -1,0 +1,67 @@
+{
+  "stack_version": "v2",
+  "stack_status": "production_enhancer_layer",
+  "published": "2026-07-08T16:10:13.707357",
+  "base": {
+    "type": "equal_weight_cs_z",
+    "dimensions": [
+      {
+        "dim": "D1",
+        "factor": "low_vol_liquidity_quality_60d",
+        "source": "ohlcv_frozen"
+      },
+      {
+        "dim": "D2",
+        "factor": "volatility_60d",
+        "source": "ohlcv_frozen"
+      },
+      {
+        "dim": "D3",
+        "factor": "lower_shadow_support_20d",
+        "source": "ohlcv_frozen"
+      },
+      {
+        "dim": "D4",
+        "factor": "winner_sentiment_reversal_5d",
+        "source": "ohlcv_frozen"
+      },
+      {
+        "dim": "D5",
+        "factor": "upside_fragility_20d",
+        "source": "ohlcv_frozen"
+      }
+    ]
+  },
+  "enhancers": [
+    {
+      "factor": "cn_cancel_shock",
+      "source": "l2",
+      "role": "cancel_state",
+      "tier": "primary_enhancer",
+      "default_lambda": "0.2",
+      "attribution_target": "D4",
+      "lambda": 0.2
+    },
+    {
+      "factor": "quality_composite",
+      "source": "fundamental_quality",
+      "role": "quality_state",
+      "tier": "d7_representative",
+      "default_lambda": "0.2",
+      "attribution_target": "D4",
+      "lambda": 0.2
+    }
+  ],
+  "blend_formula": "cs_z( eq_wt(D1..D5) + \u03a3 \u03bb_i\u00b7z(enhancer_i) )",
+  "metrics": {
+    "sample_days": 504,
+    "n_days": 529,
+    "ic_base": -0.02869672739400521,
+    "ic_enhanced": -0.02779668346828848,
+    "ic_delta": 0.0009000439257167286,
+    "hl_sharpe_base": 0.20561380071269844,
+    "hl_sharpe_enhanced": 0.30798708985034035,
+    "hl_sharpe_delta": 0.1023732891376419,
+    "direction": 1
+  }
+}

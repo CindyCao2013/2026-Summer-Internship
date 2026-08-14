@@ -1,0 +1,140 @@
+{
+  "factor": "net_active_flow_mktcap_20d",
+  "focus_bartime": "11:29",
+  "horizon_peak": {
+    "bartime": "11:29",
+    "horizon": "Ret_120",
+    "n": "501",
+    "mean": 0.0010269921924137438,
+    "annu_ret": 0.25674804810343593,
+    "sharpe": 4.172128937743195
+  },
+  "period_focus_ret120": [
+    {
+      "period": "2024H1",
+      "bartime": "11:29",
+      "horizon": "Ret_120",
+      "n": 116,
+      "mean": 0.00046237393958561854,
+      "annu_ret": 0.11559348489640463,
+      "sharpe": 2.028746702499243
+    },
+    {
+      "period": "2024H2",
+      "bartime": "11:29",
+      "horizon": "Ret_120",
+      "n": 125,
+      "mean": 0.001426796285999588,
+      "annu_ret": 0.35669907149989705,
+      "sharpe": 4.745692857432537
+    },
+    {
+      "period": "2025H1",
+      "bartime": "11:29",
+      "horizon": "Ret_120",
+      "n": 117,
+      "mean": 0.0011537882766351046,
+      "annu_ret": 0.28844706915877616,
+      "sharpe": 4.722125307414823
+    },
+    {
+      "period": "2025H2",
+      "bartime": "11:29",
+      "horizon": "Ret_120",
+      "n": 125,
+      "mean": 0.0011609604846299889,
+      "annu_ret": 0.2902401211574972,
+      "sharpe": 5.460641706787558
+    }
+  ],
+  "neutralization": [
+    {
+      "mode": "raw",
+      "rank_ic": 0.017830598196350737,
+      "icir": 2.073504690019563,
+      "hl_sharpe": 1.5150216978697786,
+      "hl_annu_ret": 0.23378045118199148,
+      "hl_mdd": -0.19031688095930932,
+      "daily_turnover_hl": 0.5147826158378662,
+      "implied_annu_fee": 0.09652174046959991,
+      "net_sharpe_15bp": -0.17771492756327942,
+      "long_book_excess_sharpe": -0.04635409547315042,
+      "long_book_excess_annu_ret": -0.004548754495194261,
+      "long_book_excess_mdd": -0.20546064022612162,
+      "long_group": 10,
+      "selected_count_mean": 499.32912723449,
+      "universe_count_mean": 4988.371188222924,
+      "gross_sharpe_tradable": 1.0832673483044444,
+      "annu_one_way_turnover": 59.02315385565376,
+      "stats_title": "H-L, Direction: 1, AnnuRet: 23.38%,Sharpe_Ratio: 1.52, MDD: -19.03%, Daily Turnover: 0.51,\n Implied AnnuFee(7.5%): 9.65%, Daily IC: 0.0178, Annu ICIR: 2.07",
+      "direction": 1
+    },
+    {
+      "mode": "size",
+      "rank_ic": 0.02714052213618111,
+      "icir": 4.410703526191982,
+      "hl_sharpe": 2.9473846028392803,
+      "hl_annu_ret": 0.31523482786903867,
+      "hl_mdd": -0.10293378995474607,
+      "daily_turnover_hl": 0.47440550958466643,
+      "implied_annu_fee": 0.08895103304712494,
+      "net_sharpe_15bp": 1.5950837383692325,
+      "long_book_excess_sharpe": 0.7646021127228005,
+      "long_book_excess_annu_ret": 0.061731874480749176,
+      "long_book_excess_mdd": -0.17461215571993366,
+      "long_group": 10,
+      "selected_count_mean": 499.28286014721346,
+      "universe_count_mean": 4988.371188222924,
+      "gross_sharpe_tradable": 3.357288063676872,
+      "annu_one_way_turnover": 53.26258754246552,
+      "stats_title": "H-L, Direction: 1, AnnuRet: 31.52%,Sharpe_Ratio: 2.95, MDD: -10.29%, Daily Turnover: 0.47,\n Implied AnnuFee(7.5%): 8.90%, Daily IC: 0.0271, Annu ICIR: 4.41",
+      "direction": 1
+    },
+    {
+      "mode": "industry",
+      "rank_ic": 0.015155827628434926,
+      "icir": 2.692455961306059,
+      "hl_sharpe": 1.9043273867209127,
+      "hl_annu_ret": 0.22335840496284357,
+      "hl_mdd": -0.12933896037506917,
+      "daily_turnover_hl": 0.48015127529033247,
+      "implied_annu_fee": 0.09002836411693735,
+      "net_sharpe_15bp": 0.08407549143838243,
+      "long_book_excess_sharpe": -0.13715943878887973,
+      "long_book_excess_annu_ret": -0.011005640966719354,
+      "long_book_excess_mdd": -0.1198770829211646,
+      "long_group": 10,
+      "selected_count_mean": 499.32492113564666,
+      "universe_count_mean": 4988.371188222924,
+      "gross_sharpe_tradable": 1.839459992854355,
+      "annu_one_way_turnover": 55.2913300710944,
+      "stats_title": "H-L, Direction: 1, AnnuRet: 22.34%,Sharpe_Ratio: 1.90, MDD: -12.93%, Daily Turnover: 0.48,\n Implied AnnuFee(7.5%): 9.00%, Daily IC: 0.0152, Annu ICIR: 2.69",
+      "direction": 1
+    },
+    {
+      "mode": "size_industry",
+      "rank_ic": 0.023560409520322182,
+      "icir": 4.8494659857405304,
+      "hl_sharpe": 3.3807064279551784,
+      "hl_annu_ret": 0.29234754847407757,
+      "hl_mdd": -0.09511624393058114,
+      "daily_turnover_hl": 0.4633406923259706,
+      "implied_annu_fee": 0.08687637981111948,
+      "net_sharpe_15bp": 1.8497363858603328,
+      "long_book_excess_sharpe": 0.5012291622938426,
+      "long_book_excess_annu_ret": 0.03982507408865345,
+      "long_book_excess_mdd": -0.1677282516601618,
+      "long_group": 10,
+      "selected_count_mean": 499.28286014721346,
+      "universe_count_mean": 4988.371188222924,
+      "gross_sharpe_tradable": 3.9749293412060607,
+      "annu_one_way_turnover": 52.263615025552575,
+      "stats_title": "H-L, Direction: 1, AnnuRet: 29.23%,Sharpe_Ratio: 3.38, MDD: -9.51%, Daily Turnover: 0.46,\n Implied AnnuFee(7.5%): 8.69%, Daily IC: 0.0236, Annu ICIR: 4.85",
+      "direction": 1
+    }
+  ],
+  "next": [
+    "Temporal Feature Layer: core/l2_features/return_timing.py (Gu/Gd)",
+    "Then thin tgd.py on residuals — not a standalone factor script"
+  ]
+}

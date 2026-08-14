@@ -1,0 +1,9 @@
+{
+  "confirm_start": "2022-01-28T00:00:00",
+  "confirm_end": "2025-12-31T00:00:00",
+  "signal_shift": 1,
+  "convention": "G1=short, G10=long, H-L=G10-G1",
+  "excess_gate": 3.5,
+  "n_rows": 41,
+  "out_dir": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research_delivery/TGD20_research_package/data/analysis/mentor_protocol"
+}

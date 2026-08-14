@@ -1,0 +1,11 @@
+{
+  "window": "last_252d",
+  "rank_ic": 0.04539327593296699,
+  "rank_icir": 7.017374372183443,
+  "net_sharpe_plain": 0.9489131440084654,
+  "daily_turnover_plain": 0.8086243035350106,
+  "monotonicity": 0.7777777777777778,
+  "direction_book": 1,
+  "honesty": "research_proxy_not_paper_apm",
+  "n_days": 252
+}

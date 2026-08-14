@@ -1,0 +1,145 @@
+factor_id: FlowDensity20
+
+layer_discipline: |
+  **Factor Identity:** `FlowDensity20` is the only Registry / investable factor_id for this pack.
+  Amount / GrossActive / Flow⊥Amount rows are **mechanism diagnostics** (channel tests).
+  Execution buffer labels are **portfolio implementations** of the same signal.
+
+construction_title: "Factor construction: net active flow / mktcap → FlowDensity20"
+construction_steps:
+  - "active flow"
+  - "net / mktcap"
+  - "MA20"
+  - "size+ind"
+  - "exec buffer"
+  - "shift=1"
+
+executive_summary: |
+  FlowDensity20 is a **microstructure × liquidity interaction** signal: net active flow
+  scaled by market cap (20d). On the confirmation harvest it shows meaningful RankICIR after
+  size+industry neutralization, and execution buffers raise Net Sharpe substantially by
+  cutting turnover — without claiming a pure “smart money” story.
+
+  Mechanism evidence is decisive: amount/gross-activity channels are strongly **negative**
+  ICIR, while Flow⊥Amount **flips sign**. The tradable alpha is therefore not pure flow
+  direction; it is entangled with anti-activity / liquidity structure.
+
+  | Lens | Snapshot (legacy ALL / 2022–2025) |
+  |------|-----------------------------------|
+  | Research | RankICIR size+ind ≈ **4.85** · Gross Sharpe ≈ 3.38 · Mono ≈ 0.88 |
+  | Admission | Execution-best Net Sharpe ≈ **2.88** · TO ≈ 0.165 |
+
+factor_thesis: |
+  Active buy/sell imbalance normalized by size should forecast returns if informed flow
+  is slow to reverse. The research question is whether the measured “flow” is economically
+  a directional flow factor or a **flow conditioned on liquidity/activity**.
+
+economic_intuition: |
+  High net active flow in low-activity names can look like conviction; the same signed flow
+  in high-amount names may just be churn. Amount-orthogonal tests show that stripping the
+  activity channel destroys (and can reverse) the edge — hence interaction, not pure flow.
+
+formula:
+  raw_variables: |
+    Daily active buy/sell amounts and market capitalization (L2 / broker-derived active flow fields
+    as used in the FlowDensity v1 pipeline).
+  intermediate_variables: |
+    $$\mathrm{NetActiveFlow}_t,\qquad \mathrm{MktCap}_t,\qquad \mathrm{Amount}_t$$
+  transformations: |
+    Size scaling and 20-day smoothing (implementation-frozen for this harvest):
+
+    $$F_t = \mathrm{MA}_{20}\left(\frac{\mathrm{NetActiveFlow}_t}{\mathrm{MktCap}_t}\right)$$
+
+    Amount-orthogonal diagnostic: cross-sectional residual \(F \perp \mathrm{Amount}\).
+  final_signal: |
+    $$\mathrm{FlowDensity20}_t = F_t,\qquad \mathrm{signal}_t = F_{t-1}$$
+
+signal_pipeline: |
+  ```
+  active buy/sell + mktcap
+        ↓
+  net active flow / mktcap
+        ↓
+  MA20 → FlowDensity20
+        ↓
+  diagnostics: neutralize amount / size+industry
+  ```
+
+mechanism_rows:
+  - hypothesis: "Pure flow direction is the alpha"
+    test: "Flow⊥Amount RankICIR"
+    result: "ICIR ≈ −2.49 (sign flip)"
+    conclusion: "fail as pure flow — interaction with liquidity/activity"
+  - hypothesis: "Anti-activity / amount channel dominates"
+    test: "Amount / GrossActive RankICIR"
+    result: "ICIR ≈ −8.6"
+    conclusion: "strong liquidity anomaly; entangled with FlowDensity"
+  - hypothesis: "FlowDensity raw remains tradable after size+industry"
+    test: "size+ind RankICIR / H-L Sharpe"
+    result: "ICIR ≈ 4.85 · Gross Sharpe ≈ 3.38"
+    conclusion: "accept as candidate interaction factor (formula not frozen)"
+
+mechanism_narrative: |
+  FlowDensity should be catalogued as **liquidity_flow_interaction**, not pure smart-money flow.
+  Residualizing on amount removes the positive edge — the opposite of a pure directional flow story.
+
+ic_narrative: |
+  Primary harvest uses RankIC / RankICIR. Raw RankICIR is weaker (~2.07); size and size+industry
+  lift RankICIR to ~4.4–4.85. Pearson IC is N/A in artifacts.
+
+portfolio_narrative: |
+  Size+industry Gross Sharpe ≈ 3.38 with MDD ≈ −9.5%. Monotonicity ≈ 0.88 on the mechanism table
+  for the canonical signal. Direction = +1 on the confirmation book.
+
+risk_narrative: |
+  Neutralization **improves** measured RankICIR versus raw — alpha appears to survive size/industry
+  controls on this sample. Still, amount-orthogonal diagnostics show the economic channel is
+  not “pure flow.” Show the full ladder; do not advertise only the best cell.
+
+stability_narrative: |
+  Yearly stability CSV is harvested from the FlowDensity pack; treat as Research Track evidence
+  pending Protocol Production re-run.
+
+execution_narrative: |
+  Execution-best row lifts Net Sharpe to ≈ 2.88 while cutting daily turnover to ≈ 0.165.
+  This is portfolio-construction efficiency on a fixed signal, not a new predictive formula.
+
+limitations: |
+  - Formula not frozen; naming/economics still tagged interaction.
+  - Legacy ALL / 2022–2025 harvest — not Protocol CSI1000 Production Track.
+  - Equal-rank blend with TGD underperforms TGD alone (see orthogonality diagnostics).
+  - Pearson IC / Sortino / Calmar N/A.
+  - Protocol charts filled in Milestone 1D.7 from confirmation size+industry signal (evaluation only).
+
+final_verdict: |
+  **Status: candidate.** Research pack complete for interaction microstructure alpha
+  (mechanism + execution + protocol charts). Do not treat as pure flow; do not default 50/50
+  with TGD. Eligible for Registry as `candidate` after human review — not auto-validated.
+
+code_map:
+  - item: Implementation
+    path: "research/reports/l2_flow_density_v1/ (+ flow density confirmation pipeline)"
+  - item: Mechanism long-form
+    path: "research/reports/l2_flow_density_v1/mechanism/"
+  - item: Orthogonality
+    path: "research/reports/factor_orthogonality/TGD20_FlowDensity20/"
+
+card_fields:
+  hypothesis: |
+    Net active flow / mktcap (20d) predicts returns as a Flow × Liquidity interaction,
+    not as pure directional smart money.
+  mechanism:
+    - microstructure
+    - liquidity
+  formula: "MA20(net_active_flow / mktcap); diagnostics include Flow⊥Amount"
+  data_requirement:
+    - active buy/sell flow
+    - mktcap
+    - amount
+  known_failure_modes:
+    - misclassified_as_pure_flow
+    - amount_channel_entanglement
+    - naive_blend_with_TGD
+  do_not:
+    - freeze as pure flow without amount-orth evidence
+    - equal-weight with TGD by default

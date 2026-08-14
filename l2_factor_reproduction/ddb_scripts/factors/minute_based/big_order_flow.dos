@@ -1,0 +1,30 @@
+// big_order_flow.dos
+// 大单资金净流入率（Phase1 代理）：日内 AvgOrderAmt 高于 (1-top_frac) 分位的分钟
+// 用 percentile 阈值代替 rank，降低全样本内存峰值
+
+def compute_big_order_net_inflow(startDate, endDate, universe='000852.SH', top_frac=0.2){
+    stocks = get_stock_pool(startDate, endDate, universe, true)
+    t = load_minute_bars(startDate, endDate, stocks)
+    t = attach_bar_ret(t)
+    t = attach_avg_order_amt(t)
+
+    // 日内阈值：保留 AvgOrderAmt >= percentile(..., 1-top_frac)
+    t = select *, percentile(AvgOrderAmt, 1 - top_frac) as thr
+        from t context by Symbol, Date
+    t_top = select * from t where AvgOrderAmt >= thr
+
+    day_amt = select Symbol, Date, sum(Amount) as TotalAmount from t group by Symbol, Date
+    top_flow = select Symbol, Date,
+            sum(Amount * (BarRet > 0)) - sum(Amount * (BarRet < 0)) as NetInflow
+        from t_top group by Symbol, Date
+    result = select Symbol, Date, NetInflow \ TotalAmount as value
+        from lj(top_flow, day_amt, `Symbol`Date)
+
+    result = select Symbol as symbol,
+            to_signal_tradetime(Date) as tradetime,
+            "big_order_net_inflow" as factorname,
+            value
+        from result
+        where isValid(value)
+    return result
+}

@@ -1,0 +1,156 @@
+{
+  "version": "information_space_v1",
+  "status": "frozen",
+  "base_dimensions": [
+    {
+      "dimension_id": "D1",
+      "name": "Stable Liquidity Quality",
+      "representative": "low_vol_liquidity_quality_60d",
+      "layer": "base_alpha",
+      "status": "frozen"
+    },
+    {
+      "dimension_id": "D2",
+      "name": "Low Volatility / Risk",
+      "representative": "volatility_60d",
+      "layer": "base_alpha",
+      "status": "frozen"
+    },
+    {
+      "dimension_id": "D3",
+      "name": "Price Path Asymmetry",
+      "representative": "lower_shadow_support_20d",
+      "layer": "base_alpha",
+      "status": "frozen"
+    },
+    {
+      "dimension_id": "D4",
+      "name": "Behavioral Reversal",
+      "representative": "winner_sentiment_reversal_5d",
+      "layer": "base_alpha",
+      "status": "frozen"
+    },
+    {
+      "dimension_id": "D5",
+      "name": "Tail Fragility",
+      "representative": "upside_fragility_20d",
+      "layer": "base_alpha",
+      "status": "frozen"
+    },
+    {
+      "dimension_id": "D6",
+      "name": "Fundamental Value",
+      "representative": "value_composite",
+      "layer": "enhancer_only",
+      "status": "frozen",
+      "bricks": [
+        "value_ep",
+        "value_bp",
+        "value_cfp"
+      ],
+      "harness_verdict": "enhancer_not_standalone_dim"
+    },
+    {
+      "dimension_id": "D7",
+      "name": "Fundamental Quality",
+      "representative": "quality_composite",
+      "layer": "enhancer_only",
+      "status": "frozen",
+      "bricks": [
+        "roe_stability",
+        "gross_profitability",
+        "cfo_quality"
+      ]
+    }
+  ],
+  "enhancers": [
+    {
+      "factor": "cn_voi_shock",
+      "layer": "conditional_enhancer",
+      "source": "l2",
+      "role": "flow_shock",
+      "tier": "strict_residual",
+      "primary_target_dimension": "D4",
+      "sharpe_delta_at_lambda_0.2": 2.1380446177155346
+    },
+    {
+      "factor": "cn_mpb_shock",
+      "layer": "conditional_enhancer",
+      "source": "l2",
+      "role": "trade_shock",
+      "tier": "strict_residual",
+      "primary_target_dimension": "D4",
+      "sharpe_delta_at_lambda_0.2": 2.1330337918589137
+    },
+    {
+      "factor": "cn_cancel_shock",
+      "layer": "conditional_enhancer",
+      "source": "l2",
+      "role": "cancel_state",
+      "tier": "enhancer_only",
+      "primary_target_dimension": "D4",
+      "sharpe_delta_at_lambda_0.2": 3.359055770008763
+    },
+    {
+      "factor": "quality_composite",
+      "layer": "conditional_enhancer",
+      "source": "fundamental_quality",
+      "role": "quality_state",
+      "tier": "d7_representative",
+      "primary_target_dimension": "D4",
+      "sharpe_delta_at_lambda_0.2": 2.0789443129638165
+    },
+    {
+      "factor": "value_composite",
+      "layer": "conditional_enhancer",
+      "source": "fundamental_value",
+      "role": "value_state",
+      "tier": "d6_representative",
+      "primary_target_dimension": "D4",
+      "sharpe_delta_at_lambda_0.2": 2.3729142969273687
+    }
+  ],
+  "production_stack_v2": {
+    "version": "v2",
+    "status": "production",
+    "base": "equal_weight_cs_z(D1..D5)",
+    "enhancers": [
+      {
+        "factor": "cn_cancel_shock",
+        "lambda": 0.2,
+        "source": "l2"
+      },
+      {
+        "factor": "quality_composite",
+        "lambda": 0.2,
+        "source": "fundamental_quality"
+      }
+    ],
+    "blend": "cs_z( eq_wt(D1..D5) + λ_cancel·z(cancel_shock) + λ_quality·z(quality_composite) )",
+    "artifact": "alpha_production_stack_v2.json",
+    "metrics": {
+      "sample_days": 504,
+      "n_days": 529,
+      "ic_base": -0.02869672739400521,
+      "ic_enhanced": -0.02779668346828848,
+      "ic_delta": 0.0009000439257167286,
+      "hl_sharpe_base": 0.20561380071269844,
+      "hl_sharpe_enhanced": 0.30798708985034035,
+      "hl_sharpe_delta": 0.1023732891376419,
+      "direction": 1
+    }
+  },
+  "deferred": [
+    {
+      "dimension_id": "D8",
+      "pillar": "growth",
+      "status": "not_started"
+    }
+  ],
+  "closed_tracks": [
+    "l2_level_v1",
+    "l2.5_ssl2",
+    "ml_score",
+    "factor_zoo_expansion"
+  ]
+}

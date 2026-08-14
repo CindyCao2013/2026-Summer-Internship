@@ -1,0 +1,36 @@
+schema: selected_factor_workflow_v1
+factor_id: FlowDensity20
+engine_identity: net_active_flow_mktcap_20d
+source:
+  - factor_formulas_l2_flow_p2.py
+  - l2_data_loaders.py
+spec: factor_specs/FlowDensity20.yaml
+runners:
+  confirmation: run_l2_flow_confirmation.py
+  validation: run_l2_flow_density_validation_v1.py
+  mechanism: run_flow_density_mechanism_v1.py
+  amount_orthogonality: run_flow_density_amount_orth_v1.py
+  execution: run_flow_density_execution_opt_v1.py
+data:
+  input: DolphinDB active buy/sell amount plus EOD float market cap
+  intraday_group_parquet: research/reports/l2_flow_density_v1/heatmaps/net_active_flow_mktcap_20d/group_data_ret.parquet
+artifacts:
+  validation_root: research/reports/l2_flow_density_v1
+  pack: research/reports/factors/FlowDensity20
+  group_returns: research/reports/l2_flow_density_v1/protocol_charts_1d7/FlowDensity20/report/group_cum_pnl.csv
+  group_turnover: research/reports/l2_flow_density_v1/validation_v1/group_turnover.csv
+  exact_excess_daily:
+    raw: research/reports/l2_flow_density_v1/validation_v1/long_book_excess_daily_raw.csv
+    headline_size_industry: research/reports/l2_flow_density_v1/validation_v1/long_book_excess_daily_size_industry.csv
+  neutralization: research/reports/l2_flow_density_v1/validation_v1/neutralization_ladder.csv
+plots:
+  selected_vs_universe: research_delivery/selected_factors/FlowDensity20/plots/long_book_vs_universe.png
+  exact_excess: research_delivery/selected_factors/FlowDensity20/plots/long_book_excess_curve.png
+  ic: research/reports/factors/FlowDensity20/ic_analysis/ic_curve.png
+  decile: research/reports/factors/FlowDensity20/quantile_analysis/decile_return.png
+  cumulative: research/reports/factors/FlowDensity20/quantile_analysis/cumulative_long_short.png
+  stability: research/reports/factors/FlowDensity20/stability/stability_yearly.png
+  turnover: research/reports/factors/FlowDensity20/execution/turnover.png
+reports:
+  delivery: research_delivery/factors/FlowDensity20/report.md
+  pack: research/reports/factors/FlowDensity20

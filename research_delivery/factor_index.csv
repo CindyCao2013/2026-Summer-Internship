@@ -1,0 +1,10 @@
+factor_id,display_name,tier,status,headline_variant,long_book_excess_sharpe_exact,metric_status,net_sharpe_hl_15bp_legacy,counts_toward_library,report_path
+TGD20,Temporal Gradient Density,A,delivered,size_industry,2.1602,exact,1.719,yes,research_delivery/TGD20_research_package/report/TGD20_买方因子研究报告.md
+D1_LiquidityQuality60d,D1 Liquidity Quality 60d,A,delivered,raw,,pending_exact_rerun,1.3777,yes,research_delivery/factors/D1_LiquidityQuality60d/report.md
+FlowDensity20,Flow Density 20d,A,delivered,size_industry,0.5012,exact,1.8497,yes,research_delivery/factors/FlowDensity20/report.md
+APM_SessionResidual,APM Session Residual,A,delivered,size_industry,,pending_exact_rerun,1.5,yes,research_delivery/factors/APM_SessionResidual/report.md
+IdealReversal,Ideal Reversal,A,delivered,raw,,pending_exact_rerun,1.7,yes_soft,research_delivery/factors/IdealReversal/report.md
+IdealAmplitude,Ideal Amplitude,A,delivered,raw,,pending_exact_rerun,3.4,yes_soft,research_delivery/factors/IdealAmplitude/report.md
+AmihudShockReversal5d,Amihud Shock Reversal 5d,A,testing_candidate,raw,,pending_exact_rerun,,yes,research_delivery/factors/AmihudShockReversal5d/report.md
+SKEW,Skewness Anomaly (SKEW/IdioSKEW),A-,research_candidate,size_industry,2.48360601223742,validation_v1_hl_sharpe,,yes,research_delivery/SKEW_research_package/report/SKEW_买方因子研究报告.md
+SmartMoney10d,Smart Money 10d,B,parked,raw,,not_required_parked,0.31,no,research_delivery/factors/SmartMoney10d/report.md

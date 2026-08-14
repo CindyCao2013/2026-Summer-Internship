@@ -1,0 +1,15 @@
+{
+  "schema_version": "composite_production_stress_v1",
+  "meta": {
+    "start": "2020-01-02",
+    "end": "2025-12-31",
+    "n_days": 1455,
+    "top_frac": 0.1,
+    "note": "Discovery calendar starts at cfg.START_DAY (2020), not 2018."
+  },
+  "alpha_roles": {
+    "primary_source": "TGD20",
+    "independent_source": "D1",
+    "combination_enhancer": "FlowDensity20"
+  }
+}

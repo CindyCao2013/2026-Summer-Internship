@@ -1,0 +1,9 @@
+,ats_trade_count,ats_volume,amount,volume,turnover,trade_count,amihud,volatility_state
+ats_trade_count,1.0,,,,,0.17336889520213944,,
+ats_volume,,1.0,,,0.9999999999999998,,0.025854025605237287,
+amount,,,1.0,0.9198983600374241,,,,
+volume,,,0.9198983600374241,1.0,,,,
+turnover,,0.9999999999999998,,,1.0,,0.025854025605237287,
+trade_count,0.17336889520213944,,,,,1.0,,
+amihud,,0.025854025605237287,,,0.025854025605237287,,1.0,
+volatility_state,,,,,,,,1.0

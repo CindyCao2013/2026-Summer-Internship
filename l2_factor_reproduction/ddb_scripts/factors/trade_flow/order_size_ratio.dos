@@ -1,0 +1,42 @@
+// order_size_ratio.dos
+// Phase 2：中/小单成交占比（基于上传的逐笔 Amount）
+// 主路径在 Python 按日从 CH 拉取并聚合；本脚本提供可选 DDB 聚合（表已 upload 时）
+
+def aggregate_order_size_from_tick(tickTable, tradeDate, factorName='mid_order_ratio'){
+    // tickTable 列：Symbol(STRING), Amount(DOUBLE)
+    // 分档（元）：特大>100万，大单 20~100万，中单 4~20万，小单<=4万
+    t = select Symbol, Amount,
+            iif(Amount > 1000000, 'super_large',
+                iif(Amount > 200000, 'large',
+                    iif(Amount > 40000, 'medium', 'small'))) as OrderSize
+        from tickTable
+        where isValid(Amount) and Amount > 0
+
+    day_tot = select Symbol, sum(Amount) as TotalAmount from t group by Symbol
+    if (factorName == 'mid_order_ratio'){
+        part = select Symbol, sum(Amount) as PartAmount from t where OrderSize = 'medium' group by Symbol
+    } else {
+        part = select Symbol, sum(Amount) as PartAmount from t where OrderSize = 'small' group by Symbol
+    }
+    result = select Symbol, nullFill(PartAmount, 0.0) \ TotalAmount as value
+        from lj(day_tot, part, `Symbol)
+
+    result = select Symbol as symbol,
+            concatDateTime(tradeDate, 09:30:00) as tradetime,
+            factorName as factorname,
+            value
+        from result
+        where isValid(value)
+    return result
+}
+
+// 接口占位：真实计算由 Python 日循环驱动（避免一次性加载全区间 Tick）
+def compute_mid_order_ratio(startDate, endDate, universe='000852.SH'){
+    print("WARN: compute_mid_order_ratio should be invoked via Python tick day-loop builder.")
+    return table(1:0, `symbol`tradetime`factorname`value, [SYMBOL, TIMESTAMP, STRING, DOUBLE])
+}
+
+def compute_small_order_ratio(startDate, endDate, universe='000852.SH'){
+    print("WARN: compute_small_order_ratio should be invoked via Python tick day-loop builder.")
+    return table(1:0, `symbol`tradetime`factorname`value, [SYMBOL, TIMESTAMP, STRING, DOUBLE])
+}

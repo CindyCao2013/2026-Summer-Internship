@@ -1,0 +1,15 @@
+key,value
+factor_id,FlowDensity20
+status,candidate
+family,microstructure
+RankIC_raw,0.0178
+RankIC_size_industry,0.0236
+ICIR_raw,2.0735
+ICIR_size_industry,4.8495
+monotonicity,
+execution_best_net_Sharpe,2.8806
+execution_best_daily_turnover,0.1645
+long_book_excess_sharpe_exact_raw,-0.0464
+long_book_excess_sharpe_exact_size_industry,0.5012
+long_book_excess_annu_ret_exact_size_industry,0.03983
+long_book_excess_mdd_exact_size_industry,-0.16773

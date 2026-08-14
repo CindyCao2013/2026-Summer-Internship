@@ -1,0 +1,46 @@
+# Factor Research Protocol v1 — TGD20 spec (metadata only)
+# Formula is frozen; harness must not recompute/retune.
+
+factor_id: TGD20
+display_name: TGD20
+family:
+  - temporal_information
+source:
+  type: paper
+  paper_id: "20221225_kysec_intraday_timing"
+  paper_title: 日内分钟收益率的时序特征：逻辑讨论与因子增强
+
+status: validated
+data_level: minute
+frozen_formula: true
+
+adapter: TGD20
+implementation:
+  note: Existing L2/minute pipeline + research/reports/factors/TGD20 pack
+  do_not:
+    - retune MA window
+    - change residual controls
+    - recompute under harness until Protocol Dual Benchmark migration
+
+data_coverage:
+  requested: "2018-01-01_2025-12-31"
+  actual: "2022-01-28_2025-12-31"
+  exception_reason: "minute return / Gu-Gd lineage availability (legacy pack window)"
+
+evaluation:
+  research_track: required
+  production_track: required
+  production_horizon_days: 20
+  follow: docs/factor_research_protocol_v1.md
+
+pack:
+  path: research/reports/factors/TGD20
+  schema_version: factor_report_v2
+  report_content: factor_specs/TGD20_report_content.yaml
+  schema_note: Milestone 1C Golden Pack (harvest); Production Dual Benchmark re-run deferred
+
+# Schema-driven harvest copies (generator must not hardcode factor_id branches)
+artifacts:
+  copy:
+    - src: research/reports/factor_orthogonality/TGD20_FlowDensity20/summary.md
+      dest: diagnostics/orthogonality_TGD20_FlowDensity20_summary.md

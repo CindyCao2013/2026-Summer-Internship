@@ -1,0 +1,26 @@
+schema: selected_factor_v1
+factor_id: FlowDensity20
+display_name: Flow Density 20d
+engine_identity: net_active_flow_mktcap_20d
+identity_mapping: exact_delivery_alias
+family: flow_liquidity_microstructure
+status: candidate
+direction: positive
+long_group: 10
+formula_frozen: false
+formula: "CS_ZScore(RollingSum20((active_buy_amt-active_sell_amt)/float_mktcap))"
+signal_shift: 1
+test_universe: ALL
+actual_period: "2022-01-28_2025-12-31"
+headline_variant: size_industry_neutralized
+headline_metric:
+  name: long_book_excess_sharpe
+  benchmark: exact_daily_equal_weight_return_of_valid_test_universe
+  cost: gross
+legacy_metric:
+  name: best_net_sharpe_hl_15bp
+  value: 2.8806
+  role: execution_diagnostic
+caveat:
+  - amount-orthogonal tests can flip sign
+  - do not reinterpret as pure smart-money flow

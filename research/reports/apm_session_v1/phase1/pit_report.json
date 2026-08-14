@@ -1,0 +1,21 @@
+{
+  "cache_stores_raw_date_T": true,
+  "cache_shifted_for_backtest": false,
+  "eval_convention_phase2": "signal(T) predicts return(T+1) via shift(1) at eval time only",
+  "bars_used_for_date_T": "minute Close with Bartime on date T in [13:01,15:00]; EOD Open/Close on T / T-1",
+  "index_same_day_eod_ok_for_residual": true,
+  "no_future_close_in_pm_leg": true,
+  "formula_meta": {
+    "factor_id": "APM_SessionResidual",
+    "formula_version": "apm_session_v1_adapted_eod_index",
+    "identity_class": "adapted_replication",
+    "index_code": "000852.SH",
+    "index_pm_matched": false,
+    "index_residual_method": "eod_overnight_plus_eod_daytime_proxy",
+    "pm_start_rule": "first_available_bar_after_13_01",
+    "cache_shifted_for_backtest": false,
+    "active_star_columns": false,
+    "proxy_factor_id_untouched": "ActiveTradeProxy",
+    "min_pm_bars": 2
+  }
+}

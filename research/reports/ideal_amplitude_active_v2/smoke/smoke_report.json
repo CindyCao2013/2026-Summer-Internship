@@ -1,0 +1,22 @@
+{
+  "formula_version": "ideal_amplitude_active_v2_ewm5_amp_over_netvol",
+  "start": "2024-06-01",
+  "end": "2024-06-30",
+  "coverage": {
+    "n_days": 19,
+    "n_symbols": 200,
+    "coverage_cell": 0.9944736842105263
+  },
+  "distribution": {
+    "n": 3779,
+    "mean": 0.06266066970442549,
+    "std": 0.02771591171610269,
+    "p50": 0.05652003095839553,
+    "p10": 0.035031701645801126,
+    "p90": 0.09939343208993105
+  },
+  "n_long_rows": 3798,
+  "identity": "IdealAmplitude_ActiveV2",
+  "not_ideal_amplitude_price": true,
+  "use_gate": false
+}

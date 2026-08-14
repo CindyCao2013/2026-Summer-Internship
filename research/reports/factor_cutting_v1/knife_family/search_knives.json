@@ -1,0 +1,74 @@
+{
+  "object": "panel",
+  "best_knife": "volume",
+  "effectiveness": 0.04114289476678756,
+  "family": "participation",
+  "ranking": [
+    {
+      "knife": "volume",
+      "family": "participation",
+      "effectiveness": 0.04114289476678756,
+      "ic_spread": -0.03657423524447604,
+      "separation": -0.04799588405025485
+    },
+    {
+      "knife": "amount",
+      "family": "participation",
+      "effectiveness": 0.04085058429282999,
+      "ic_spread": -0.03632093366663361,
+      "separation": -0.04764506023212457
+    },
+    {
+      "knife": "turnover_proxy",
+      "family": "participation",
+      "effectiveness": 0.03987840357154614,
+      "ic_spread": -0.035597965344202405,
+      "separation": -0.04629906091256174
+    },
+    {
+      "knife": "ats_trade_count",
+      "family": "trader_structure",
+      "effectiveness": 0.038305127552929114,
+      "ic_spread": -0.03379564434302013,
+      "separation": -0.045069352367792574
+    }
+  ],
+  "independent_knives": [
+    "turnover_proxy",
+    "ats_trade_count"
+  ],
+  "corr": {
+    "amount": {
+      "amount": 1.0,
+      "volume": 0.9180422165158866,
+      "turnover_proxy": null,
+      "ats_trade_count": null
+    },
+    "volume": {
+      "amount": 0.9180422165158866,
+      "volume": 1.0,
+      "turnover_proxy": null,
+      "ats_trade_count": null
+    },
+    "turnover_proxy": {
+      "amount": null,
+      "volume": null,
+      "turnover_proxy": 1.0,
+      "ats_trade_count": null
+    },
+    "ats_trade_count": {
+      "amount": null,
+      "volume": null,
+      "turnover_proxy": null,
+      "ats_trade_count": 1.0
+    }
+  },
+  "n_candidates": 4,
+  "corr_indep_threshold": 0.5,
+  "families": {
+    "amount": "participation",
+    "volume": "participation",
+    "turnover_proxy": "participation",
+    "ats_trade_count": "trader_structure"
+  }
+}

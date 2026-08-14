@@ -1,0 +1,44 @@
+{
+  "schema_version": "factor_protocol_v1",
+  "factor_id": "EXAMPLE_FACTOR",
+  "status": "testing",
+  "family": ["microstructure"],
+  "admission": {
+    "requires_manual_review": true,
+    "numeric_bar": null
+  },
+  "data_coverage": {
+    "requested": "2018-01-01_2025-12-31",
+    "actual": "2018-01-01_2025-12-31",
+    "exception_reason": null
+  },
+  "production": {
+    "universe": "CSI1000",
+    "universe_membership": "pit",
+    "period_target": "2018-01-01_2025-12-31",
+    "actual_period": "2018-01-01_2025-12-31",
+    "horizon_days": 20,
+    "neutralization": "industry_size",
+    "cost_bp": 15,
+    "portfolio": "10_decile_long_short",
+    "IC": null,
+    "RankIC": null,
+    "ICIR": null,
+    "RankICIR": null,
+    "Annualized_IC": null,
+    "Gross_Sharpe": null,
+    "Net_Sharpe": null,
+    "MDD": null,
+    "Turnover": null,
+    "Monotonicity": null
+  },
+  "research": {
+    "universe": "ALL",
+    "period_target": "2018-01-01_2025-12-31",
+    "actual_period": null,
+    "horizon_days": 20,
+    "neutralization": "none",
+    "note": "Research block is informational; registry ranking uses production only."
+  },
+  "metric_note": "IC=Pearson, RankIC=Spearman; both ICIR and RankICIR required. Production horizon locked to 20D."
+}

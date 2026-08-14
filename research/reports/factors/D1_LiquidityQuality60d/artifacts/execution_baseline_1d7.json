@@ -1,0 +1,13 @@
+{
+  "factor": "D1_LiquidityQuality60d",
+  "source": "low_vol_liquidity_quality_60d",
+  "frozen_formula": true,
+  "signal_mode": "raw",
+  "signal_shift": 1,
+  "cost_round_trip": 0.0015,
+  "best_label": "raw|daily_buffer_5_15",
+  "best_net_sharpe": 1.3776758945103904,
+  "best_gross_sharpe": 1.8100745789263029,
+  "best_daily_turnover": 0.2342810083275043,
+  "note": "Milestone 1D.7 execution only \u2014 formula not retuned"
+}

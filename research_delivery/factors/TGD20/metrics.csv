@@ -1,0 +1,15 @@
+key,value
+factor_id,TGD20
+status,validated
+family,temporal
+RankIC_raw,0.043
+RankIC_size_industry,0.0415
+ICIR_raw,6.98
+ICIR_size_industry,11.29
+monotonicity,0.988
+execution_best_net_Sharpe,2.32
+execution_best_daily_turnover,0.297
+long_book_excess_sharpe_exact_raw,1.2393
+long_book_excess_sharpe_exact_size_industry,2.1602
+long_book_excess_annu_ret_exact_size_industry,0.08805
+long_book_excess_mdd_exact_size_industry,-0.05041

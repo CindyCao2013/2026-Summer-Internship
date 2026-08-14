@@ -1,0 +1,11 @@
+key,value
+factor_id,D1_LiquidityQuality60d
+status,candidate
+family,liquidity
+RankIC_raw,0.0573
+RankIC_size_industry,
+ICIR_raw,6.0135
+ICIR_size_industry,
+monotonicity,0.8
+execution_best_net_Sharpe,1.3777
+execution_best_daily_turnover,0.2343

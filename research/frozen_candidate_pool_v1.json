@@ -1,0 +1,319 @@
+{
+  "version": "frozen_candidate_pool_v1",
+  "tag": "v1.0-frozen",
+  "frozen_at": "2026-07-09",
+  "status": "library_v1_frozen",
+  "methodology": "discovery → density → residual IC → stack validation → role assignment (base | satellite | enhancer | drop)",
+  "alpha_role_taxonomy": {
+    "return_alpha": "Strong IC — ranks stocks by expected return (e.g. winner_sentiment_reversal)",
+    "portfolio_alpha": "Improves stack Sharpe without strong standalone IC ranking (rare)",
+    "conditional_enhancer": "State variable — improves when/how base alpha works (e.g. amihud_shock, cancel_shock)",
+    "research_satellite": "Independent information source, not stable production weight (D4 max_return, gain_exhaustion, D3 lower_shadow)",
+    "drop": "Redundant to an existing base source; no residual IC and/or negative stack uplift"
+  },
+  "ohlcv_base_sources": [
+    "D1_low_vol_liquidity_quality_60d",
+    "D4_winner_sentiment_reversal_5d",
+    "D5_upside_fragility_20d"
+  ],
+  "base_architecture": {
+    "name": "Base3",
+    "blend": "equal_weight_cs_z(D1, D4, D5)",
+    "n_dimensions": 3,
+    "dropped_from_base": [
+      "D2_volatility_60d",
+      "D3_lower_shadow_support_20d"
+    ],
+    "rationale": "D2 absorbed by D1 (rank IC corr -0.90, residual t<2); D3 residual IC independent but stack Sharpe delta negative — research_satellite only"
+  },
+  "dimensions": {
+    "D1": {
+      "status": "research_closed",
+      "dimension": "liquidity",
+      "base": [
+        {
+          "factor": "low_vol_liquidity_quality_60d",
+          "source_id": "D1_low_vol_liquidity_quality_60d",
+          "role": "production_base",
+          "alpha_type": "return_alpha",
+          "confirmation_1455d": {
+            "ic": 0.057,
+            "icir": 6.01,
+            "hl_sharpe": 2.26,
+            "monotonicity": 0.8
+          }
+        }
+      ],
+      "enhancer_candidates": [
+        {
+          "factor": "amihud_shock_reversal_5d",
+          "alpha_type": "conditional_enhancer",
+          "reason": "Independent liquidity shock state; stack Sharpe +0.23 at λ=0.2 (1455d); strict IC gate not passed — not base/satellite",
+          "confirmation_1455d": {
+            "ic": 0.04,
+            "hl_sharpe": 2.06,
+            "monotonicity": 0.9
+          },
+          "satellite_test_1455d": {
+            "sharpe_uplift_at_01_02": true,
+            "ic_uplift_at_01_02": false
+          }
+        }
+      ],
+      "rejected": [
+        {
+          "factor": "amount_stability_20d",
+          "reason": "Redundant to D1 rep (504d corr 0.79); high solo Sharpe is latent D1 expression"
+        }
+      ],
+      "pending_review": [
+        "relative_liquidity_strength_20d",
+        "liquidity_amount_residual_20d",
+        "liquidity_shock_20d"
+      ],
+      "note": "D1 density + stack validation complete; amihud reclassified as enhancer candidate"
+    },
+    "D2": {
+      "status": "research_closed",
+      "dimension": "risk",
+      "base": [],
+      "role": "drop",
+      "dropped_rep": {
+        "factor": "volatility_60d",
+        "source_id": "D2_volatility_60d",
+        "former_role": "base",
+        "new_role": "drop",
+        "alpha_type": "drop",
+        "reason": "Absorbed by D1: discovery rank IC corr -0.90, residual IC t=-1.76 (<2); confirmation residual t=-0.91; stack ΔSharpe negative on Base(D1+D4+D5)+λ·D2 and on 5-dim vs 4-dim without D2",
+        "evidence": {
+          "discovery_504d": {
+            "rank_ic_corr_vs_D1": -0.903,
+            "residual_ic_mean_vs_D1": -0.0099,
+            "residual_ic_t_vs_D1": -1.756,
+            "independence_verdict_vs_D1": "redundant"
+          },
+          "stack": "drop_or_satellite — no Sharpe uplift at any λ"
+        }
+      },
+      "research_satellites": [
+        {
+          "factor": "range_contraction_20d",
+          "alpha_type": "research_satellite",
+          "reason": "Independent residual IC vs D2 rep; offline only — not production weight"
+        },
+        {
+          "factor": "range_expansion_20d",
+          "alpha_type": "research_satellite",
+          "reason": "Independent residual IC vs D2/D3 reps; offline only"
+        }
+      ],
+      "rejected": [
+        {
+          "factor": "volatility_20d",
+          "reason": "Redundant to volatility_60d (corr 0.80)"
+        },
+        {
+          "factor": "high_low_60d",
+          "reason": "Redundant to volatility_60d (corr 0.92)"
+        }
+      ],
+      "note": "D2 density v1 closed 2026-07-09 — dimension dropped from OHLCV base"
+    },
+    "D3": {
+      "status": "research_closed",
+      "dimension": "price_path",
+      "base": [],
+      "role": "research_satellite",
+      "research_satellites": [
+        {
+          "factor": "lower_shadow_support_20d",
+          "source_id": "D3_lower_shadow_support_20d",
+          "former_role": "base",
+          "new_role": "research_satellite",
+          "alpha_type": "research_satellite",
+          "reason": "Residual IC independent vs D1/D4/D5 and controls; conditional IC within D4 terciles stable (~-5%); but stack Sharpe delta strongly negative — never enter production long-short weights; offline regime/risk use only",
+          "evidence": {
+            "discovery_504d": {
+              "rank_ic_corr_vs_D4": -0.085,
+              "residual_ic_t_vs_D4": -6.07,
+              "independence_verdict": "independent_vs_all_tested_anchors"
+            },
+            "stack": "drop_or_satellite — ΔSharpe -1.1 to -3.3 vs Base3 / D4-only"
+          }
+        }
+      ],
+      "rejected": [
+        {
+          "factor": "upper_shadow_pressure_20d",
+          "reason": "Mirror redundant to lower_shadow (corr -0.78)"
+        },
+        {
+          "factor": "high_low_20d",
+          "reason": "Redundant to lower_shadow (corr 0.94)"
+        },
+        {
+          "factor": "range_contraction_20d",
+          "reason": "Redundant to lower_shadow within D3 family (corr -0.79)"
+        }
+      ],
+      "note": "D3 density v1 closed 2026-07-09 — demoted from base to research_satellite"
+    },
+    "D4": {
+      "status": "research_closed",
+      "dimension": "behavioral",
+      "base": [
+        {
+          "factor": "winner_sentiment_reversal_5d",
+          "source_id": "D4_winner_sentiment_reversal_5d",
+          "role": "production_base",
+          "alpha_type": "return_alpha"
+        }
+      ],
+      "research_satellites": [
+        {
+          "factor": "max_daily_return_20d",
+          "alpha_type": "research_satellite",
+          "reason": "Independent IC (lottery mechanism); no robust portfolio Sharpe uplift"
+        },
+        {
+          "factor": "d4_consecutive_gain_exhaustion_20d",
+          "alpha_type": "research_satellite",
+          "reason": "Independent IC (path exhaustion); conditional/regime-dependent stack uplift"
+        }
+      ],
+      "rejected": [
+        {
+          "factor": "overreaction_shock_5d",
+          "reason": "Redundant to winner_sentiment (corr 0.86)"
+        },
+        {
+          "factor": "d4_turnover_shock_reversal_5d",
+          "reason": "Redundant to winner_sentiment (corr 0.86)"
+        }
+      ]
+    },
+    "D5": {
+      "status": "research_closed",
+      "dimension": "tail",
+      "base": [
+        {
+          "factor": "upside_fragility_20d",
+          "source_id": "D5_upside_fragility_20d",
+          "role": "production_base",
+          "alpha_type": "return_alpha",
+          "note": "Low monotonicity (20%) — may behave as tail/lottery state not pure rank factor"
+        }
+      ],
+      "research_satellites": [
+        {
+          "factor": "drawup_drawdown_ratio_20d",
+          "alpha_type": "research_satellite",
+          "reason": "504d partial_independent vs D5 (path asymmetry); residual IC -1.7%; satellite stack Sharpe decreases"
+        }
+      ],
+      "cross_dimension_note": {
+        "factor": "max_daily_return_20d",
+        "finding": "Independent vs D5 (residual IC 3.9%, corr -0.41) but already D4 research_satellite — lottery mechanism spans D4/D5 boundary"
+      },
+      "weak_incremental": [
+        "asymmetric_tail_ratio_20d",
+        "tail_risk_min_return_20d",
+        "downside_tail_cluster_20d"
+      ],
+      "rejected": [],
+      "note": "D5 density + confirmation + satellite additive closed; base slot retained in Base3"
+    }
+  },
+  "enhancers": {
+    "L2": {
+      "factor": "cn_cancel_shock",
+      "role": "conditional_enhancer",
+      "alpha_type": "conditional_enhancer",
+      "production_status": "retain_on_base3",
+      "base3_confirmation_951d": {
+        "recommendation": "retain_enhancer",
+        "hl_sharpe_delta_at_lambda_0.2": 1.254,
+        "note": "Strong Sharpe + IC uplift on Base3 at λ=0.05–0.3"
+      }
+    },
+    "D1_state": {
+      "factor": "amihud_shock_reversal_5d",
+      "role": "conditional_enhancer",
+      "alpha_type": "conditional_enhancer",
+      "production_status": "demoted_on_base3",
+      "base3_confirmation_951d": {
+        "recommendation": "review_or_drop",
+        "hl_sharpe_delta_at_lambda_0.2": -1.624,
+        "note": "Uplift on legacy Base5 did not transfer to Base3 — likely depended on D2/D3 interaction; keep taxonomy role but do not add to production weights"
+      }
+    },
+    "D6": {
+      "factor": "value_composite",
+      "role": "conditional_enhancer",
+      "alpha_type": "conditional_enhancer",
+      "production_status": "conditional_ic_only_on_base3",
+      "base3_confirmation_951d": {
+        "recommendation": "conditional_ic_only",
+        "hl_sharpe_delta_at_lambda_0.2": -0.887,
+        "ic_uplift_at_01_02": true,
+        "note": "IC rises with λ but Sharpe falls — research enhancer, not production weight on Base3"
+      }
+    },
+    "D7": {
+      "factor": "quality_composite",
+      "role": "conditional_enhancer",
+      "alpha_type": "conditional_enhancer",
+      "production_status": "marginal_on_base3",
+      "base3_confirmation_951d": {
+        "recommendation": "review_or_drop",
+        "hl_sharpe_delta_at_lambda_0.05": 0.06,
+        "hl_sharpe_delta_at_lambda_0.2": -0.04,
+        "note": "Tiny uplift only at λ=0.05; not robust at 0.1/0.2 — hold out of production until combination layer retests"
+      }
+    }
+  },
+  "research_satellites_global": [
+    "max_daily_return_20d",
+    "d4_consecutive_gain_exhaustion_20d",
+    "lower_shadow_support_20d",
+    "drawup_drawdown_ratio_20d",
+    "range_contraction_20d",
+    "range_expansion_20d"
+  ],
+  "base3_validation": {
+    "artifact": "research/results/base3_library_v1/",
+    "library": "research/alpha_library_v1/alpha_library_v1.0-frozen.json",
+    "confirmation_951d": {
+      "base3_hl_sharpe": 3.761,
+      "base3_icir": 5.685,
+      "base3_rank_ic": 0.0383,
+      "base3_max_drawdown": -0.0568,
+      "base5_hl_sharpe": 0.175,
+      "sharpe_delta_base3_minus_base5": 3.587
+    },
+    "production_enhancers_on_base3": [
+      "cn_cancel_shock"
+    ],
+    "held_enhancers": [
+      "amihud_shock_reversal_5d",
+      "value_composite",
+      "quality_composite"
+    ]
+  },
+  "combination_v1_recommended": {
+    "label": "C2_D1_0.60",
+    "weights": {
+      "D1": 0.6,
+      "D4": 0.2,
+      "D5": 0.2
+    },
+    "ICIR": 5.732531632016892,
+    "gross_Sharpe": 1.9830068652326744,
+    "net_Sharpe": 0.6724075983977743,
+    "ranking": "ICIR_primary",
+    "artifact": "research/results/alpha_combination_v1/alpha_combination_v1.json",
+    "c6_decision": "not_upgraded",
+    "c6_note": "Keep C2_D1_0.60: C6 ICIR=5.571 vs C2=5.733; state_modifier does not improve information efficiency at w1=0.60"
+  },
+  "next_phase": "production_stack_v3_on_icir_optimal_tilt"
+}

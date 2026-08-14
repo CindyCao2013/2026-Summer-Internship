@@ -1,0 +1,216 @@
+# Narrative + formula content for Report Generator v2 (schema-driven).
+# Generator must NOT special-case factor_id in Python — load this file instead.
+
+factor_id: TGD20
+
+layer_discipline: |
+  **Factor Identity:** `TGD20` is the only Registry / investable factor_id.
+
+  | Layer | Contents | Registry? |
+  |-------|----------|-----------|
+  | Identity | TGD20 = MA20(εd ⊥ εu) | **yes** |
+  | Signal construction | Gu, Gd, εu, εd, e | no — formula intermediates |
+  | Mechanism diagnostics | τ, υ, εu/εd (±MA20), tgd_eps | no — hypothesis tests |
+  | Portfolio implementation | daily / buffer_5_15 / … | no — trade the same signal |
+
+  Higher ICIR on unsmoothed `tgd_eps` does **not** create a second factor; it shows the
+  raw residual channel before MA20 trades ICIR for turnover / net Sharpe.
+
+construction_title: "Factor construction: residual downside timing → TGD20"
+construction_steps:
+  - "minute r_t"
+  - "Gu / Gd"
+  - "εu, εd"
+  - "e = εd⊥εu"
+  - "MA20 → TGD20"
+  - "shift=1"
+
+executive_summary: |
+  TGD20 captures cross-sectional differences in **intraday downside return timing**.
+  After removing return-magnitude / open-session structure and orthogonalizing downside
+  residuals to upside residuals, the smoothed score remains predictive on the confirmation
+  sample. Performance **strengthens** after size and industry neutralization, suggesting
+  the alpha is not solely explained by common liquidity or style exposures.
+
+  Execution optimization does not invent new predictive power; it improves **trade
+  efficiency** — cutting raw turnover (~0.65 → ~0.30) and lifting Net Sharpe (~1.0 → **2.32**)
+  while preserving the size+industry signal.
+
+  | Lens | Snapshot (legacy ALL / 2022–2025 harvest) |
+  |------|-------------------------------------------|
+  | Research | RankIC ≈ 4.3% · RankICIR raw 6.98 → size+ind **11.29** · Gross Sharpe 2.77 → 4.06 · Mono ≈ 0.99 |
+  | Admission | Best execution Net Sharpe **2.32** (buffer 5/15) · see full neutralization + execution ladders below |
+
+factor_thesis: |
+  Classical price/volume factors answer *how much* prices moved. TGD asks *when* within
+  the trading day those moves concentrated — especially on the downside — after removing
+  mechanical return-structure effects. The economic claim is that **residual downside
+  timing** carries independent next-day cross-sectional information.
+
+economic_intuition: |
+  Stocks whose abnormal selling pressure arrives later in the session (conditional on
+  upside timing and amplitude controls) tend to exhibit subsequent relative outperformance
+  on the confirmation sample. This is **not** the naive story “fell late ⇒ bounce.”
+  Mechanism tests show that simple timing differences (τ, υ) fail, while residualized
+  downside timing (εd / TGD20) survives — i.e. the information is in the **orthogonalized**
+  timing residual, not the raw clock difference.
+
+formula:
+  raw_variables: |
+    Continuous auction minutes \(t \in \{0,\ldots,239\}\):
+
+    $$r_t = \frac{P_t}{P_{t-1}} - 1$$
+
+    Controls (return distribution / open structure): \(\bar R_u\), \(\bar R_d\), \(R_1\), \(R_2\), \(R_{\mathrm{ovn}}\).
+  intermediate_variables: |
+    Upside / downside timing centers:
+
+    $$G_u = \frac{\sum_{r_t>0} t\cdot r_t}{\sum_{r_t>0} r_t},\qquad
+      G_d = \frac{\sum_{r_t<0} t\cdot |r_t|}{\sum_{r_t<0} |r_t|}$$
+  transformations: |
+    Daily cross-sectional residualization (not time-series):
+
+    $$G_u = \alpha_u + \beta_u \bar R_u + \gamma_u R_1 + \delta_u R_2 + \eta_u R_{\mathrm{ovn}} + \varepsilon_u$$
+
+    $$G_d = \alpha_d + \beta_d \bar R_d + \gamma_d R_1 + \delta_d R_2 + \eta_d R_{\mathrm{ovn}} + \varepsilon_d$$
+
+    Then orthogonalize downside to upside:
+
+    $$\varepsilon_{d,i} = \alpha + \beta\,\varepsilon_{u,i} + e_i$$
+  final_signal: |
+    $$\mathrm{TGD20}_{i,t} = \frac{1}{20}\sum_{k=0}^{19} e_{i,t-k}$$
+
+    Point-in-time: \(\mathrm{signal}_t = \mathrm{TGD20}_{t-1}\) (`signal_shift=1`). Formula frozen — no MA retune.
+
+signal_pipeline: |
+  ```
+  minute returns r_t
+        ↓
+     Gu / Gd  (timing centers)
+        ↓
+  remove amplitude / open-session structure  →  εu, εd
+        ↓
+  εd ⊥ εu  →  innovation e
+        ↓
+  MA20(e) = TGD20
+        ↓
+  signal_shift=1 → next-day cross-section
+  ```
+
+mechanism_rows:
+  - hypothesis: "Simple timing difference τ = Gd − Gu carries alpha"
+    test: "τ_MA20 RankICIR / H-L Sharpe"
+    result: "RankICIR ≈ −0.56; Gross Sharpe ≈ 0.27"
+    conclusion: "fail — τ is not the alpha"
+  - hypothesis: "Absolute timing distance υ = |Gd − Gu| carries alpha"
+    test: "υ_MA20 RankICIR / monotonicity"
+    result: "RankICIR ≈ −2.26; mono negative"
+    conclusion: "fail — υ is noise / wrong signed structure"
+  - hypothesis: "Upside residual εu alone is the driver"
+    test: "εu / εu_MA20 ICIR"
+    result: "εu ICIR ≈ 1.62; εu_MA20 ≈ 3.79 (weaker than TGD)"
+    conclusion: "partial — not sufficient"
+  - hypothesis: "Downside residual εd contains independent timing information"
+    test: "εd / εd_MA20 RankICIR"
+    result: "εd ICIR ≈ 5.80; εd_MA20 ≈ 4.74"
+    conclusion: "pass — downside residual is the core channel"
+  - hypothesis: "Orthogonalized + smoothed TGD20 is the investable expression"
+    test: "TGD20 vs primitives after size+industry"
+    result: "RankICIR raw 6.98 → size+ind 11.29; mono ≈ 0.99"
+    conclusion: "accept — TGD20 is the validated expression"
+
+mechanism_chain: |
+  tau        → rejected
+  upsilon    → rejected
+  epsilon_u  → weak / partial
+  epsilon_d  → key driver
+  tgd_eps    → strong but high TO (pre-MA)
+  TGD20      → accepted investable expression
+
+mechanism_narrative: |
+  The mechanism ladder answers *why TGD20 has alpha*, not *which sibling factor wins*.
+
+  Gu / Gd are timing centers; τ = Gd−Gu and υ fail as tradable hypotheses.
+  After residualization, **εd** (downside timing abnormality) is the core channel;
+  εu is weaker. Unsmoothed `tgd_eps = εd−εu` can post higher RankICIR (~8.5) than
+  TGD20 (~7.0) but with daily turnover ~3.4 — not a separate factor, a pre-smoothing
+  representation. MA20 selects the investable point on the alpha/cost frontier.
+
+  Rows in the full mechanism CSV are **diagnostic variants** of one research chain.
+
+ic_narrative: |
+  Predictive power is evaluated primarily with **RankIC** (Spearman). On the raw book,
+  mean RankIC ≈ 4.3% with RankICIR ≈ 6.98 and high IC-positive years (2020–2025 all positive
+  in the yearly table). Pearson IC is **not computed** in current artifacts and is marked N/A
+  under Metric Union (not silently omitted).
+
+portfolio_narrative: |
+  The 10-decile long–short book is strongly monotonic (mono ≈ 0.99). Raw Gross Sharpe ≈ 2.77
+  with annualized H–L return ≈ 37% and MDD ≈ −19%. After size+industry neutralization,
+  Gross Sharpe rises to ≈ 4.06 while MDD compresses — consistent with a cleaner alpha book
+  rather than a pure size bet.
+
+risk_narrative: |
+  Neutralization does **not** destroy the signal. RankICIR increases from 6.98 (raw) to
+  11.29 (size+industry). Therefore the effect **survives** common size/industry exposures
+  on this sample. Official Registry comparison should still use Protocol Production Track
+  (CSI1000 @ 20D) when re-run; this Golden Pack harvests the existing ALL confirmation ladder.
+
+stability_narrative: |
+  Yearly RankIC is positive in every calendar year 2020–2025 in the stability table, with
+  RankICIR ranging roughly 4.3–9.1. Blocks 2022–2023 are the strongest; 2024 is the softest
+  but still positive — supporting persistence rather than a one-regime spike.
+
+execution_narrative: |
+  Same investable signal (`TGD20`); rows below are **portfolio implementation** experiments
+  (rebalance frequency, entry/exit buffers, hold rules) — not new factor_ids.
+
+  Raw daily turnover ≈ 0.65 implies large fee drag (Net Sharpe ≈ 1.0 on raw). Best grid
+  row (`size_industry|daily|buffer_5_15`) cuts turnover to ≈ 0.30 and lifts **Net Sharpe
+  to ≈ 2.32** (15bp round-trip). That is trade efficiency on a fixed signal, not a claim
+  that RankICIR 11 alone is the production book.
+
+limitations: |
+  - Legacy confirmation uses universe **ALL** and period **2022–2025**, not yet Protocol
+    Production Track (CSI1000, 2018–2025 target). Coverage exception documented on the card.
+  - Pearson IC / IC t-stat / Sortino / Calmar are absent from artifacts → N/A in Metric Union.
+  - Implied fee in v1 summaries used a 7.5bp convention in places; execution grid uses
+    round_trip_cost=15bp — both are shown; do not mix without labeling.
+  - Orthogonality vs FlowDensity is diagnostic evidence (corr ≈ 0.22); equal-rank 50/50
+    underperforms TGD alone — composite weights are out of scope for this pack.
+
+final_verdict: |
+  **Status: validated (formula frozen).** TGD20 is the Golden Pack for Report Template v2:
+  complete formula chain, mechanism pass/fail ladder, neutralization survival, yearly
+  stability, and execution Net Sharpe path. Ready as the research-asset reference for
+  batch migration (1D). Do not retune MA/residual controls under this factor_id.
+  Composite eligibility remains subject to Matrix + IC-weighted design (not 50/50).
+
+code_map:
+  - item: Implementation
+    path: "`core/l2_features/` (return_timing, timing_residual, tgd) — **frozen**"
+  - item: Long-form essay
+    path: "research/reports/tgd_v1/日内分钟收益率时序特征_TGD20因子研究报告.md"
+  - item: Orthogonality
+    path: "research/reports/factor_orthogonality/TGD20_FlowDensity20/"
+
+card_fields:
+  hypothesis: |
+    Abnormal downside timing residual (εd ⊥ εu, MA20) predicts next-day cross-sectional
+    returns. Alpha is temporal residual information, not raw Gu/Gd or τ=Gd−Gu.
+  mechanism:
+    - temporal_information
+    - downside_timing
+  formula: "TGD20 = MA20( resid(εd ~ εu) ) after Gu/Gd residualization; signal_shift=1"
+  data_requirement:
+    - Stock_one_minute Close
+    - open/close for overnight control
+  known_failure_modes:
+    - high_raw_turnover
+    - short_L2_coverage_vs_2018_target
+    - naive_equal_weight_blend_with_Flow_underperforms
+  do_not:
+    - retune MA window (MA10/30/60)
+    - change residual controls
+    - replace residual with ML under this id
+    - mine a new TGD variant under this id

@@ -1,0 +1,7 @@
+// stream_pipeline.dos
+// 可选：流式计算骨架（参考 DolphinDB 官方 stream 示例）
+// 当前项目默认 STREAMING_MODE=False，本文件仅占位
+
+def create_l2_factor_stream_engine(){
+    print("stream_pipeline: placeholder — enable after CH realtime feed is available.")
+}

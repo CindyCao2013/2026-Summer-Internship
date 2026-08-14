@@ -1,0 +1,35 @@
+{
+  "research_scope": "single_factor_only",
+  "authoritative_a0_cache": "research/results/l2_reproduction/mid_order_ratio/analysis/param_sensitivity/tick_bucketed_strict_trade_2023-01-01_2024-06-30.parquet",
+  "authoritative_a0_sha256": "ccd2f23475756052c60c32f8b56b8cbb648ab99508bf866c9b2424b7ff61cb1f",
+  "authoritative_a0_requested_start": "2023-01-01",
+  "authoritative_a0_requested_end": "2024-06-30",
+  "authoritative_a0_observed_start": "2023-01-03",
+  "authoritative_a0_observed_end": "2024-06-28",
+  "authoritative_a0_rows": 1805656,
+  "strict_daily_primitive": "research/results/l2_reproduction/primitives/order_size_distribution_daily/order_size_distribution_daily_2019-01-01_2026-07-31.parquet",
+  "strict_daily_primitive_sha256": "a288f860b82ef35d8c910870ab9209394d1db62eb85aadef42304aedfe0ef42e",
+  "strict_daily_primitive_observed_start": "2019-01-02",
+  "strict_daily_primitive_observed_end": "2026-07-31",
+  "strict_daily_primitive_rows": 8449391,
+  "clickhouse_connect_version": "0.8.17",
+  "external_data_readonly_pilot": "passed",
+  "dynamic_join_readonly_pilot": "passed",
+  "wind_eod_latest": "2026-08-05",
+  "wind_derivative_latest": "2026-08-05",
+  "wind_csi1000_weight_latest": "2026-08-05",
+  "latest_common_complete_month_target": "2026-07-31",
+  "target_calibration_period": [
+    "2023-01-03",
+    "2023-06-30"
+  ],
+  "target_is_return_period": [
+    "2023-01-04",
+    "2024-06-28"
+  ],
+  "target_oos_return_period": [
+    "2024-07-01",
+    "2026-07-31"
+  ],
+  "legacy_factor_narrow_is_authoritative": false
+}

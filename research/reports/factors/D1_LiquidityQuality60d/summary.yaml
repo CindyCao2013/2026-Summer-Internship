@@ -1,0 +1,76 @@
+# schema: factor_pack_summary_v1
+factor_id: D1_LiquidityQuality60d
+display_name: D1 Liquidity Quality 60d
+short_name: D1
+family: liquidity
+source:
+  type: library
+  library_id: D1_low_vol_liquidity_quality_60d
+  colloquial: low vol × liquidity stability (Base3 D1)
+
+status: candidate
+formula_frozen: true
+pack_version: v1
+pack_finalized: "2026-07-21"
+
+economic_intuition: |
+  Low volatility combined with stable liquidity participation earns a cross-sectional premium.
+  Classical EOD liquidity-quality base; stronger on ALL than CSI300.
+
+formula:
+  library_id: low_vol_liquidity_quality_60d
+  frozen: "CS rank-mean( −vol_60d, −amount_cv_20d )"
+  signal_shift: 1
+  vol_window: 60
+  amount_cv_window: 20
+  evaluation_signal: raw_cs_zscore
+  production_signal_pending: size_industry
+
+data:
+  level: EOD_OHLCV
+  universe_research: ALL
+  period_requested: "2018-01-01_2025-12-31"
+  period_actual: confirmation_1455d
+  n_days: 1455
+  coverage_exception: true
+  coverage_note: "Harvested from confirmation_1455d pack; full Dual Benchmark pending"
+
+implementation:
+  modules:
+    - factor_formulas_liquidity_d1.py
+    - factor_formulas_eod_engine.py
+    - run_milestone_1d7_pack_completion.py
+  spec: factor_specs/D1_LiquidityQuality60d.yaml
+
+validation_headline:
+  RankIC_raw: 0.0573
+  ICIR_raw: 6.0135
+  RankIC_size_industry: null
+  ICIR_size_industry: null
+  HL_Sharpe_raw: 2.2614
+  HL_Sharpe_size_industry: null
+  net_Sharpe_size_industry_15bp: null
+  execution_best_net_Sharpe: 1.3777
+  execution_best_daily_turnover: 0.2343
+  monotonicity: 0.8
+  pos_ic_frac_block: 0.6534
+  yearly_rank_ic_positive: "N/A (block only)"
+
+artifacts:
+  definition: factor_definition.md
+  formula: formula.md
+  data: data_source.md
+  implementation: implementation.md
+  validation: validation.md
+  ic: ic_analysis/
+  quantile: quantile_analysis/
+  stability: stability/
+  execution: execution/
+  narrative_report: factor_report.md
+
+do_not:
+  - retune_D1_window
+  - register_amount_stability_as_validated_twin
+  - claim_size_ind_without_protocol_rerun
+
+library_notes: "Frozen EOD base factor; Template v2 harvest normalized to v1 pack."

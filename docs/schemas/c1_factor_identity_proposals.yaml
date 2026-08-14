@@ -1,0 +1,190 @@
+# C1 Phase0 — ActiveTrade / APM identity proposals (NOT in Registry)
+#
+# Design locks only. Do not copy into research/registry/ until
+# implementation + Pack v1 exist.
+#
+# Companion: docs/milestone_c1_activetrade_phase0_identity.md
+# Prior:     docs/schemas/iiia4_factor_identity_proposals.yaml (do not contradict)
+
+---
+
+## Decision summary
+
+```yaml
+c1_phase0:
+  date: "2026-07-21"
+  verdict: adapted_go
+  review: accepted
+  paper: "APM因子模型 / 主动买卖"
+  proposed_factor_id: APM_SessionResidual
+  forbid_bare_name: ActiveTrade
+  forbid_proxy_rename: true
+  next: "C1 Pack v1 DONE — testing_candidate in factor_library"
+  phase1: pass
+  phase3_verdict: PASS_research_FAIL_invest
+  phase4_case: A
+  pack_v1: true
+  pack_status: testing_candidate
+```
+
+---
+
+## Existing — ActiveTradeProxy (unchanged)
+
+```yaml
+factor_id: ActiveTradeProxy
+display_name: Active Trade Proxy (APM overnight−day)
+identity_class: research_proxy
+status: testing
+data_level: EOD
+registry: false   # pack exists; not paper replication
+source:
+  type: paper_proxy
+  paper_id: kysec_apm_active_trade
+
+construction:
+  formula: "t = mean(r_ON - r_DAY) / (std / sqrt(n)); window=20"
+  r_ON: "Open / prev_Close - 1"
+  r_DAY: "Close / Open - 1"
+  residualization: none
+  ret20_cs_residual: false
+  pm_minute_session: false
+
+answers: "when does return accrue (overnight vs day)?"
+not_answers: "paper session residual alpha vs index + Ret20"
+
+forbidden:
+  - rename to ActiveTrade
+  - rename to APM
+  - rename to APM_SessionResidual
+  - promote to candidate as if paper-replicated
+  - claim true ActiveTrade / APM replication
+```
+
+---
+
+## Proposed — APM_SessionResidual (C1 paper track)
+
+```yaml
+factor_id: APM_SessionResidual
+display_name: APM Session Residual
+paper: APM因子模型 / 主动买卖
+alias_in_cutting_dsl: [apm, active_trade]
+identity_class: adapted_replication
+status: testing_candidate
+registry: false
+data_level: minute_plus_eod_index
+source: paper_adapted
+direction_paper: positive_ic
+pack_v1: research/reports/factors/APM_SessionResidual
+execution_recipe_frozen: "highAPM|daily|buffer_10_30"
+
+construction:
+  object: overnight_residual_vs_afternoon_residual
+  knife: time_of_day_buckets   # overnight_am vs afternoon_pm
+  overnight: "Open / prev_Close - 1"
+  afternoon_pm: "session return from minute Close 13:01–15:00"
+  residual: "stock_session - index_session (EOD index open/close proxy unless index minute found)"
+  output: "APM_stat then CS residual vs Ret20"
+
+required_fields:
+  - stock minute Close (PM window)
+  - stock EOD Open / Close
+  - index EOD Open / Close (or Ret)
+  - Ret20 panel for CS residual
+
+not_required_for_paper:
+  - Active_buy_volume
+  - Active_sell_volume
+  - Active_buy_amount
+  - Active_sell_amount
+  - Active_buy_count
+  - Active_sell_count
+
+distinct_from:
+  ActiveTradeProxy: |
+    Proxy = rolling t-stat of (overnight - daytime) without index residual,
+    without PM minute session, without Ret20 residual.
+  SmartMoney10d: |
+    Different paper. Knife is |R|/V^0.25 VWAP ratio, not session residual.
+  FlowDensity20: |
+    Active amount / mktcap flow timing — different object.
+
+upgrade_to_true_when: |
+  Original PDF confirms session boundaries + index residual method,
+  and/or index minute bars become available.
+  # Does NOT block adapted Phase1 implementation.
+  # Phase1 = adapted_replication; Phase2+ may upgrade identity_class to true.
+
+implementation_policy:
+  phase1: adapted_implementation   # EOD index session proxy OK
+  phase1_blocks_on_pdf: false
+  phase2_identity_upgrade: when_pdf_or_index_minute
+
+forbidden:
+  - use bare factor_id ActiveTrade before pack exists
+  - rename ActiveTradeProxy to this id
+  - put Active_buy_* knife under this factor_id
+  - Registry / Composite / Portfolio before Pack v1 gate
+  - claim true_replication while index residual is EOD daytime proxy
+```
+
+---
+
+## Rejected / deferred names
+
+```yaml
+rejected:
+  ActiveTrade:
+    reason: bare name invites proxy confusion; reserved until true/adapted pack exists
+  ActiveTrade_Paper:
+    reason: still collides linguistically with ActiveTradeProxy
+  promote_ActiveTradeProxy:
+    reason: provenance break
+
+acceptable_synonym_not_preferred:
+  ActiveTradeSessionResidual:
+    note: OK if naming must say ActiveTrade; prefer APM_SessionResidual for continuity with III-A4
+
+deferred_separate_research:
+  ActiveBuyImbalance20:
+    case: A  # (ActiveBuy - ActiveSell) / (ActiveBuy + ActiveSell)
+    note: |
+      Minute Active_* fields support this, but it is NOT paper APM.
+      If pursued later, new factor_id only — never under APM_* / ActiveTrade*.
+```
+
+---
+
+## Data audit snapshot
+
+```yaml
+minute_store: dfs://QV_Trade_to_MinuteBar/Stock_one_minute
+coverage: "2018-09-03 → 2026-07-17 (approx; live)"
+
+fields:
+  OHLC_Volume_Amount: present
+  Active_buy_sell_volume_amount_count: present
+  index_minute_same_table: absent
+
+case_matrix:
+  A_active_imbalance: fields_ok_but_not_paper_apm
+  B_intensity_residual: needs_baseline_not_stage0
+  C_session_apm: paper_path_adapted_go
+
+verdict: adapted_go
+```
+
+---
+
+## Neighbor identity (reference only — do not reopen in C1 Phase0)
+
+```yaml
+SmartMoney10d:
+  status: research_candidate_parked
+  note: IC strong; daily TO fail; C2 slow recipe — out of C1 Phase0 scope
+
+FlowDensity20:
+  status: candidate
+  note: uses Active_* amounts; distinct from APM_SessionResidual
+```

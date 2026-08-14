@@ -1,0 +1,21 @@
+schema: selected_factor_v1
+factor_id: TGD20
+display_name: Temporal Gradient Density 20d
+engine_identity: TGD20
+family: temporal_microstructure
+status: validated
+direction: positive
+long_group: 10
+formula_frozen: true
+formula: "MA20(CS residual of epsilon_d on epsilon_u)"
+signal_shift: 1
+test_universe: ALL
+actual_period: "2022-01-28_2025-12-31"
+headline_metric:
+  name: long_book_excess_sharpe
+  benchmark: exact_daily_equal_weight_return_of_valid_test_universe
+  cost: gross
+legacy_metric:
+  name: best_net_sharpe_hl_15bp
+  value: 2.32
+  role: execution_diagnostic

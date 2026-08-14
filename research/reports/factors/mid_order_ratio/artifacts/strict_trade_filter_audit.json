@@ -1,0 +1,27 @@
+{
+  "audit_recorded_at": "2026-08-04",
+  "purpose": "Quantify the materiality of the legacy SZSE execution and multi-date session filters.",
+  "szse_execution_filter_comparison": {
+    "trade_date": "2024-06-27",
+    "sample_scope": "697 SZSE sample symbols",
+    "legacy_filter": "Type='011' AND Price>0 AND Volume>0",
+    "strict_filter": "Type='011' AND BidOrderNo>0 AND AskOrderNo>0 AND Price>0 AND Volume>0",
+    "legacy_rows": 29836521,
+    "strict_rows": 11916224,
+    "legacy_amount_rmb_rounded": 370770000000,
+    "strict_amount_rmb_rounded": 93190000000,
+    "strict_to_legacy_amount_ratio": 0.2513,
+    "factor_spearman": 0.858,
+    "factor_mean_absolute_difference": 0.0864
+  },
+  "regular_session_comparison": {
+    "sample_scope": "1293 sample symbols on a representative date",
+    "off_session_amount_share": 0.0252,
+    "strict_session": "09:30:00 <= ExchTime < 15:00:01 on every TradeDate"
+  },
+  "reproducibility_status": {
+    "result_status": "frozen one-off audit evidence",
+    "query_snapshot_retained": false,
+    "limitation": "The exact symbol list and raw query result snapshot were not retained; future reruns should save both before replacing these figures."
+  }
+}

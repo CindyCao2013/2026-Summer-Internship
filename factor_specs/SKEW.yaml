@@ -1,0 +1,53 @@
+# Factor Research Protocol v1 — SKEW / IdioSKEW
+# Return-distribution higher-moment anomaly (lottery preference).
+
+factor_id: SKEW
+display_name: Skewness Anomaly (SKEW / IdioSKEW)
+family:
+  - higher_moment
+  - behavioral_lottery
+source:
+  type: paper_cluster
+  papers:
+    - CICC: 偏度因子：基于异质波动率的选股策略
+    - GTJA: 基于已实现偏度的选股因子
+    - KYSEC / TF: skew vs TGD interaction notes
+
+status: research_candidate
+data_level: daily_eod
+frozen_formula: true
+
+implementation:
+  modules:
+    - core/factors/skew/skew.py
+    - core/factors/skew/idio_skew.py
+  engine_ids:
+    - skew_20d
+    - skew_60d
+    - skew_120d
+  headline_variant: IdioSKEW60
+  baseline_variant: SKEW20
+  delivery_alpha: "Alpha = -raw_skew (long low / negative skew)"
+  signal_shift: 1
+  do_not:
+    - retune windows after seeing full-sample results
+    - substitute minute RSKEW under same id (open RSKEW20 instead)
+    - treat as plain OHLCV technical indicator
+
+data_coverage:
+  requested: "2020-01-01_2025-12-31"
+  market_benchmark: "000300.SH"
+
+evaluation:
+  research_track: required
+  neutralization:
+    - raw
+    - size
+    - industry
+    - size_industry
+  interaction:
+    - TGD20
+
+pack:
+  path: research/reports/factors/SKEW
+  schema_version: factor_report_v1

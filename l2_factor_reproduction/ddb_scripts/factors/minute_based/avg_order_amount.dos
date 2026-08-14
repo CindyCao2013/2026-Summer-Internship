@@ -1,0 +1,20 @@
+// avg_order_amount.dos
+// 平均单笔流出金额占比（Phase1 代理）：下跌分钟成交额 / 当日成交额
+// 依赖：init_env.dos 中 get_stock_pool / load_minute_bars / attach_* / to_signal_tradetime
+
+def compute_avg_outflow_ratio(startDate, endDate, universe='000852.SH'){
+    stocks = get_stock_pool(startDate, endDate, universe, true)
+    t = load_minute_bars(startDate, endDate, stocks)
+    t = attach_bar_ret(t)
+    result = select Symbol, Date,
+            sum(Amount * (BarRet < 0)) \ sum(Amount) as value
+        from t
+        group by Symbol, Date
+    result = select Symbol as symbol,
+            to_signal_tradetime(Date) as tradetime,
+            "avg_outflow_ratio" as factorname,
+            value
+        from result
+        where isValid(value)
+    return result
+}

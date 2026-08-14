@@ -1,0 +1,88 @@
+# schema: factor_pack_summary_v1
+factor_id: TGD20
+display_name: Temporal Gradient Density
+short_name: TGD20
+family: temporal
+source:
+  type: paper
+  paper_title: 日内分钟收益率的时序特征：逻辑讨论与因子增强
+  paper_id: 20221225_kysec_intraday_timing
+  colloquial: 时间重心偏移因子
+
+status: validated
+formula_frozen: true
+pack_version: v1
+pack_finalized: "2026-07-21"
+
+economic_intuition: |
+  Within-day timing of upside vs downside returns.
+  Alpha is residual downside timing after return-structure controls, not raw Gd−Gu.
+
+formula:
+  primitives: "Gu, Gd return-weighted time centers (240 trading minutes)"
+  frozen: "TGD20 = MA20( CS residual of εd on εu )"
+  signal_shift: 1
+  ma_window: 20
+  not_equal_to:
+    - "Gd - Gu"
+    - "|Gd - Gu|"
+
+data:
+  level: minute_L2
+  universe_research: ALL
+  period_requested: "2018-01-01_2025-12-31"
+  period_actual: "2022-01-28_2025-12-31"
+  n_days: 951
+  coverage_exception: true
+  coverage_note: "Gu/Gd lineage harvest starts 2022; yearly stability includes 2020-2025"
+
+implementation:
+  modules:
+    - core/l2_features/return_timing.py
+    - core/l2_features/timing_residual.py
+    - core/l2_features/tgd.py
+    - core/l2_features/tgd_panel_builder.py
+  spec: factor_specs/TGD20.yaml
+
+validation_headline:
+  RankIC_raw: 0.0430
+  ICIR_raw: 6.98
+  RankIC_size_industry: 0.0415
+  ICIR_size_industry: 11.29
+  HL_Sharpe_raw: 2.77
+  HL_Sharpe_size_industry: 4.06
+  net_Sharpe_size_industry_15bp: 1.72
+  execution_best_net_Sharpe: 2.32
+  execution_best_daily_turnover: 0.297
+  monotonicity: 0.988
+  yearly_rank_ic_positive: "6/6"
+
+delivery_headline:
+  metric: long_book_excess_sharpe
+  definition: "EW selected Group10 return minus exact daily EW return of valid ALL-universe stocks"
+  raw: 1.2393
+  size_industry: 2.1602
+  preferred_variant: size_industry
+  cost: gross
+  legacy_best_net_Sharpe_HL_15bp: 2.32
+  legacy_role: execution_diagnostic_not_market_excess
+
+artifacts:
+  definition: factor_definition.md
+  formula: formula.md
+  data: data_source.md
+  implementation: implementation.md
+  validation: validation.md
+  ic: ic_analysis/
+  quantile: quantile_analysis/
+  stability: stability/
+  execution: execution/
+  narrative_report: ../../../tgd_v1/TGD_factor_research_report.md
+
+do_not:
+  - retune_MA_window
+  - change_residual_controls
+  - replace_residual_with_ML
+  - mine_variant_under_same_id
+
+library_notes: "First complete paper-replication factor asset. Template for next packs."

@@ -1,0 +1,7 @@
+anchor,tercile,mean_ic,n_days,period
+D4_rep,bottom,-0.054237513953959864,503,discovery
+D4_rep,mid,-0.05484326205560473,498,discovery
+D4_rep,top,-0.06358976507046345,360,discovery
+D4_rep,bottom,-0.08503575501206453,950,confirmation
+D4_rep,mid,-0.04654502528405113,941,confirmation
+D4_rep,top,-0.05018173821778645,628,confirmation

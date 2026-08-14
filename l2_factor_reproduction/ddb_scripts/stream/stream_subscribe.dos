@@ -1,0 +1,6 @@
+// stream_subscribe.dos
+// 可选：订阅端占位
+
+def subscribe_l2_factor_stream(){
+    print("stream_subscribe: placeholder.")
+}

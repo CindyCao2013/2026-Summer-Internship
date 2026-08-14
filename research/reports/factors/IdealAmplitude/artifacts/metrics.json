@@ -1,0 +1,222 @@
+{
+  "schema_version": "factor_report_v2",
+  "factor_id": "IdealAmplitude",
+  "status": "pack_generated",
+  "production": {
+    "note": "Legacy harvest — not Protocol CSI1000 Production Track",
+    "headline_mode": "size_industry",
+    "universe": "ALL",
+    "period": "cutting_v1_harvest",
+    "mode": "size_industry",
+    "RankIC": -0.0474782763592186,
+    "RankICIR": -9.968679921394369,
+    "Annualized_RankIC": -0.7506974633702873,
+    "HL_Sharpe": 3.438039594896677,
+    "annual_return": 0.4007350716696997,
+    "MDD": NaN,
+    "daily_turnover": NaN,
+    "net_Sharpe": null,
+    "monotonicity": 0.1111111111111111,
+    "execution_best_net_Sharpe": 3.399596017061248,
+    "execution_best_turnover": 0.4460525049181517,
+    "cost_bp_note": "execution grid round_trip_cost=15bp; some v1 implied_fee used 7.5bp"
+  },
+  "research": {
+    "universe": "ALL",
+    "period": "cutting_v1_harvest",
+    "mode": "raw",
+    "RankIC": -0.0378309714962688,
+    "RankICIR": -7.660069086011271,
+    "Annualized_RankIC": -0.5981601801255886,
+    "HL_Sharpe": 3.438039594896677,
+    "annual_return": 0.4007350716696997,
+    "MDD": NaN,
+    "daily_turnover": NaN,
+    "net_Sharpe": null,
+    "monotonicity": 0.1111111111111111
+  },
+  "metric_union": {
+    "IC": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_computed"
+    },
+    "RankIC": {
+      "value": -0.0378309714962688,
+      "source": "factor_summary.csv:raw"
+    },
+    "ICIR": {
+      "value": -7.660069086011271,
+      "source": "factor_summary.csv:raw"
+    },
+    "RankICIR": {
+      "value": -7.660069086011271,
+      "source": "factor_summary.csv:raw",
+      "note": "Mapped from legacy icir (Spearman-based)"
+    },
+    "IC_tstat": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_computed"
+    },
+    "IC_mean": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_in_artifacts"
+    },
+    "IC_std": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_in_artifacts"
+    },
+    "IC_positive_ratio": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_in_artifacts"
+    },
+    "Annualized_IC": {
+      "value": -0.5981601801255886,
+      "source": "factor_summary.csv:raw"
+    },
+    "Annualized_RankIC": {
+      "value": -0.5981601801255886,
+      "source": "factor_summary.csv:raw"
+    },
+    "signal_decay": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_in_artifacts"
+    },
+    "annual_return": {
+      "value": 0.4007350716696997,
+      "source": "factor_summary.csv:raw"
+    },
+    "cumulative_return": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_in_artifacts"
+    },
+    "excess_return": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_in_artifacts"
+    },
+    "Sharpe": {
+      "value": 3.438039594896677,
+      "source": "factor_summary.csv:raw"
+    },
+    "Sortino": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_computed"
+    },
+    "Calmar": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_computed"
+    },
+    "MDD": {
+      "value": -0.0503503887301425,
+      "source": "factor_summary.csv:execution_best"
+    },
+    "volatility": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_in_artifacts"
+    },
+    "HL_return": {
+      "value": 0.4007350716696997,
+      "source": "factor_summary.csv:raw"
+    },
+    "HL_Sharpe": {
+      "value": 3.438039594896677,
+      "source": "factor_summary.csv:raw"
+    },
+    "long_leg_return": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_in_artifacts"
+    },
+    "short_leg_return": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_in_artifacts"
+    },
+    "decile_spread": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_in_artifacts"
+    },
+    "daily_turnover": {
+      "value": 0.4460525049181517,
+      "source": "factor_summary.csv:execution_best"
+    },
+    "annual_turnover": {
+      "value": 55.75656311476896,
+      "source": "execution_summary.csv:best"
+    },
+    "gross_Sharpe": {
+      "value": 3.438039594896677,
+      "source": "factor_summary.csv:raw"
+    },
+    "net_Sharpe": {
+      "value": 3.399596017061248,
+      "source": "factor_summary.csv:execution_best"
+    },
+    "implied_fee": {
+      "value": 0.0836348446721534,
+      "source": "factor_summary.csv:execution_best"
+    },
+    "monotonicity": {
+      "value": 0.1111111111111111,
+      "source": "factor_summary.csv:raw"
+    },
+    "direction": {
+      "value": -1,
+      "source": "factor_summary.csv:execution_best"
+    },
+    "stability_score": {
+      "value": null,
+      "source": null,
+      "missing_reason": "not_in_artifacts"
+    }
+  },
+  "risk_ladder": [
+    {
+      "mode": "raw",
+      "RankIC": -0.0378309714962688,
+      "RankICIR": -7.660069086011271,
+      "HL_Sharpe": 3.438039594896677,
+      "MDD": NaN,
+      "net_Sharpe": null,
+      "source": "factor_summary.csv"
+    },
+    {
+      "mode": "size",
+      "RankIC": -0.0522824306107959,
+      "RankICIR": -8.211384005730197,
+      "HL_Sharpe": 3.438039594896677,
+      "MDD": NaN,
+      "net_Sharpe": null,
+      "source": "factor_summary.csv"
+    },
+    {
+      "mode": "industry",
+      "RankIC": -0.0499429938481729,
+      "RankICIR": -8.621647573325786,
+      "HL_Sharpe": 3.438039594896677,
+      "MDD": NaN,
+      "net_Sharpe": null,
+      "source": "factor_summary.csv"
+    },
+    {
+      "mode": "size_industry",
+      "RankIC": -0.0474782763592186,
+      "RankICIR": -9.968679921394369,
+      "HL_Sharpe": 3.438039594896677,
+      "MDD": NaN,
+      "net_Sharpe": null,
+      "source": "factor_summary.csv"
+    }
+  ]
+}

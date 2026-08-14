@@ -1,0 +1,42 @@
+# schemas/c2_factor_identity_proposals.yaml
+# C2 Phase0 — SUE identity (NOT in Registry)
+
+```yaml
+c2_phase0:
+  date: "2026-07-21"
+  milestone: C2_SUE_Pack_Track
+  verdict: accepted
+  next: Phase1_PIT_event_panel_design
+  no_registry: true
+  no_composite: true
+  no_fundamental_os: true
+```
+
+```yaml
+factor_id: SUE_ConsensusEPS
+display_name: Standardized Unexpected Earnings - Consensus EPS
+family: fundamental_surprise
+identity_class: paper_replication
+status: design_only
+registry: false
+direction_paper: positive_ic
+data_level: event_fundamental
+
+formula: "(EPS_actual - EPS_consensus) / abs(EPS_consensus)"
+known_dt: first_finite_EPS_among_express_income
+pit: est_dt < known_dt
+panel_v0: impulse_only
+
+forbidden_aliases:
+  - Revision
+  - EPS_growth
+  - YoY_profit_growth
+  - Quality
+  - Value
+
+reuse:
+  builder: core/fundamental/sue_consensus_eps_panel.py
+  cache: research/cache/sue_consensus_eps/
+  iii_b1_phase1: PASS
+  note: prior PASS does not skip Pack Track gates
+```

@@ -1,0 +1,15 @@
+{
+  "legacy_source_factor_narrow": "/home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/results/l2_reproduction/mid_order_ratio/factor_narrow.parquet",
+  "legacy_rows": 463102,
+  "matched_rows": 463087,
+  "match_share": 0.9999676097274467,
+  "pearson": 0.8287031700477775,
+  "spearman": 0.7995661318918719,
+  "mean_abs_diff": 0.034904155777468505,
+  "median_abs_diff": 0.010872259793561934,
+  "p99_abs_diff": 0.14852158358945997,
+  "max_abs_diff": 0.6240789676132575,
+  "exact_within_1e_12_share": 0.009946295188593073,
+  "definition": "(cum_200000-cum_40000)/TotalAmount",
+  "interpretation": "This is an impact audit, not an equivalence check. The strict panel applies the regular-session predicate to every date and identifies SZSE executions with Type='011' plus both order numbers. Report metrics use only the strict cache."
+}

@@ -1,0 +1,70 @@
+{
+  "dimension": "D3",
+  "representative": "lower_shadow_support_20d",
+  "research_status": "density_v1",
+  "discovery_days": 504,
+  "internal_independent": [
+    "range_expansion_20d"
+  ],
+  "internal_redundant": [
+    "lower_shadow_support_20d",
+    "upper_shadow_pressure_20d",
+    "range_contraction_20d",
+    "high_low_20d"
+  ],
+  "cross_dim_independent_vs": [
+    "D1_rep",
+    "D4_rep",
+    "D5_rep",
+    "size",
+    "turnover",
+    "ret_1d"
+  ],
+  "cross_dim_absorbed_vs": [],
+  "stack_discovery": {
+    "stack_incremental": false,
+    "ic_uplift_majority": false,
+    "base_hl_sharpe": 3.1789981702293924,
+    "max_hl_sharpe_delta": -1.212788546904068,
+    "recommendation": "drop_or_satellite"
+  },
+  "stack_confirmation": {
+    "stack_incremental": false,
+    "ic_uplift_majority": false,
+    "base_hl_sharpe": 2.9242487852034,
+    "max_hl_sharpe_delta": -1.2046197886937615,
+    "recommendation": "drop_or_satellite"
+  },
+  "proposed_role": "drop",
+  "rep_discovery_ic_raw": -0.053289332952584006,
+  "rep_discovery_ic_after_dim": -0.005547924871161131,
+  "synergy_tests_discovery": {
+    "discovery_quad_vs_full5": {
+      "rank_ic_delta": -0.027084762158774995,
+      "icir_delta": -2.8272122238603474,
+      "hl_sharpe_delta": -1.1278344809860492,
+      "monotonicity_delta": -0.11111111111111105,
+      "universe_stability_delta": NaN,
+      "period": "full",
+      "n_days": 504
+    },
+    "discovery_tri_d4_plus_d3": {
+      "rank_ic_delta": -0.05204334165793377,
+      "icir_delta": -9.538599894517384,
+      "hl_sharpe_delta": -3.29125449992405,
+      "monotonicity_delta": -0.2222222222222222,
+      "universe_stability_delta": NaN,
+      "period": "full",
+      "n_days": 504
+    },
+    "discovery_d4_vs_d3_d4_pair": {
+      "rank_ic_delta": -0.06486422423424955,
+      "icir_delta": -7.527667004716935,
+      "hl_sharpe_delta": -3.080756753801982,
+      "monotonicity_delta": -0.3333333333333333,
+      "universe_stability_delta": NaN,
+      "period": "full",
+      "n_days": 504
+    }
+  }
+}

@@ -1,0 +1,53 @@
+schema_version: factor_report_v2
+factor_id: IdealReversal
+display_name: Ideal Reversal
+family:
+- microstructure
+source:
+  type: paper
+  paper_id: 20200917_kysec_factor_cutting
+data_level: EOD
+status: testing
+frozen_formula: false
+hypothesis: 'Cutting 20d returns by ATS isolates high-trade-size reversal information
+  (M_high − M_low).
+
+  '
+mechanism:
+- microstructure
+formula: M = sum(r|high ATS) - sum(r|low ATS); knife=ATS
+data_requirement:
+- close/return
+- amount
+- trade_count
+known_failure_modes:
+- weak_monotonicity
+- sharpe_below_soft_bar
+- missing_execution
+correlation_cluster: null
+data_coverage:
+  requested: 2018-01-01_2025-12-31
+  actual: cutting_v1_full_sample
+  exception_reason: harvested from factor_cutting_v1 validation window
+coverage_exception: true
+admission:
+  requires_manual_review: true
+benchmark:
+  research:
+    universe: ALL
+    period_target: 2018-01-01_2025-12-31
+    horizon_days: 20
+  production:
+    universe: CSI1000
+    universe_membership: declare
+    period_target: 2018-01-01_2025-12-31
+    horizon_days: 20
+    neutralization: industry_size
+    cost_bp: 15
+    note: Pack harvests existing artifacts; Production Track re-run deferred
+do_not:
+- promote to validated without Production Track + mono fix
+- confuse with raw Ret20
+notes:
+- factor_report_v2 schema-driven pack
+- Legacy/harvest metrics; Dual Benchmark Production re-run not performed

@@ -1,0 +1,66 @@
+# Example factor_card.yaml — Factor Research Protocol v1 + Report Contract v2 fields
+# Not a live factor. Do not copy into research/reports/factors/ without real metrics.
+
+factor_id: EXAMPLE_FACTOR
+display_name: Example Factor
+schema_version: factor_report_v2
+
+# Frozen family enum (multi-label allowed as list):
+# temporal_information | liquidity | microstructure | momentum | value |
+# quality | volatility | event | alternative_data
+family:
+  - microstructure
+
+source: paper                   # paper | search | manual | ml
+data_level: EOD                 # EOD | minute | L2
+status: testing                 # discovery | testing | candidate | validated | production | retired
+frozen_formula: false
+
+# --- Report Contract v2 (narrative / assetization) ---
+hypothesis: |
+  Short description of the economic claim (not the formula).
+
+mechanism:
+  - microstructure
+  # e.g. temporal_information, downside_timing, flow_liquidity_interaction
+
+formula: |
+  Short LaTeX or plain pointer; full derivation lives in factor_report.md §4.
+
+data_requirement:
+  - close
+  - amount
+
+known_failure_modes:
+  - high_turnover
+  # - short_sample
+  # - size_proxy
+
+correlation_cluster: null       # filled after Orthogonality Matrix
+
+# --- Protocol Dual Benchmark ---
+benchmark:
+  research:
+    universe: ALL
+    period_target: "2018-01-01_2025-12-31"
+    horizon_days: 20
+  production:
+    universe: CSI1000
+    universe_membership: pit    # pit | non_pit (must declare)
+    period_target: "2018-01-01_2025-12-31"
+    horizon_days: 20
+    neutralization: industry_size
+    cost_bp: 15
+
+data_coverage:
+  requested: "2018-01-01_2025-12-31"
+  actual: "2018-01-01_2025-12-31"
+  exception_reason: null
+
+coverage_exception: false
+
+admission:
+  requires_manual_review: true
+
+do_not: []
+notes: []

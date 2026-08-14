@@ -1,0 +1,132 @@
+{
+  "milestone": "C1.4",
+  "factor_id": "APM_SessionResidual",
+  "identity_class": "adapted_replication",
+  "formula_version": "apm_session_v1_adapted_eod_index",
+  "universe": "CSI1000",
+  "period": "2021-01-01_2025-12-31",
+  "signal": "apm_cs",
+  "book": "long_high_short_low",
+  "cost_rt": 0.0015,
+  "horizon_ic": [
+    {
+      "horizon": 1,
+      "rank_ic": 0.023891814181455227,
+      "abs_rank_ic": 0.023891814181455227,
+      "icir": 4.093861893568079,
+      "abs_icir": 4.093861893568079,
+      "ic_pos_frac": 0.6163366336633663,
+      "n_days": 1212
+    },
+    {
+      "horizon": 3,
+      "rank_ic": 0.026232217617828988,
+      "abs_rank_ic": 0.026232217617828988,
+      "icir": 4.680016332321523,
+      "abs_icir": 4.680016332321523,
+      "ic_pos_frac": 0.6526402640264026,
+      "n_days": 1212
+    },
+    {
+      "horizon": 5,
+      "rank_ic": 0.026984010313889816,
+      "abs_rank_ic": 0.026984010313889816,
+      "icir": 4.896098934258999,
+      "abs_icir": 4.896098934258999,
+      "ic_pos_frac": 0.6485148514851485,
+      "n_days": 1212
+    },
+    {
+      "horizon": 10,
+      "rank_ic": 0.0309819103466336,
+      "abs_rank_ic": 0.0309819103466336,
+      "icir": 6.06640455993388,
+      "abs_icir": 6.06640455993388,
+      "ic_pos_frac": 0.6732673267326733,
+      "n_days": 1212
+    },
+    {
+      "horizon": 20,
+      "rank_ic": 0.04029655302775074,
+      "abs_rank_ic": 0.04029655302775074,
+      "icir": 8.379397316067116,
+      "abs_icir": 8.379397316067116,
+      "ic_pos_frac": 0.7136963696369637,
+      "n_days": 1212
+    }
+  ],
+  "holding_horizon": [
+    {
+      "horizon": 1,
+      "gross_sharpe_proxy": 3.276328361001429,
+      "net_sharpe_proxy": 0.9075844373271466,
+      "daily_turnover_proxy": 0.7467752286779833,
+      "net_sharpe_nonoverlap": 0.9075844373271466,
+      "net_annu_ret_nonoverlap": 0.1072844593571587,
+      "n_rebalances": 1212,
+      "rank_ic": 0.023891814181455227
+    },
+    {
+      "horizon": 3,
+      "gross_sharpe_proxy": 3.8843486411002464,
+      "net_sharpe_proxy": 2.507241021415557,
+      "daily_turnover_proxy": 0.2489250762259945,
+      "net_sharpe_nonoverlap": 1.457508075241069,
+      "net_annu_ret_nonoverlap": 0.17374149412709092,
+      "n_rebalances": 404,
+      "rank_ic": 0.026232217617828988
+    },
+    {
+      "horizon": 5,
+      "gross_sharpe_proxy": 4.336297700743063,
+      "net_sharpe_proxy": 3.257355821674629,
+      "daily_turnover_proxy": 0.14935504573559666,
+      "net_sharpe_nonoverlap": 1.4027839311444423,
+      "net_annu_ret_nonoverlap": 0.16196071684489657,
+      "n_rebalances": 243,
+      "rank_ic": 0.026984010313889816
+    },
+    {
+      "horizon": 10,
+      "gross_sharpe_proxy": 5.820103735815689,
+      "net_sharpe_proxy": 4.993840606713329,
+      "daily_turnover_proxy": 0.07467752286779833,
+      "net_sharpe_nonoverlap": 1.6560432754471441,
+      "net_annu_ret_nonoverlap": 0.18469956200180127,
+      "n_rebalances": 122,
+      "rank_ic": 0.0309819103466336
+    },
+    {
+      "horizon": 20,
+      "gross_sharpe_proxy": 7.582410108529783,
+      "net_sharpe_proxy": 6.994835580611243,
+      "daily_turnover_proxy": 0.037338761433899165,
+      "net_sharpe_nonoverlap": 1.3507179328837942,
+      "net_annu_ret_nonoverlap": 0.1353685780924877,
+      "n_rebalances": 61,
+      "rank_ic": 0.04029655302775074
+    }
+  ],
+  "best_execution": {
+    "label": "highAPM|daily|buffer_10_30",
+    "net_sharpe": 1.503671663281268,
+    "gross_sharpe": 2.5775267534782156,
+    "daily_turnover": 0.2804921549134113,
+    "stage": "E2_buffer"
+  },
+  "half_life_proxy_h": null,
+  "horizon_class": "medium_or_longer_persistent",
+  "case": "A",
+  "case_a_net_gt_1": true,
+  "case_a_soft_net_gt_0p5": true,
+  "recommended_status": "testing_candidate",
+  "next": "C1 Pack v1 with documented execution recipe",
+  "forbidden": [
+    "auto_Pack",
+    "Registry",
+    "Composite",
+    "sign_flip",
+    "formula_change"
+  ],
+  "interpretation": "Alpha confirmed in C1.3; C1.4 diagnoses whether slower/buffer execution clears 15bp. Do not Pack unless Case A."
+}

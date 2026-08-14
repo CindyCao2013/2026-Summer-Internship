@@ -1,0 +1,11 @@
+key,value
+factor_id,APM_SessionResidual
+status,testing_candidate
+family,session_behavior
+RankIC_raw,0.0239
+RankIC_size_industry,0.0225
+ICIR_raw,4.1
+ICIR_size_industry,6.55
+monotonicity,0.778
+execution_best_net_Sharpe,1.5
+execution_best_daily_turnover,0.28

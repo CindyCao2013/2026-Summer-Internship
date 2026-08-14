@@ -1,0 +1,273 @@
+{
+  "freeze_id": "intraday_alpha_freeze_v1",
+  "schema_version": 1,
+  "locked": true,
+  "created_at_utc": "2026-07-30T03:11:49.392783+00:00",
+  "train_period": {
+    "start": "2024-01-01",
+    "end": "2024-06-30"
+  },
+  "universe": "000852.SH",
+  "selection_policy": "Maximum absolute annualized ICIR across eligible 2024H1 execution bartimes and six prespecified horizons",
+  "locked_dimensions": [
+    "factor",
+    "bartime",
+    "horizon",
+    "direction",
+    "residual_controls",
+    "residual_direction"
+  ],
+  "cost_assumption_bps_per_one_way_turnover": 7.5,
+  "source_candidate_path": "research/results/intraday_alpha_discovery_v1/intraday_alpha_library_v2_candidates.csv",
+  "source_candidate_sha256": "5fdef764e601502d9e2ed16d7f1398cc0d1a8f097e4d62399010f426c7dde476",
+  "excluded_factors": {
+    "large_active_buy_ratio": {
+      "status": "proxy_only",
+      "reason": "No tick trade-size or OrderID source; bar-level ticket-size proxy is not eligible for OOS promotion."
+    }
+  },
+  "oos_periods": {
+    "validation_2024H2": {
+      "start": "2024-07-01",
+      "end": "2024-12-31"
+    },
+    "test_2025_available": {
+      "start": "2025-01-01",
+      "end": "2025-08-18",
+      "note": "Current Stock_one_minute inventory ends 2025-08-18; this is not a complete calendar-year test."
+    }
+  },
+  "residual_method": "Daily cross-sectional rank-z OLS against the explicitly frozen same-bartime production controls",
+  "factors": {
+    "close_vwap_deviation": {
+      "family": "price",
+      "backend": "production_ddb",
+      "research_role": "Base",
+      "bartime": "09:59",
+      "horizon": "Ret_15",
+      "direction": -1,
+      "portfolio_rule": "long_low_short_high",
+      "train_raw_ic": -0.0610743591892647,
+      "train_raw_icir": -6.187325965970446,
+      "train_fixed_direction_sharpe": 5.3711853738363615,
+      "train_cost_sharpe_7p5bps": -11.20603301141199,
+      "residual_controls": [],
+      "train_residual_raw_ic": null,
+      "train_residual_raw_icir": null,
+      "residual_direction": null
+    },
+    "volume_front_loading": {
+      "family": "temporal",
+      "backend": "production_ddb",
+      "research_role": "Enhancer",
+      "bartime": "10:29",
+      "horizon": "Ret_15",
+      "direction": -1,
+      "portfolio_rule": "long_low_short_high",
+      "train_raw_ic": -0.0182225970949788,
+      "train_raw_icir": -2.4533542554065533,
+      "train_fixed_direction_sharpe": 0.6318109897593475,
+      "train_cost_sharpe_7p5bps": -25.01584679195892,
+      "residual_controls": [],
+      "train_residual_raw_ic": null,
+      "train_residual_raw_icir": null,
+      "residual_direction": null
+    },
+    "volume_back_loading": {
+      "family": "temporal",
+      "backend": "production_ddb",
+      "research_role": "Enhancer",
+      "bartime": "09:59",
+      "horizon": "Ret_120",
+      "direction": -1,
+      "portfolio_rule": "long_low_short_high",
+      "train_raw_ic": -0.0104979290834229,
+      "train_raw_icir": -1.8394944461418337,
+      "train_fixed_direction_sharpe": 0.5008795678632257,
+      "train_cost_sharpe_7p5bps": -11.819028243383848,
+      "residual_controls": [],
+      "train_residual_raw_ic": null,
+      "train_residual_raw_icir": null,
+      "residual_direction": null
+    },
+    "late_session_strength": {
+      "family": "flow",
+      "backend": "production_ddb",
+      "research_role": "Base",
+      "bartime": "09:59",
+      "horizon": "Ret_EOD",
+      "direction": 1,
+      "portfolio_rule": "long_high_short_low",
+      "train_raw_ic": 0.017633159853337,
+      "train_raw_icir": 2.9720562004103885,
+      "train_fixed_direction_sharpe": 2.4843481825218547,
+      "train_cost_sharpe_7p5bps": -7.882645769021571,
+      "residual_controls": [],
+      "train_residual_raw_ic": null,
+      "train_residual_raw_icir": null,
+      "residual_direction": null
+    },
+    "active_buy_sell_imbalance": {
+      "family": "flow",
+      "backend": "production_ddb",
+      "research_role": "Satellite",
+      "bartime": "09:59",
+      "horizon": "Ret_30",
+      "direction": -1,
+      "portfolio_rule": "long_low_short_high",
+      "train_raw_ic": -0.0221170646591669,
+      "train_raw_icir": -2.803940157098672,
+      "train_fixed_direction_sharpe": 1.3266202185292646,
+      "train_cost_sharpe_7p5bps": -15.97715101065674,
+      "residual_controls": [],
+      "train_residual_raw_ic": null,
+      "train_residual_raw_icir": null,
+      "residual_direction": null
+    },
+    "bartime_ofi": {
+      "family": "flow",
+      "backend": "candidate_ddb",
+      "research_role": "Satellite",
+      "bartime": "10:29",
+      "horizon": "Ret_30",
+      "direction": -1,
+      "portfolio_rule": "long_low_short_high",
+      "train_raw_ic": -0.0362207847222584,
+      "train_raw_icir": -8.218365802652963,
+      "train_fixed_direction_sharpe": 5.798574350856707,
+      "train_cost_sharpe_7p5bps": -31.91126390284634,
+      "residual_controls": [
+        "close_vwap_deviation",
+        "volume_front_loading",
+        "active_buy_sell_imbalance"
+      ],
+      "train_residual_raw_ic": -0.0337168916410936,
+      "train_residual_raw_icir": -7.92387136797884,
+      "residual_direction": -1
+    },
+    "ofi_persistence": {
+      "family": "flow",
+      "backend": "candidate_ddb",
+      "research_role": "Enhancer",
+      "bartime": "09:59",
+      "horizon": "Ret_30",
+      "direction": -1,
+      "portfolio_rule": "long_low_short_high",
+      "train_raw_ic": -0.0328476163203835,
+      "train_raw_icir": -5.154137829859608,
+      "train_fixed_direction_sharpe": 4.44638431451919,
+      "train_cost_sharpe_7p5bps": -13.191286725822897,
+      "residual_controls": [
+        "close_vwap_deviation",
+        "volume_back_loading",
+        "late_session_strength",
+        "active_buy_sell_imbalance"
+      ],
+      "train_residual_raw_ic": -0.0073077605465987,
+      "train_residual_raw_icir": -2.295566094909673,
+      "residual_direction": -1
+    },
+    "active_buy_shock": {
+      "family": "flow",
+      "backend": "candidate_ddb",
+      "research_role": "Satellite",
+      "bartime": "11:29",
+      "horizon": "Ret_15",
+      "direction": -1,
+      "portfolio_rule": "long_low_short_high",
+      "train_raw_ic": -0.0223315416095567,
+      "train_raw_icir": -6.831429453826571,
+      "train_fixed_direction_sharpe": 5.833846203334281,
+      "train_cost_sharpe_7p5bps": -40.82663671071983,
+      "residual_controls": [
+        "close_vwap_deviation",
+        "active_buy_sell_imbalance"
+      ],
+      "train_residual_raw_ic": -0.0202997559705252,
+      "train_residual_raw_icir": -6.983959389377136,
+      "residual_direction": -1
+    },
+    "average_active_trade_size": {
+      "family": "trade_behavior",
+      "backend": "candidate_ddb",
+      "research_role": "Enhancer",
+      "bartime": "10:29",
+      "horizon": "Ret_30",
+      "direction": -1,
+      "portfolio_rule": "long_low_short_high",
+      "train_raw_ic": -0.0189979808583493,
+      "train_raw_icir": -6.470361085631,
+      "train_fixed_direction_sharpe": 1.96369786168054,
+      "train_cost_sharpe_7p5bps": -44.77245974902241,
+      "residual_controls": [
+        "close_vwap_deviation",
+        "volume_front_loading",
+        "active_buy_sell_imbalance"
+      ],
+      "train_residual_raw_ic": -0.0181602566480577,
+      "train_residual_raw_icir": -6.638860951491862,
+      "residual_direction": -1
+    },
+    "intraday_amihud": {
+      "family": "liquidity",
+      "backend": "candidate_ddb",
+      "research_role": "Satellite",
+      "bartime": "14:29",
+      "horizon": "Ret_15",
+      "direction": 1,
+      "portfolio_rule": "long_high_short_low",
+      "train_raw_ic": 0.0330589287515109,
+      "train_raw_icir": 6.142468805827671,
+      "train_fixed_direction_sharpe": 4.55625396672172,
+      "train_cost_sharpe_7p5bps": -40.093805591182175,
+      "residual_controls": [
+        "close_vwap_deviation",
+        "active_buy_sell_imbalance"
+      ],
+      "train_residual_raw_ic": 0.0256038607595359,
+      "train_residual_raw_icir": 5.497077883424547,
+      "residual_direction": 1
+    },
+    "realized_volatility": {
+      "family": "volatility",
+      "backend": "candidate_ddb",
+      "research_role": "Base",
+      "bartime": "14:29",
+      "horizon": "Ret_30",
+      "direction": -1,
+      "portfolio_rule": "long_low_short_high",
+      "train_raw_ic": -0.0989291263969847,
+      "train_raw_icir": -11.525604235082596,
+      "train_fixed_direction_sharpe": 9.753624105756469,
+      "train_cost_sharpe_7p5bps": 2.343677303388134,
+      "residual_controls": [
+        "close_vwap_deviation",
+        "active_buy_sell_imbalance"
+      ],
+      "train_residual_raw_ic": -0.0938067083748495,
+      "train_residual_raw_icir": -12.341161672382905,
+      "residual_direction": -1
+    },
+    "minute_skew": {
+      "family": "distribution",
+      "backend": "candidate_ddb",
+      "research_role": "Satellite",
+      "bartime": "14:29",
+      "horizon": "Ret_30",
+      "direction": -1,
+      "portfolio_rule": "long_low_short_high",
+      "train_raw_ic": -0.0419716488113559,
+      "train_raw_icir": -6.012001257247544,
+      "train_fixed_direction_sharpe": 4.360387492861137,
+      "train_cost_sharpe_7p5bps": -5.599243244596115,
+      "residual_controls": [
+        "close_vwap_deviation",
+        "active_buy_sell_imbalance"
+      ],
+      "train_residual_raw_ic": -0.0444520307387077,
+      "train_residual_raw_icir": -7.838743012804064,
+      "residual_direction": -1
+    }
+  },
+  "spec_sha256": "c4d09c12952cdcf3d58b3bef3b32ced04d0843205ca3a73fc0f8d8356fc70bc3"
+}

@@ -1,0 +1,18 @@
+{
+  "period": "2023-01-03 -> 2025-12-31",
+  "preset": "smoke",
+  "factors": {
+    "ideal_reversal": {
+      "separation": -0.04874019131354572,
+      "purity": 0.7923938194933238,
+      "hl_sharpe": 1.6022408804067025,
+      "residual_ic_t": -9.956612969445553
+    },
+    "ideal_amplitude": {
+      "separation": -0.03242208373045344,
+      "purity": 0.8215183175570264,
+      "hl_sharpe": 2.8598479304834092,
+      "residual_ic_t": -9.689221900728823
+    }
+  }
+}

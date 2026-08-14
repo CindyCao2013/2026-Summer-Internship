@@ -1,0 +1,17 @@
+{
+  "dimension": "D1",
+  "representative": "low_vol_liquidity_quality_60d",
+  "research_status": "density_v1",
+  "candidates_tested": 6,
+  "independent_alpha": [
+    "amihud_shock_reversal_5d"
+  ],
+  "partial_independent": [
+    "relative_liquidity_strength_20d"
+  ],
+  "redundant": [
+    "amount_stability_20d"
+  ],
+  "enhancers": [],
+  "recommendation": "expand_d1_family"
+}

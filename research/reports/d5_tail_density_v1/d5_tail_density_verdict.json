@@ -1,0 +1,23 @@
+{
+  "dimension": "D5",
+  "representative": "upside_fragility_20d",
+  "research_status": "density_v1",
+  "candidates_tested": 14,
+  "independent_alpha": [
+    "max_daily_return_20d",
+    "high_low_20d",
+    "range_contraction_20d",
+    "upper_shadow_pressure_20d",
+    "high_low_60d",
+    "tail_adjusted_momentum_60d"
+  ],
+  "partial_independent": [
+    "drawup_drawdown_ratio_20d",
+    "range_expansion_20d"
+  ],
+  "redundant": [
+    "upside_fragility_20d"
+  ],
+  "enhancers": [],
+  "recommendation": "expand_d5_family"
+}

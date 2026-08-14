@@ -1,0 +1,21 @@
+{
+  "n_rows": 47277748,
+  "columns": [
+    "symbol",
+    "date",
+    "bartime",
+    "open",
+    "high",
+    "low",
+    "close",
+    "volume",
+    "amount",
+    "adjfactor",
+    "active_buy_amt",
+    "active_sell_amt",
+    "active_buy_count",
+    "active_sell_count",
+    "bid_cancel_vol",
+    "ask_cancel_vol"
+  ]
+}

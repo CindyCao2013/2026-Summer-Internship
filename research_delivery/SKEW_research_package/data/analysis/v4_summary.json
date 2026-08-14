@@ -1,0 +1,20 @@
+{
+  "baseline": "AlphaIdioSKEW60_MAD_n5",
+  "baseline_si_hl_sharpe": 2.529709727982198,
+  "baseline_si_icir": 7.225355935721936,
+  "window_best": {
+    "factor": "AlphaIdioSKEW50_MAD",
+    "kind": "Idio",
+    "window": 50,
+    "hl_sharpe": 2.7918551879531837,
+    "icir": 7.476132184748703
+  },
+  "mad_best": {
+    "factor": "AlphaIdioSKEW50_MAD_n4",
+    "n_mad": 4.0,
+    "hl_sharpe": 2.8112372944496045,
+    "icir": 7.500624433346667
+  },
+  "period": "2020-01-01_2025-12-31",
+  "note": "Sensitivity scan; frozen formula remains IdioSKEW60 unless clearly dominated"
+}

@@ -1,0 +1,516 @@
+{
+  "version": "alpha_library_v1.0-frozen",
+  "frozen_at": "2026-07-09",
+  "status": "frozen",
+  "input_pool": "research/frozen_candidate_pool_v1.json",
+  "freeze_metadata": {
+    "frozen_date": "2026-07-09",
+    "base_dimension_count": 3,
+    "base_sources": [
+      "D1_low_vol_liquidity_quality_60d",
+      "D4_winner_sentiment_reversal_5d",
+      "D5_upside_fragility_20d"
+    ],
+    "active_enhancers": [
+      "cn_cancel_shock",
+      "net_active_flow_mktcap_20d"
+    ],
+    "inactive_enhancers": [
+      "amihud_shock_reversal_5d",
+      "value_composite",
+      "quality_composite"
+    ],
+    "research_satellites_count": 6,
+    "author": "team",
+    "note": "OHLCV Alpha Library v1.0 + P2 L2 enhancer C7-passed 2026-07-13 (size_tight λ=0.3). See production_stack_v3_design.md §4b."
+  },
+  "base": {
+    "name": "Base3",
+    "sources": [
+      "D1_low_vol_liquidity_quality_60d",
+      "D4_winner_sentiment_reversal_5d",
+      "D5_upside_fragility_20d"
+    ],
+    "blend": "equal_weight_cs_z(D1, D4, D5)",
+    "source_cards": [
+      {
+        "factor": "low_vol_liquidity_quality_60d",
+        "source_id": "D1_low_vol_liquidity_quality_60d",
+        "dim": "D1",
+        "role": "production_base",
+        "failure_conditions": [
+          "Liquidity dry-up / extreme Amihud regime where low-vol names become illiquid traps",
+          "Policy-driven small-cap liquidity shocks that invert size-liquidity ranking"
+        ],
+        "investability": {
+          "layer1_net_performance": {
+            "round_trip_cost": 0.0015,
+            "gross_sharpe": 1.6584165237390054,
+            "net_sharpe": 0.8831951050393698,
+            "net_annu_ret": 0.1457973400143709,
+            "net_max_drawdown": -0.195174315702144,
+            "net_calmar": 0.7470108937739153,
+            "rank_ic": 0.05842784738921779,
+            "icir": 5.592918630501092
+          },
+          "layer2_tradability": {
+            "coverage_mean": 0.8918796577568868,
+            "coverage_p10": 0.9294268605645851,
+            "rank_ic_raw": 0.05703728813513032,
+            "rank_ic_after_tradability_filter": 0.05842784738921779,
+            "net_sharpe_no_filter": 0.8261226368484638,
+            "net_sharpe_delta_from_filter": 0.057072468190906056,
+            "annu_one_way_turnover": 42.380904198904105,
+            "capacity_cny_approx": 17820382151.250008
+          },
+          "layer3_stability": {
+            "yearly_net_sharpe": {
+              "2022": 1.7983208328147158,
+              "2023": 0.9481038797604274,
+              "2024": 1.0210932428536053,
+              "2025": 0.3236964211682064
+            },
+            "regime_net_sharpe": {
+              "bull": {
+                "n_days": 258,
+                "net_sharpe": 0.09098104691265725
+              },
+              "bear": {
+                "n_days": 137,
+                "net_sharpe": 1.605941263066465
+              },
+              "sideways": {
+                "n_days": 556,
+                "net_sharpe": 1.1480127727644707
+              }
+            }
+          }
+        }
+      },
+      {
+        "factor": "winner_sentiment_reversal_5d",
+        "source_id": "D4_winner_sentiment_reversal_5d",
+        "dim": "D4",
+        "role": "production_base",
+        "failure_conditions": [
+          "Shrinking-volume downtrends where winner reversal fails (momentum persistence)",
+          "Strong one-way bullish retail chase regimes with limited mean reversion"
+        ],
+        "investability": {
+          "layer1_net_performance": {
+            "round_trip_cost": 0.0015,
+            "gross_sharpe": 2.3944095558590646,
+            "net_sharpe": -0.8904259831489604,
+            "net_annu_ret": -0.12924883580170315,
+            "net_max_drawdown": -0.4576071408644171,
+            "net_calmar": -0.28244497137337693,
+            "rank_ic": 0.05433851014899784,
+            "icir": 6.0597438483148265
+          },
+          "layer2_tradability": {
+            "coverage_mean": 0.8297959721973762,
+            "coverage_p10": 0.8137418755803157,
+            "rank_ic_raw": 0.04456317357997255,
+            "rank_ic_after_tradability_filter": 0.05433851014899784,
+            "net_sharpe_no_filter": -1.7075287640832666,
+            "net_sharpe_delta_from_filter": 0.8171027809343062,
+            "annu_one_way_turnover": 158.4395093108551,
+            "capacity_cny_approx": 19356224077.049995
+          },
+          "layer3_stability": {
+            "yearly_net_sharpe": {
+              "2022": 0.08504851169170617,
+              "2023": -2.0615226226311676,
+              "2024": -0.8322978357131426,
+              "2025": -1.0145799828149047
+            },
+            "regime_net_sharpe": {
+              "bull": {
+                "n_days": 258,
+                "net_sharpe": -0.29895575921767537
+              },
+              "bear": {
+                "n_days": 137,
+                "net_sharpe": -1.129895694199022
+              },
+              "sideways": {
+                "n_days": 556,
+                "net_sharpe": -1.266291787951369
+              }
+            }
+          }
+        }
+      },
+      {
+        "factor": "upside_fragility_20d",
+        "source_id": "D5_upside_fragility_20d",
+        "dim": "D5",
+        "role": "production_base",
+        "failure_conditions": [
+          "Sustained one-sided bull markets where upside fragility IC decays",
+          "Low-volatility grind-up regimes with few fragile-rally events"
+        ],
+        "investability": {
+          "layer1_net_performance": {
+            "round_trip_cost": 0.0015,
+            "gross_sharpe": 1.6127889487198601,
+            "net_sharpe": -0.8890223261714499,
+            "net_annu_ret": -0.1435198952120222,
+            "net_max_drawdown": -0.45944017459044206,
+            "net_calmar": -0.3123799422633423,
+            "rank_ic": -0.0559150572869836,
+            "icir": -6.369778124501217
+          },
+          "layer2_tradability": {
+            "coverage_mean": 0.8889392582043595,
+            "coverage_p10": 0.9244444444444444,
+            "rank_ic_raw": -0.04905176095698802,
+            "rank_ic_after_tradability_filter": -0.0559150572869836,
+            "net_sharpe_no_filter": -2.310764604768083,
+            "net_sharpe_delta_from_filter": 1.421742278596633,
+            "annu_one_way_turnover": 133.595814006697,
+            "capacity_cny_approx": 23015579731.40001
+          },
+          "layer3_stability": {
+            "yearly_net_sharpe": {
+              "2022": -0.07472949987546129,
+              "2023": -1.4761376790654226,
+              "2024": -0.7655341550871536,
+              "2025": -1.6844280991109626
+            },
+            "regime_net_sharpe": {
+              "bull": {
+                "n_days": 258,
+                "net_sharpe": -1.0710169129206901
+              },
+              "bear": {
+                "n_days": 137,
+                "net_sharpe": -1.1625826966602082
+              },
+              "sideways": {
+                "n_days": 556,
+                "net_sharpe": -0.7047777840301848
+              }
+            }
+          }
+        }
+      }
+    ],
+    "stack_investability_confirmation_951d": {
+      "period": "confirmation_951d",
+      "round_trip_cost": 0.0015,
+      "cost_definition": "A-share bilateral ~0.15% (stamp 0.1% sell + commission/fees ~0.05%)",
+      "layer1_net_performance": {
+        "gross_sharpe": 2.370805223308228,
+        "net_sharpe": -0.6697518181231785,
+        "net_annu_ret": -0.07852915832596488,
+        "net_max_drawdown": -0.2894249849027006,
+        "net_calmar": -0.2713281935640938,
+        "rank_ic": 0.037235242791016414,
+        "icir": 5.136536139847155
+      },
+      "layer2_tradability": {
+        "filters": [
+          "not_limit",
+          "not_st",
+          "trade_status",
+          "min_listing_days_60"
+        ],
+        "coverage_mean": 0.8920345915797262,
+        "coverage_p10": 0.9301533219761499,
+        "rank_ic_raw": 0.03831473619802886,
+        "rank_ic_after_tradability_filter": 0.037235242791016414,
+        "net_sharpe_no_filter": -0.18846871354196673,
+        "net_sharpe_delta_from_filter": -0.4812831045812118,
+        "annu_one_way_turnover": 119.18341122716808,
+        "capacity_cny_approx": 19275146986.949978,
+        "capacity_note": "median(ADV_book × n_names × 5% participation); amount in Wind 千元 scaled to CNY"
+      },
+      "layer3_stability": {
+        "weight_perturbation_pm30pct": {
+          "perturbation_scale": 0.3,
+          "net_sharpe_by_config": {
+            "baseline": -0.6689157287939501,
+            "low_vol_liquidity_quality_60d_up": -0.09059169401070413,
+            "low_vol_liquidity_quality_60d_down": -1.5712423449399604,
+            "winner_sentiment_reversal_5d_up": -0.453559507864333,
+            "winner_sentiment_reversal_5d_down": -0.9650399699136296,
+            "upside_fragility_20d_up": -1.5818814109995327,
+            "upside_fragility_20d_down": 0.2430887032073738
+          },
+          "net_sharpe_min": -1.5818814109995327,
+          "net_sharpe_max": 0.2430887032073738,
+          "sign_flip": true,
+          "stable": false
+        },
+        "yearly_net_sharpe": {
+          "2022": -1.0340688369734847,
+          "2023": -2.67055681985965,
+          "2024": 0.5769064718159242,
+          "2025": -1.6311016601552775
+        },
+        "regime_net_sharpe": {
+          "bull": {
+            "n_days": 258,
+            "net_sharpe": -1.2019673360810583
+          },
+          "bear": {
+            "n_days": 137,
+            "net_sharpe": 1.514824105686213
+          },
+          "sideways": {
+            "n_days": 556,
+            "net_sharpe": -1.6285033721560191
+          }
+        }
+      }
+    },
+    "pre_cost_reference": {
+      "rank_ic": 0.0383,
+      "icir": 5.685,
+      "hl_sharpe": 3.761,
+      "note": "Pre-cost metrics from run_base3_library_freeze_v1 (no tradability/cost)"
+    }
+  },
+  "enhancers": {
+    "active": [
+      {
+        "factor": "cn_cancel_shock",
+        "role": "conditional_enhancer",
+        "interaction_mode": "state_modifier",
+        "interaction_note": "Preferred use: modulate D4 weight under liquidity-withdrawal states (not pure linear_additive). Current production stack still uses additive λ=0.2 as interim; Combination Layer C5 will implement state_modifier.",
+        "production_status": "active",
+        "standalone_investability_confirmation": {
+          "layer1_net_performance": {
+            "gross_sharpe": 0.9036734213926746,
+            "net_sharpe": -11.492066109703472,
+            "rank_ic": -0.006100921487436004,
+            "icir": -1.5300556660901565
+          },
+          "layer2_tradability": {
+            "coverage_mean": 0.8904537756562775,
+            "annu_one_way_turnover": 330.6868192912178,
+            "capacity_cny_approx": 15447118663.80001
+          }
+        },
+        "on_base3_additive_lambda_0.2": {
+          "gross_sharpe": 4.393430125456394,
+          "net_sharpe": 0.40597498802028054,
+          "net_annu_ret": 0.0454794281058698,
+          "net_max_drawdown": -0.18849541155807611,
+          "net_calmar": 0.24127604873743796,
+          "rank_ic": 0.04132180426630991,
+          "icir": 6.050525761023207,
+          "annu_one_way_turnover": 150.62149796981328,
+          "net_sharpe_delta_vs_base3": 1.075726806143459,
+          "lambda_stability_pm30pct": {
+            "center_lambda": 0.2,
+            "perturbation_scale": 0.3,
+            "net_sharpe_by_lambda": {
+              "lambda_0.140": 0.7727901810334816,
+              "lambda_0.200": 0.40597498802028054,
+              "lambda_0.260": 0.02326217894260811
+            },
+            "net_sharpe_min": 0.02326217894260811,
+            "net_sharpe_max": 0.7727901810334816,
+            "stable": true
+          },
+          "yearly_net_sharpe": {
+            "2022": -0.052430416041801424,
+            "2023": -2.348658724903462,
+            "2024": 1.596420731432332,
+            "2025": 0.48863405980428876
+          },
+          "regime_net_sharpe": {
+            "bull": {
+              "n_days": 258,
+              "net_sharpe": 0.12084774405750488
+            },
+            "bear": {
+              "n_days": 137,
+              "net_sharpe": 2.3191219624418737
+            },
+            "sideways": {
+              "n_days": 556,
+              "net_sharpe": -0.5512289713493238
+            }
+          }
+        }
+      },
+      {
+        "factor": "net_active_flow_mktcap_20d",
+        "role": "linear_enhancer",
+        "source": "P2_L2_active_flow",
+        "interaction_mode": "linear_additive",
+        "interaction_note": "Confirmed enhancer on Base3: residual_t=6.11, stack ICIR uplift +1.07 at λ=0.3 on 951d confirmation. Prefer over cn_cancel_shock for additive overlay (cancel remains state_modifier candidate). C7 combo (C2_D1_0.60+λ·P2) not yet run.",
+        "production_status": "confirmed_enhancer_c7_pass",
+        "confirmation_period": "2022-01-28 -> 2025-12-31",
+        "n_confirmation_days": 951,
+        "c7_combination": {
+          "recommended": "C7_size_tight_λ0.3",
+          "construction": "(1-λ)·z(C2_D1_0.60)+λ·z(P2) then neutralize_size_industry; λ=0.3",
+          "icir": 9.629610225720741,
+          "net_sharpe": 2.252077578168246,
+          "annu_one_way_turnover": 62.48371700762786,
+          "size_exposure_abs_mean": 0.06566570950661747,
+          "icir_delta_vs_c2": 3.8970785937038492,
+          "net_sharpe_delta_vs_c2": 1.5796699797704719,
+          "best_additive": {
+            "label": "C7_additive_λ0.5",
+            "icir": 6.936805845958441,
+            "net_sharpe": 1.7433137641279188,
+            "note": "Clean P2 uplift without extra neut; size|μ|=0.25 soft-miss"
+          },
+          "artifact": "research/reports/l2_flow_density_v1/combination_c7/"
+        },
+        "discovery_icir_504d": 5.04316359067902,
+        "soft_flags": [
+          "CSI300/CSI500 standalone IC negative; alpha concentrated in ALL/small-cap book"
+        ],
+        "standalone_investability_confirmation": {
+          "layer1_net_performance": {
+            "round_trip_cost": 0.0015,
+            "gross_sharpe": 3.9749293412060607,
+            "net_sharpe": 1.8497363858603328,
+            "net_annu_ret": 0.13715540052397654,
+            "net_max_drawdown": -0.13374650396141666,
+            "net_calmar": 1.0254877433173377,
+            "rank_ic": 0.023560409520322182,
+            "icir": 4.846912963196787
+          },
+          "layer2_tradability": {
+            "coverage_mean": 0.890446631418497,
+            "coverage_p10": 0.930391946883701,
+            "rank_ic_tradable": 0.02509268467341355,
+            "icir_tradable": 4.7467237792308925,
+            "annu_one_way_turnover": 52.263615025552575,
+            "capacity_cny_approx": 21195822069.899994
+          },
+          "layer3_stability": {
+            "residual_ic_t_base3": 6.110246201226899,
+            "residual_ic_t_voi": 9.929102641247104,
+            "stack_icir_uplift": 1.0745676475161012,
+            "best_lambda": 0.3,
+            "param_windows_icir": {
+              "14d": 4.758350932779717,
+              "20d": 4.846912963196787,
+              "26d": 5.0057665854106554
+            },
+            "yearly_ic": {
+              "2022": 0.020583851843513187,
+              "2023": 0.023139576419133605,
+              "2024": 0.02342876948918491,
+              "2025": 0.02684218260654136
+            },
+            "yearly_net_sharpe": {
+              "2022": 2.0104937810937793,
+              "2023": 2.1696233688210964,
+              "2024": 0.9678186465005929,
+              "2025": 3.103687580664218
+            },
+            "universe_icir": {
+              "ALL": 4.846912963196787,
+              "CSI1000": 1.465726016588692,
+              "CSI500": -0.6348270706311825,
+              "CSI300": -2.2124048893224786
+            }
+          },
+          "artifacts": "research/reports/l2_flow_density_v1/confirmation_verdict.json"
+        }
+      }
+    ],
+    "inactive": [
+      {
+        "factor": "amihud_shock_reversal_5d",
+        "role": "conditional_enhancer",
+        "interaction_mode": "conditional",
+        "production_status": "inactive_on_base3",
+        "note": "Taxonomy retained; Base3 confirmation Sharpe uplift negative"
+      },
+      {
+        "factor": "value_composite",
+        "role": "conditional_enhancer",
+        "interaction_mode": "conditional",
+        "production_status": "inactive_on_base3",
+        "note": "IC-only uplift on Base3; Sharpe negative — taxonomy only"
+      },
+      {
+        "factor": "quality_composite",
+        "role": "conditional_enhancer",
+        "interaction_mode": "conditional",
+        "production_status": "inactive_on_base3",
+        "note": "Marginal λ=0.05 only; not robust at 0.1/0.2"
+      }
+    ]
+  },
+  "research_satellites": [
+    "max_daily_return_20d",
+    "d4_consecutive_gain_exhaustion_20d",
+    "lower_shadow_support_20d",
+    "drawup_drawdown_ratio_20d",
+    "range_contraction_20d",
+    "range_expansion_20d"
+  ],
+  "dropped": [
+    {
+      "factor": "volatility_60d",
+      "source_id": "D2_volatility_60d",
+      "role": "drop",
+      "reason": "Absorbed by D1"
+    }
+  ],
+  "investability_gates": {
+    "status": "computed",
+    "period": "confirmation_951d",
+    "round_trip_cost": 0.0015,
+    "summary": {
+      "base3_gross_sharpe": 2.371,
+      "base3_net_sharpe": -0.67,
+      "base3_annu_one_way_turnover": 119.2,
+      "base3_plus_cancel_gross_sharpe": 4.393,
+      "base3_plus_cancel_net_sharpe": 0.406,
+      "base3_plus_cancel_net_sharpe_delta": 1.076,
+      "d1_standalone_net_sharpe": 0.883,
+      "d4_standalone_net_sharpe": -0.89,
+      "d5_standalone_net_sharpe": -0.889,
+      "base3_weight_stability": false,
+      "cancel_lambda_stability": true,
+      "coverage_mean": 0.892
+    },
+    "interpretation": {
+      "key_finding": "Pre-cost Base3 Sharpe 3.76 collapses to net -0.67 under 15bp round-trip + top/bottom 20% daily rebalance — turnover (annu one-way ~119) dominates. D1 alone survives (net 0.88, TO~42); D4/D5 gross positive but net negative due to high turnover.",
+      "implication_for_combination_layer": "Phase 3 must optimize NET Sharpe with turnover penalty; prefer lower-turnover blends (upweight D1), slower rebalance or soft-threshold holding, and cancel as state_modifier (not high-TO additive). C1–C5 evaluation metric = net_sharpe_tradable.",
+      "capacity": "~¥18–19bn rough ADV×5% participation median — not binding vs turnover constraint"
+    }
+  },
+  "combination_layer_v1": {
+    "ranking_paradigm": "ICIR_primary; turnover≤120% and net Sharpe>0 as fences",
+    "artifact": "research/results/alpha_combination_v1/alpha_combination_v1.json",
+    "recommended": {
+      "label": "C2_D1_0.60",
+      "weights": {
+        "D1": 0.6,
+        "D4": 0.2,
+        "D5": 0.2
+      },
+      "IC": 0.0548358037780081,
+      "ICIR": 5.732531632016892,
+      "gross_Sharpe": 1.9830068652326744,
+      "annu_one_way_turnover": 66.22355328286488,
+      "net_Sharpe": 0.6724075983977743,
+      "note": "Selected by highest ICIR among schemes with TO≤120% and net Sharpe>0. Net Sharpe is a feasibility fence, not the primary ranking metric."
+    },
+    "figures_root": "research/alpha_library_v1/figures",
+    "note": "Prior C2_D1_0.80 was net-Sharpe-maximizing; research-rank prefers C2 near w1=0.60 (highest ICIR in feasible set). Net Sharpe remains a production gate only.",
+    "c6_vs_c2_060": {
+      "upgrade_to_c6": false,
+      "research_recommended": "C2_D1_0.60",
+      "reason": "Keep C2_D1_0.60: C6 ICIR=5.571 vs C2=5.733; state_modifier does not improve information efficiency at w1=0.60",
+      "c2_ICIR": 5.732531632016892,
+      "c6_ICIR": 5.570810179435128
+    },
+    "production_alternatives_note": "C2_D1_0.70 / 0.80 are lower-turnover production compromises; research recommendation remains ICIR-optimal C2_D1_0.60 unless C6 upgrades."
+  },
+  "next_phase": "production_stack_v3_on_icir_optimal_tilt",
+  "parallel_offline": "research_satellites_regime_risk_only"
+}

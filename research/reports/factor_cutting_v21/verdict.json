@@ -1,0 +1,168 @@
+{
+  "period": "2023-01-03 -> 2025-12-31",
+  "n_days": 727,
+  "source": "ddb",
+  "preset": "smoke",
+  "primary_knife": "ats_trade_count",
+  "ideal_reversal_raw": {
+    "rank_ic": -0.03769600067347499,
+    "icir": -6.5826657398660435
+  },
+  "neutralization": [
+    {
+      "mode": "raw",
+      "rank_ic": -0.03769600067347499,
+      "icir": -6.5826657398660435,
+      "ic_pos_ratio": 0.2988980716253444,
+      "n_days": 726,
+      "monthly_rank_ic": -0.04838175611421648,
+      "monthly_icir": -1.9173527789418272,
+      "ic_retention_vs_raw": 1.0
+    },
+    {
+      "mode": "size",
+      "rank_ic": -0.03741478147988568,
+      "icir": -7.20813748037235,
+      "ic_pos_ratio": 0.3044077134986226,
+      "n_days": 726,
+      "monthly_rank_ic": -0.04774070838468735,
+      "monthly_icir": -2.238968032791392,
+      "ic_retention_vs_raw": 0.9925398135461306
+    },
+    {
+      "mode": "industry",
+      "rank_ic": -0.03335028617749906,
+      "icir": -8.167957415491841,
+      "ic_pos_ratio": 0.256198347107438,
+      "n_days": 726,
+      "monthly_rank_ic": -0.04505518693290563,
+      "monthly_icir": -2.1614927412581535,
+      "ic_retention_vs_raw": 0.8847168288854096
+    },
+    {
+      "mode": "size_industry",
+      "rank_ic": -0.03312252339505098,
+      "icir": -9.456077813251678,
+      "ic_pos_ratio": 0.25068870523415976,
+      "n_days": 726,
+      "monthly_rank_ic": -0.04461046342872783,
+      "monthly_icir": -2.6564394006803873,
+      "ic_retention_vs_raw": 0.8786747348070225
+    }
+  ],
+  "search_knives": {
+    "object": "panel",
+    "best_knife": "volume",
+    "effectiveness": 0.04987241206181547,
+    "family": "participation",
+    "ranking": [
+      {
+        "knife": "volume",
+        "family": "participation",
+        "effectiveness": 0.04987241206181547,
+        "ic_spread": -0.04430838150662527,
+        "separation": -0.058218457894600756
+      },
+      {
+        "knife": "amount",
+        "family": "participation",
+        "effectiveness": 0.04968068196122791,
+        "ic_spread": -0.04417146385122353,
+        "separation": -0.05794450912623447
+      },
+      {
+        "knife": "ats_trade_count",
+        "family": "trader_structure",
+        "effectiveness": 0.04148027388251008,
+        "ic_spread": -0.037249433379142285,
+        "separation": -0.047826534637561764
+      },
+      {
+        "knife": "ats_volume",
+        "family": "trader_structure",
+        "effectiveness": 0.03266574157189851,
+        "ic_spread": -0.029956778328495633,
+        "separation": -0.036729186437002834
+      },
+      {
+        "knife": "turnover",
+        "family": "participation",
+        "effectiveness": 0.03266574157189851,
+        "ic_spread": -0.029956778328495633,
+        "separation": -0.036729186437002834
+      },
+      {
+        "knife": "amihud",
+        "family": "liquidity",
+        "effectiveness": 0.021905244278978723,
+        "ic_spread": -0.02386748652342811,
+        "separation": -0.01896188091230464
+      }
+    ],
+    "independent_knives": [
+      "ats_trade_count",
+      "amihud"
+    ],
+    "corr": {
+      "volume": {
+        "volume": 1.0,
+        "amount": 0.9198983600374241,
+        "ats_trade_count": null,
+        "ats_volume": null,
+        "turnover": null,
+        "amihud": null
+      },
+      "amount": {
+        "volume": 0.9198983600374241,
+        "amount": 1.0,
+        "ats_trade_count": null,
+        "ats_volume": null,
+        "turnover": null,
+        "amihud": null
+      },
+      "ats_trade_count": {
+        "volume": null,
+        "amount": null,
+        "ats_trade_count": 1.0,
+        "ats_volume": null,
+        "turnover": null,
+        "amihud": null
+      },
+      "ats_volume": {
+        "volume": null,
+        "amount": null,
+        "ats_trade_count": null,
+        "ats_volume": 1.0,
+        "turnover": 0.9999999999999998,
+        "amihud": 0.025854025605237287
+      },
+      "turnover": {
+        "volume": null,
+        "amount": null,
+        "ats_trade_count": null,
+        "ats_volume": 0.9999999999999998,
+        "turnover": 1.0,
+        "amihud": 0.025854025605237287
+      },
+      "amihud": {
+        "volume": null,
+        "amount": null,
+        "ats_trade_count": null,
+        "ats_volume": 0.025854025605237287,
+        "turnover": 0.025854025605237287,
+        "amihud": 1.0
+      }
+    },
+    "n_candidates": 6,
+    "corr_indep_threshold": 0.5,
+    "families": {
+      "volume": "participation",
+      "amount": "participation",
+      "ats_trade_count": "trader_structure",
+      "ats_volume": "trader_structure",
+      "turnover": "participation",
+      "amihud": "liquidity"
+    }
+  },
+  "note": "v2.1: neutralization ladder + knife families + search_knives. Do not replace ATS with volume solely because score is higher — check independence / family attribution."
+}

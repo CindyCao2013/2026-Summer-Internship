@@ -1,0 +1,6 @@
+enhancer_factor,report_lambda,best_dimension_id,best_base_factor,sharpe_delta,ic_delta,interpretation
+cn_voi_shock,0.2,D4,winner_sentiment_reversal_5d,2.1380446177155346,-0.00799342807522721,cn_voi_shock primarily enhances D4 (winner_sentiment_reversal_5d)
+cn_mpb_shock,0.2,D4,winner_sentiment_reversal_5d,2.1330337918589137,-0.008044271785607245,cn_mpb_shock primarily enhances D4 (winner_sentiment_reversal_5d)
+cn_cancel_shock,0.2,D4,winner_sentiment_reversal_5d,3.359055770008763,0.004354728526054667,cn_cancel_shock primarily enhances D4 (winner_sentiment_reversal_5d)
+quality_composite,0.2,D4,winner_sentiment_reversal_5d,2.0789443129638165,-0.0026668576386167583,quality_composite primarily enhances D4 (winner_sentiment_reversal_5d)
+value_composite,0.2,D4,winner_sentiment_reversal_5d,2.3729142969273687,0.01746059336296589,value_composite primarily enhances D4 (winner_sentiment_reversal_5d)

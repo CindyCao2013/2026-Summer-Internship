@@ -1,0 +1,60 @@
+schema_version: factor_report_v2
+factor_id: ActiveTradeProxy
+display_name: Active Trade Proxy (APM overnight−day)
+family:
+- microstructure
+- trading_behavior
+source:
+  type: paper_proxy
+  paper_id: kysec_apm_active_trade
+  honesty: 'NOT paper APM. Paper needs overnight vs afternoon residual vs index +
+    CS residual vs Ret20
+
+    (session/minute). This factor is the daily research proxy only.
+
+    '
+data_level: EOD
+status: testing
+frozen_formula: false
+hypothesis: 'Daily overnight−daytime t-stat proxies active-trading imbalance (NOT
+  paper APM).
+
+  '
+mechanism:
+- microstructure
+- trading_behavior
+formula: t = mean(r_ON - r_DAY) / (std/sqrt(n)); window=20
+data_requirement:
+- open
+- close
+known_failure_modes:
+- not_paper_apm
+- possible_overnight_overlap
+correlation_cluster: null
+data_coverage:
+  requested: session_or_minute
+  actual: daily_OHLC_proxy_last_Nd
+  exception_reason: paper APM deferred to minute layer; proxy admitted for cutting-family
+    completeness
+coverage_exception: true
+admission:
+  requires_manual_review: true
+benchmark:
+  research:
+    universe: ALL
+    period_target: 2018-01-01_2025-12-31
+    horizon_days: 20
+  production:
+    universe: CSI1000
+    universe_membership: declare
+    period_target: 2018-01-01_2025-12-31
+    horizon_days: 20
+    neutralization: industry_size
+    cost_bp: 15
+    note: Pack harvests existing artifacts; Production Track re-run deferred
+do_not:
+- claim paper ActiveTrade / APM replication
+- promote to validated without minute APM
+notes:
+- factor_report_v2 schema-driven pack
+- Legacy/harvest metrics; Dual Benchmark Production re-run not performed

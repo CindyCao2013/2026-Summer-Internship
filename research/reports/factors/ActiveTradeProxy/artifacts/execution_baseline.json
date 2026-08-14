@@ -1,0 +1,8 @@
+{
+  "factor": "ActiveTradeProxy",
+  "honesty": "research_proxy_not_paper_apm",
+  "best_label": "signed_proxy|best_e1|buffer_10_30",
+  "best_net_sharpe": 2.4680497767876455,
+  "best_daily_turnover": 0.13245820905343259,
+  "note": "Phase III A3 \u2014 proxy only"
+}

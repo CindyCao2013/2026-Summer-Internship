@@ -1,0 +1,382 @@
+{
+  "period": "2023-12-05 -> 2025-12-31",
+  "note": "Size+industry neutralized; also residual vs cn_voi_shock",
+  "rows": [
+    {
+      "factor": "net_active_flow_mktcap_20d",
+      "rank_ic": 0.02551656877348508,
+      "icir": 5.04316359067902,
+      "gross_hl_sharpe": 3.4813416452469803,
+      "turnover_ann_proxy": 52.63376463739371,
+      "coverage": {
+        "mean_names": 5114.196428571428,
+        "median_names": 5106.0,
+        "pct_days_ge_50": 1.0,
+        "pct_days_ge_200": 1.0
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 502,
+          "residual_ic_mean": 0.016778742371848163,
+          "residual_icir": 3.3017017938014632,
+          "residual_ic_t": 4.6786407586247885
+        },
+        "vs_cn_voi_shock": {
+          "n_days": 502,
+          "residual_ic_mean": 0.0254837801978818,
+          "residual_icir": 5.21939520403077,
+          "residual_ic_t": 7.396087430668033
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.0021076674322610105,
+          "residual_icir": 0.33419214470139486,
+          "residual_ic_t": 0.4735633582498513
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.024919788234381682,
+          "residual_icir": 4.9674433679312715,
+          "residual_ic_t": 7.039061810789672
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.017554401213489577,
+          "residual_icir": 3.661734605938962,
+          "residual_ic_t": 5.188821354725617
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.04117979907208846,
+          "icir": 5.2485978639366575,
+          "ic_positive_ratio": 0.614314115308151,
+          "hl_sharpe": 3.8947429947038605,
+          "hl_annu_ret": 0.6645177017064711,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.04339411231679386,
+          "icir": 5.616769357271543,
+          "ic_positive_ratio": 0.6242544731610338,
+          "hl_sharpe": 4.140560401564757,
+          "hl_annu_ret": 0.6919808792918541,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.04504774096539525,
+          "icir": 6.020167664423928,
+          "ic_positive_ratio": 0.6341948310139165,
+          "hl_sharpe": 4.5290614068054875,
+          "hl_annu_ret": 0.7271593604607494,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.3,
+      "stack_icir_uplift": 1.0244569817361127,
+      "verdict": "enhancer_candidate"
+    },
+    {
+      "factor": "net_active_flow_mktcap_5d",
+      "rank_ic": 0.017796226344333532,
+      "icir": 3.61986334779482,
+      "gross_hl_sharpe": 2.458606409582701,
+      "turnover_ann_proxy": 112.54753455045866,
+      "coverage": {
+        "mean_names": 5107.7202380952385,
+        "median_names": 5102.0,
+        "pct_days_ge_50": 1.0,
+        "pct_days_ge_200": 1.0
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 502,
+          "residual_ic_mean": 0.013100892068363257,
+          "residual_icir": 2.6552004013475607,
+          "residual_ic_t": 3.7625229641828137
+        },
+        "vs_cn_voi_shock": {
+          "n_days": 502,
+          "residual_ic_mean": 0.018662511849089427,
+          "residual_icir": 3.8633107582301562,
+          "residual_ic_t": 5.474462657597638
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.0015667142371534111,
+          "residual_icir": 0.25942225024976,
+          "residual_ic_t": 0.3676114893208527
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.016514729568592706,
+          "residual_icir": 3.403668673773753,
+          "residual_ic_t": 4.823131821253094
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.010897188104316056,
+          "residual_icir": 2.186041709328287,
+          "residual_ic_t": 3.0977067221874415
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.04048832917539413,
+          "icir": 5.105922297914879,
+          "ic_positive_ratio": 0.6123260437375746,
+          "hl_sharpe": 3.7217947457138965,
+          "hl_annu_ret": 0.6423358130287267,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.042313235240758154,
+          "icir": 5.392926071373583,
+          "ic_positive_ratio": 0.6222664015904572,
+          "hl_sharpe": 3.930269739468123,
+          "hl_annu_ret": 0.6643761977469583,
+          "monotonicity_score": 0.8888888888888888,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.043291073415454566,
+          "icir": 5.663575909565211,
+          "ic_positive_ratio": 0.6262425447316103,
+          "hl_sharpe": 4.084607400665636,
+          "hl_annu_ret": 0.6689681763075846,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.3,
+      "stack_icir_uplift": 0.6678652268773959,
+      "verdict": "enhancer_candidate"
+    },
+    {
+      "factor": "net_active_flow_shock",
+      "rank_ic": 9.093600966371462e-05,
+      "icir": 0.021430127192018835,
+      "gross_hl_sharpe": 0.7890331987421192,
+      "turnover_ann_proxy": 196.4552632958945,
+      "coverage": {
+        "mean_names": 5095.291666666667,
+        "median_names": 5087.5,
+        "pct_days_ge_50": 1.0,
+        "pct_days_ge_200": 1.0
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 502,
+          "residual_ic_mean": 0.005769203660580704,
+          "residual_icir": 1.4731812338740593,
+          "residual_ic_t": 2.087555508066816
+        },
+        "vs_cn_voi_shock": {
+          "n_days": 502,
+          "residual_ic_mean": 0.006206888216833334,
+          "residual_icir": 0.9313820630264579,
+          "residual_ic_t": 1.3198048624828826
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.001621947885594299,
+          "residual_icir": 0.4295851181522032,
+          "residual_ic_t": 0.6087389378589048
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.005136614893352382,
+          "residual_icir": 1.3029821839425149,
+          "residual_ic_t": 1.8463767881763962
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.001127761388246818,
+          "residual_icir": 0.28810710661095557,
+          "residual_ic_t": 0.4082590542762168
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.038072466571007164,
+          "icir": 4.772392841856912,
+          "ic_positive_ratio": 0.610337972166998,
+          "hl_sharpe": 3.2699699168024434,
+          "hl_annu_ret": 0.5719069869526915,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.036894041053110525,
+          "icir": 4.676267590772153,
+          "ic_positive_ratio": 0.6123260437375746,
+          "hl_sharpe": 3.130032677584282,
+          "hl_annu_ret": 0.5437186658243428,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.034250673408064036,
+          "icir": 4.483164912938866,
+          "ic_positive_ratio": 0.610337972166998,
+          "hl_sharpe": 3.0062014046176504,
+          "hl_annu_ret": 0.5008356613502197,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.0,
+      "stack_icir_uplift": 0.0,
+      "verdict": "independent_of_base3_check_voi"
+    },
+    {
+      "factor": "active_buy_share_20d",
+      "rank_ic": 0.007766861353341417,
+      "icir": 1.9503595216106526,
+      "gross_hl_sharpe": 1.503304292210056,
+      "turnover_ann_proxy": 67.37148501843232,
+      "coverage": {
+        "mean_names": 5114.196428571428,
+        "median_names": 5106.0,
+        "pct_days_ge_50": 1.0,
+        "pct_days_ge_200": 1.0
+      },
+      "residual": {
+        "vs_base3_combo": {
+          "n_days": 502,
+          "residual_ic_mean": 0.006258903759572439,
+          "residual_icir": 1.5724737233861905,
+          "residual_ic_t": 2.2282568546659918
+        },
+        "vs_cn_voi_shock": {
+          "n_days": 502,
+          "residual_ic_mean": 0.01051242428259828,
+          "residual_icir": 2.6906016794092946,
+          "residual_ic_t": 3.8126879617480043
+        },
+        "vs_low_vol_liquidity_quality_60d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.0011194616249007752,
+          "residual_icir": 0.2725622592123108,
+          "residual_ic_t": 0.3862313966717532
+        },
+        "vs_winner_sentiment_reversal_5d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.011423323335444501,
+          "residual_icir": 2.883429990771855,
+          "residual_ic_t": 4.085933231399972
+        },
+        "vs_upside_fragility_20d": {
+          "n_days": 502,
+          "residual_ic_mean": 0.010672444862778017,
+          "residual_icir": 2.7808654674456528,
+          "residual_ic_t": 3.940595284731447
+        }
+      },
+      "stack": [
+        {
+          "lambda": 0.0,
+          "rank_ic": 0.039060822882092464,
+          "icir": 4.9957106826878155,
+          "ic_positive_ratio": 0.6182902584493042,
+          "hl_sharpe": 3.8333535586258964,
+          "hl_annu_ret": 0.6556617726134893,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.1,
+          "rank_ic": 0.03909024608938591,
+          "icir": 5.082694428908192,
+          "ic_positive_ratio": 0.614314115308151,
+          "hl_sharpe": 3.8268958093872474,
+          "hl_annu_ret": 0.6419665548204253,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.2,
+          "rank_ic": 0.03892845826237219,
+          "icir": 5.306996321090576,
+          "ic_positive_ratio": 0.6163021868787276,
+          "hl_sharpe": 4.0240464092989825,
+          "hl_annu_ret": 0.6407404918213478,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        },
+        {
+          "lambda": 0.3,
+          "rank_ic": 0.03780174006209856,
+          "icir": 5.567105334758486,
+          "ic_positive_ratio": 0.6242544731610338,
+          "hl_sharpe": 4.292780785809585,
+          "hl_annu_ret": 0.6270929918000419,
+          "monotonicity_score": 1.0,
+          "universe_stability": NaN,
+          "sign_consistency": NaN
+        }
+      ],
+      "best_lambda": 0.3,
+      "stack_icir_uplift": 0.5713946520706701,
+      "verdict": "enhancer_candidate"
+    }
+  ]
+}

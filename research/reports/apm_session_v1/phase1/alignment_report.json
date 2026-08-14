@@ -1,0 +1,37 @@
+{
+  "pm_start_rule": "first_available_bar_after_13_01",
+  "n_pm_rows": 96793,
+  "frac_pm_n_bars_ge_2": 1.0,
+  "frac_finite_pm_return": 1.0,
+  "index_adapted": true,
+  "index_pm_matched": false,
+  "calendar": {
+    "source": "WIND.ASHAREEODPRICES dates present in stock_overnight panel",
+    "start": "2024-06-01",
+    "end": "2024-06-30",
+    "n_eod_days": 19,
+    "n_pm_days": 19,
+    "n_index_days": 19,
+    "missing_days": {
+      "eod_without_any_pm_rows": [],
+      "eod_without_index": [],
+      "pm_without_eod": [],
+      "n_eod_without_any_pm_rows": 0,
+      "n_eod_without_index": 0
+    }
+  },
+  "sample_bartime_first_head": [
+    "13:01:00",
+    "13:01:00",
+    "13:01:00",
+    "13:01:00",
+    "13:01:00"
+  ],
+  "sample_bartime_last_head": [
+    "15:00:00",
+    "15:00:00",
+    "15:00:00",
+    "15:00:00",
+    "15:00:00"
+  ]
+}

@@ -1,0 +1,131 @@
+{
+  "phase": "1.5_sanity",
+  "formula_version": "sm10d_v1_beta0p25_optB",
+  "window": "2024-06-01_2024-06-30",
+  "n_days": 19,
+  "n_symbols": 795,
+  "signal": "raw_Q",
+  "sign_flip": false,
+  "gate1_cs_dispersion": {
+    "cs_std": {
+      "n": 19,
+      "mean": 0.011988208845680656,
+      "median": 0.01204476397021172,
+      "min": 0.007963037115760291,
+      "max": 0.01627027994630192,
+      "p05": 0.008402777887351878,
+      "p95": 0.015861913040183234
+    },
+    "cs_mad": {
+      "n": 19,
+      "mean": 0.0028346822893518795,
+      "median": 0.0028206629394474936,
+      "min": 0.0020029306651351275,
+      "max": 0.003865077597099087,
+      "p05": 0.002062101718467213,
+      "p95": 0.003842079322378156
+    },
+    "cs_iqr": {
+      "n": 19,
+      "mean": 0.005746120973004403,
+      "median": 0.005730270971039286,
+      "min": 0.004094334376335329,
+      "max": 0.00756337153491593,
+      "p05": 0.004112450728401029,
+      "p95": 0.0075049420994057975
+    },
+    "cs_mean": {
+      "n": 19,
+      "mean": 0.9998890720130825,
+      "median": 0.9997809149270982,
+      "min": 0.9983134387626544,
+      "max": 1.0024125901961434,
+      "p05": 0.9984807894150732,
+      "p95": 1.0018732582924785
+    },
+    "n_names": {
+      "n": 19,
+      "mean": 792.1052631578947,
+      "median": 792.0,
+      "min": 788.0,
+      "max": 794.0,
+      "p05": 788.9,
+      "p95": 794.0
+    }
+  },
+  "gate2_rank_uniqueness": {
+    "n_unique_ranks": {
+      "n": 19,
+      "mean": 792.1052631578947,
+      "median": 792.0,
+      "min": 788.0,
+      "max": 794.0,
+      "p05": 788.9,
+      "p95": 794.0
+    },
+    "n_unique_values": {
+      "n": 19,
+      "mean": 792.1052631578947,
+      "median": 792.0,
+      "min": 788.0,
+      "max": 794.0,
+      "p05": 788.9,
+      "p95": 794.0
+    },
+    "tie_ratio": {
+      "n": 19,
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "p05": 0.0,
+      "p95": 0.0
+    },
+    "value_collision_ratio": {
+      "n": 19,
+      "mean": 0.0,
+      "median": 0.0,
+      "min": 0.0,
+      "max": 0.0,
+      "p05": 0.0,
+      "p95": 0.0
+    },
+    "n": {
+      "n": 19,
+      "mean": 792.1052631578947,
+      "median": 792.0,
+      "min": 788.0,
+      "max": 794.0,
+      "p05": 788.9,
+      "p95": 794.0
+    }
+  },
+  "gate3_raw_direction": {
+    "rank_ic_mean": -0.024883777845191638,
+    "rank_ic_std": 0.11412352008426829,
+    "n_ic_days": 18,
+    "icir_short_window": NaN,
+    "paper_expected": "RankIC < 0",
+    "empirical_direction": "negative_matches_paper",
+    "note": "Do not invert formula; record empirical_direction only."
+  },
+  "gates": {
+    "dispersion_not_near_constant": true,
+    "dispersion_in_useful_band": true,
+    "rank_unique_frac_gt_0p5": true,
+    "tie_ratio_lt_0p5": true,
+    "raw_rank_ic_finite": true,
+    "raw_rank_ic_not_zero_noise": true
+  },
+  "hard_pass": true,
+  "soft_pass": true,
+  "interpretation": "Useful CS dispersion + rankable Q",
+  "next": "Phase2A CSI1000 2023-2025 scout",
+  "forbidden": [
+    "formula_change",
+    "sign_flip",
+    "Registry",
+    "252d_ALL"
+  ],
+  "panel_cache": "research/cache/smart_money/factor_panel"
+}

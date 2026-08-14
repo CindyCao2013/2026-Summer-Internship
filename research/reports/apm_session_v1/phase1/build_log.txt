@@ -1,0 +1,12 @@
+=== C1.1 Phase1 APM_SessionResidual PANEL BUILD ===
+formula=apm_session_v1_adapted_eod_index identity=adapted_replication
+window=2024-06-01..2024-06-30 index=000852.SH
+pm_start_rule=first_available_bar_after_13_01
+Forbidden: IC · Sharpe · library · Registry · Active_* · Proxy rename · cache shift(1)
+residual rows=97,318 dates=19 symbols=5122
+coverage pct_nan={'r_on': 0.0013666536509176104, 'r_pm': 0.005394685464148462, 'alpha_on': 0.0013666536509176104, 'alpha_pm': 0.005394685464148462, 'delta_alpha': 0.0056515752481555315}
+mean_daily_frac_finite_r_pm=0.9946
+sample_checks ...
+Wrote /home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/apm_session_v1/phase1/sample_checks.csv rows=100
+Wrote reports under /home/SiYangCao/factor_dev/factor_research0703/factor_dev/research/reports/apm_session_v1/phase1
+PHASE1 PASS: {'residual_rows_gt_0': True, 'pm_rows_gt_0': True, 'ovn_rows_gt_0': True, 'index_rows_gt_0': True, 'no_active_cols': True, 'mean_daily_frac_finite_r_pm_gt_0p3': True, 'cache_not_shifted': True, 'adapted_flag': True}

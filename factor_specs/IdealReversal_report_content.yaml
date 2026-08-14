@@ -1,0 +1,137 @@
+factor_id: IdealReversal
+
+layer_discipline: |
+  **Factor Identity:** `IdealReversal` (spread \(M\)) is the only investable factor_id.
+  `M_high` / `M_low` / Ret20 baseline are **cutting / mechanism legs**, not Registry siblings.
+
+construction_title: "Factor construction: ATS cutting → Ideal Reversal"
+construction_steps:
+  - "r_t / ATS"
+  - "high ATS days"
+  - "low ATS days"
+  - "M_high / M_low"
+  - "M spread"
+  - "sign / shift"
+
+executive_summary: |
+  Ideal Reversal is a **paper-replication / cutting** factor: 20-day returns are split by
+  average trade size (ATS = amount / trade_count) into high/low legs; the spread
+  \(M = M_{high} - M_{low}\) purifies reversal information concentrated in the high-ATS state.
+
+  On the cutting_v1 harvest, the spread shows RankICIR ≈ −6.5 to −8.6 (signed book) with
+  H–L Sharpe ≈ 1.70 and **weak monotonicity (~0.44)**. This pack is a Template v2 stress test
+  for Object–Knife–Output documentation — **not** an automatic soft-bar pass (Sharpe < 2).
+
+factor_thesis: |
+  Traditional Ret20 mixes informative and noisy days. Cutting by ATS isolates the return
+  contribution of large-trade days versus small-trade days; the difference is a cleaner
+  reversal (or momentum) locus than the raw sum.
+
+economic_intuition: |
+  Large average trade size days are more likely to embed institutional / informed inventory
+  adjustment; small-trade days embed noise trading. If reversal is driven by the former,
+  \(M_{high}\) should dominate and \(M_{low}\) should be near noise — exactly the cutting claim.
+
+formula:
+  raw_variables: |
+    Daily return \(r_t\), amount, trade count over a 20-day window.
+  intermediate_variables: |
+    $$\mathrm{ATS}_t = \frac{\mathrm{Amount}_t}{\mathrm{TradeCount}_t}$$
+
+    Partition the last 20 days into high-ATS and low-ATS halves (10/10 in the paper recipe).
+  transformations: |
+    $$M_{high} = \sum_{t \in HighATS} r_t,\qquad M_{low} = \sum_{t \in LowATS} r_t$$
+  final_signal: |
+    $$M = M_{high} - M_{low}$$
+
+    Investable signal uses the cutting validation sign convention (`direction=-1` on harvest).
+
+signal_pipeline: |
+  ```
+  Ret20 object (additive daily returns)
+        ↓
+  knife: ATS = amount / trade_count
+        ↓
+  M_high vs M_low
+        ↓
+  M = M_high − M_low
+        ↓
+  neutralization / residual vs Base3 (diagnostics)
+  ```
+
+mechanism_rows:
+  - hypothesis: "High-ATS leg carries the reversal alpha"
+    test: "M_high RankICIR"
+    result: "ICIR ≈ −5.7 (stronger than low leg)"
+    conclusion: "pass — information locus in high ATS"
+  - hypothesis: "Low-ATS leg is near noise"
+    test: "M_low RankICIR"
+    result: "ICIR ≈ +0.32 ~ 0"
+    conclusion: "pass — knife separates signal from noise"
+  - hypothesis: "Spread purifies vs raw Ret20"
+    test: "M spread vs Ret20 ICIR / purity"
+    result: "spread ICIR ≈ −6.5; purity ≈ 0.79"
+    conclusion: "pass cutting claim"
+  - hypothesis: "Soft quality bar (Sharpe>2, mono>0.8)"
+    test: "H-L Sharpe / monotonicity"
+    result: "Sharpe ≈ 1.70 · mono ≈ 0.44"
+    conclusion: "fail soft bar — keep as testing / paper-replication pack"
+
+mechanism_narrative: |
+  Ideal Reversal’s value in Alpha OS is methodological: Object–Knife–Output with an explicit
+  pass/fail on legs. It is a Template v2 representative for **paper replication**, even when
+  portfolio soft-bar metrics are incomplete.
+
+ic_narrative: |
+  Harvest RankIC ≈ −3.1% (factor-level) with RankICIR ≈ −8.6 on the summary.json primary row;
+  mechanism spread leg ICIR ≈ −6.48. IC+ ratio ≈ 27% (signed). Pearson IC N/A.
+
+portfolio_narrative: |
+  H–L Sharpe ≈ 1.70 with direction −1. Monotonicity ≈ 0.44 — **weak**; decile structure is not
+  yet institutional-grade on this harvest. Treat portfolio section as diagnostic.
+
+risk_narrative: |
+  If neutralization.csv exists it is mapped into the risk ladder; otherwise size/industry modes
+  are N/A. Residual independence vs Base3 (from cutting notes) belongs in diagnostics, not as
+  a Production claim.
+
+stability_narrative: |
+  Only full-sample block harvested (n_days ≈ 1703). Yearly panel not assembled — limited.
+
+execution_narrative: |
+  Execution grid filled (Milestone 2.2.1). Best: `raw_cs_z|best_e1_buffer_5_15` Net Sharpe≈1.70, daily TO≈0.153 @ 0.0015 RT. Soft bar still not passed — Registry stays `testing`.
+
+limitations: |
+  - Soft quality bar not passed (Sharpe/mono).
+  - Weak decile monotonicity.
+  - Missing execution and incomplete neutralization ladder.
+  - Sign/horizon conventions must stay tied to cutting validation scripts.
+
+final_verdict: |
+  **Status: testing (paper replication).** Template v2 successfully encodes cutting logic and
+  mechanism legs. Not Registry-validated. Next: fill Production Track + improve mono before
+  candidate promotion.
+
+code_map:
+  - item: Implementation
+    path: "research/reports/factor_cutting_v1/ideal_reversal/ (Object–Knife–Output)"
+  - item: Cutting framework
+    path: "research/reports/factor_cutting_v1/"
+
+card_fields:
+  hypothesis: |
+    Cutting 20d returns by ATS isolates high-trade-size reversal information (M_high − M_low).
+  mechanism:
+    - microstructure
+  formula: "M = sum(r|high ATS) - sum(r|low ATS); knife=ATS"
+  data_requirement:
+    - close/return
+    - amount
+    - trade_count
+  known_failure_modes:
+    - weak_monotonicity
+    - sharpe_below_soft_bar
+    - missing_execution
+  do_not:
+    - promote to validated without Production Track + mono fix
+    - confuse with raw Ret20

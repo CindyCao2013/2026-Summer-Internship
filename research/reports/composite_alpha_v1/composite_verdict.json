@@ -1,0 +1,97 @@
+{
+  "schema_version": "composite_alpha_v1",
+  "meta": {
+    "start": "2022-01-28",
+    "end": "2025-12-31",
+    "n_days": 951,
+    "ic_lookback": 60,
+    "top_frac": 0.1,
+    "method": "rolling_rankic_weighted_cs_ranks"
+  },
+  "models": [
+    {
+      "model": "A_TGD",
+      "rank_ic": 0.041524943072059756,
+      "rank_icir": 11.281222814092933,
+      "gross_sharpe": 4.063552163128353,
+      "gross_annu_ret": 0.3534078857123307,
+      "net_sharpe": 1.2799406854694693,
+      "net_annu_ret": 0.11118543074694373,
+      "mdd_net": -0.0841501725237201,
+      "daily_turnover": 0.6459265465743658,
+      "annu_one_way_turnover": 80.74081832179571,
+      "n_days": 950,
+      "cost_rt": 0.0015,
+      "top_frac": 0.1,
+      "direction": 1
+    },
+    {
+      "model": "B_TGD_D1",
+      "rank_ic": 0.05947653079113476,
+      "rank_icir": 10.841411668028442,
+      "gross_sharpe": 3.7729181309828808,
+      "gross_annu_ret": 0.44237211231139084,
+      "net_sharpe": 2.27673281565185,
+      "net_annu_ret": 0.26746645643873973,
+      "mdd_net": -0.11824096809610647,
+      "daily_turnover": 0.46641508232706846,
+      "annu_one_way_turnover": 58.30188529088356,
+      "n_days": 950,
+      "cost_rt": 0.0015,
+      "top_frac": 0.1,
+      "direction": 1
+    },
+    {
+      "model": "C_TGD_D1_Flow",
+      "rank_ic": 0.05769668175037567,
+      "rank_icir": 10.86703736997932,
+      "gross_sharpe": 4.467951008546948,
+      "gross_annu_ret": 0.4748541654595886,
+      "net_sharpe": 2.8784923711475088,
+      "net_annu_ret": 0.30631695821949273,
+      "mdd_net": -0.09385315418941556,
+      "daily_turnover": 0.4494325526402532,
+      "annu_one_way_turnover": 56.17906908003165,
+      "n_days": 950,
+      "cost_rt": 0.0015,
+      "top_frac": 0.1,
+      "direction": 1
+    }
+  ],
+  "incremental": [
+    {
+      "contrast": "B_minus_A",
+      "add": "D1",
+      "delta_rank_icir": -0.4398111460644909,
+      "delta_gross_sharpe": -0.29063403214547234,
+      "delta_net_sharpe": 0.9967921301823808,
+      "delta_daily_turnover": -0.1795114642472973,
+      "delta_mdd_net": -0.03409079557238637
+    },
+    {
+      "contrast": "C_minus_B",
+      "add": "FlowDensity20",
+      "delta_rank_icir": 0.025625701950877655,
+      "delta_gross_sharpe": 0.6950328775640675,
+      "delta_net_sharpe": 0.6017595554956587,
+      "delta_daily_turnover": -0.01698252968681524,
+      "delta_mdd_net": 0.02438781390669091
+    }
+  ],
+  "flow_residual_vs_cores": {
+    "test": "Flow_perp_TGD_D1",
+    "raw_icir_flow": 4.846912963196787,
+    "residual_ic_mean": -0.0081757518682566,
+    "residual_icir": -1.7402379294414811,
+    "note": "CS residual of Flow on [TGD, D1]; IC on aligned panels"
+  },
+  "recommendation": {
+    "promote_B_if": "delta_net_sharpe(B-A) materially > 0",
+    "add_Flow_if": "delta_net_sharpe(C-B) materially > 0 AND resid IC Flow⊥cores not absorbed",
+    "exclude": [
+      "D4",
+      "D5",
+      "IdealReversal"
+    ]
+  }
+}

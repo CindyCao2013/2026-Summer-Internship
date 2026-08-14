@@ -1,0 +1,10 @@
+factor_id,variant,test_universe,long_group,excess_sharpe_exact,excess_annu_ret_exact,excess_mdd_exact,legacy_hl_net_sharpe_15bp,metric_status
+TGD20,raw,ALL,10,1.2393,0.09291,-0.13079,0.9959,exact
+TGD20,size_industry,ALL,10,2.1602,0.08805,-0.05041,1.7190,exact_headline
+FlowDensity20,raw,ALL,10,-0.0464,-0.00455,-0.20546,-0.1777,exact
+FlowDensity20,size_industry,ALL,10,0.5012,0.03983,-0.16773,1.8497,exact_headline
+D1_LiquidityQuality60d,raw,ALL,10,,,,1.3777,pending_exact_rerun
+APM_SessionResidual,size_industry,CSI1000,10,,,,1.50,pending_exact_rerun
+IdealReversal,raw,ALL,1,,,,1.70,pending_exact_rerun
+IdealAmplitude,raw,ALL,1,,,,3.40,pending_exact_rerun
+AmihudShockReversal5d,raw,ALL,10,,,,,pending_exact_rerun
